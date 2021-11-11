@@ -65,7 +65,7 @@ class Pob extends MEMBER_Controller
 			$current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 			$this->session->set_userdata('after_login_redirect', $current_url);
 		} else {
-			if ($this->session->userdata('user_level') >= 1 && $this->session->userdata('user_department_id') == 9 || 10 || 11 || 12) {
+			if ($this->session->userdata('user_level') >= 1 && $this->session->userdata('user_department_id') == 9 || 11 || 12) {
 				$this->data['page_content'] = $this->parser->parse_repeat($path, $this->data, TRUE);
 			} else {
 				$this->data['alert_message'] = 'เฉพาะผู้ใช้งานระดับ <b>ผู้ใช้งานทั่วไป</b> และ เฉพาะผู้ใช้งานแผนก <b>ฝ่ายจัดซื้อ</b>';
