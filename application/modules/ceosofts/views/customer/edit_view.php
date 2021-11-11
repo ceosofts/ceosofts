@@ -1,0 +1,116 @@
+<!--  [ View File name : edit_view.php ] -->
+<div class="card">
+	<div class="card-header bg-primary">
+		<h3 class="card-title"><i class="fa fa-edit"></i> แก้ไขข้อมูล <strong>ลูกค้า</strong></h3>
+	</div>
+	<div class="card-body">
+		<form class='form-horizontal' id='formEdit' accept-charset='utf-8'>
+			{csrf_protection_field}
+			<input type="hidden" name="submit_case" value="edit" />
+			<div class='form-group'>
+				<label class='col-sm-2 control-label' for='cus_id'>หมายเลขลูกค้า :</label>
+				<div class='col-sm-10'>
+
+					<input type="text" class="form-control " id="cus_id" name="cus_id" value="{record_cus_id}" readonly="readonly" />
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-sm-2 control-label' for='cus_name'>ชื่อบริษัทลูกค้า :</label>
+				<div class='col-sm-10'>
+
+					<input type="text" class="form-control " id="cus_name" name="cus_name" value="{record_cus_name}" />
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-sm-2 control-label' for='cus_contact'>ชื่อผู้ติดต่อ :</label>
+				<div class='col-sm-10'>
+
+					<input type="text" class="form-control " id="cus_contact" name="cus_contact" value="{record_cus_contact}" />
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-sm-2 control-label' for='cus_address'>ที่อยู่ลูกค้า :</label>
+				<div class='col-sm-10'>
+
+					<input type="text" class="form-control " id="cus_address" name="cus_address" value="{record_cus_address}" />
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-sm-2 control-label' for='cus_tel'>เบอร์โทรลูกค้า :</label>
+				<div class='col-sm-10'>
+
+					<input type="text" class="form-control " id="cus_tel" name="cus_tel" value="{record_cus_tel}" />
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-sm-2 control-label' for='cus_tax'>หมายเลขผู้เสียภาษี :</label>
+				<div class='col-sm-10'>
+
+					<input type="text" class="form-control " id="cus_tax" name="cus_tax" value="{record_cus_tax}" />
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-sm-2 control-label' for='cus_branch'>สาขา :</label>
+				<div class='col-sm-10'>
+					<select id='cus_branch' name='cus_branch' value="{record_cus_branch}">
+						<option value="">- เลือก สาขา -</option>
+						{tb_branch_cus_branch_option_list}
+					</select>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-sm-2 control-label' for='cus_edit_by'>แก้ไขโดย :</label>
+				<div class='col-sm-10'>
+					<input type="text" class="form-control " id="cus_edit_by" name="cus_edit_by" value="{record_cus_edit_by}" readonly="readonly" />
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-sm-2 control-label' for='cus_edit_date'>วันที่แก้ไข :</label>
+				<div class='col-sm-10'>
+					<input type="text" class="form-control" id="cus_edit_date" name="cus_edit_date" value="{record_cus_edit_date}" readonly="readonly" />
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class='col-sm-offset-2 col-sm-10'>
+					<button type="button" class='btn btn-primary btn-lg' data-toggle='modal' data-target='#editModal'>&nbsp;&nbsp;<i class="fa fa-save"></i> บันทึก &nbsp;&nbsp;</button>
+
+				</div>
+			</div>
+
+			<input type="hidden" name="encrypt_id" value="{encrypt_id}" />
+
+
+		</form>
+	</div>
+	<!--card-body-->
+</div>
+<!--card-->
+
+<!-- Modal -->
+<div class='modal fade' id='editModal' tabindex='-1' role='dialog' aria-labelledby='editModalLabel' aria-hidden='true'>
+	<div class='modal-dialog' role='document'>
+		<div class='modal-content'>
+			<div class='modal-header bg-warning'>
+				<h4 class='modal-title' id='editModalLabel'>บันทึกข้อมูล</h4>
+				<button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+			</div>
+			<div class='modal-body'>
+				<h4>ยืนยันการเปลี่ยนแปลงแก้ไขข้อมูล ?</h4>
+				<form class="form-horizontal" onsubmit="return false;">
+					<div class="form-group">
+						<div class="col-sm-8">
+							<label class="col-sm-3 text-right badge badge-warning" for="edit_remark">ระบุเหตุผล :</label>
+						</div>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" id="edit_remark">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class='modal-footer'>
+				<button type='button' class='btn btn-lg btn-default' data-dismiss='modal'><i class="fas fa-window-close"></i> ปิด</button>
+				<button type='button' class='btn btn-lg btn-primary' id='btnSaveEdit'>&nbsp;<i class="fa fa-save"></i> บันทึก&nbsp;</button>
+			</div>
+		</div>
+	</div>
+</div>
