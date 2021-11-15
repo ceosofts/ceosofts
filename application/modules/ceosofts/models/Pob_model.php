@@ -73,6 +73,17 @@ class Pob_model extends MY_Model
 		$this->set_table_name($this->my_table);
 		return $this->add_record($data);
 	}
+	public function pr_list_table($pr_ref_id)
+	{
+		$this->db->where('tb_prs.pr_id',$pr_ref_id);
+		$get_id = $this->db->get('tb_prs')->row('id');
+		$this->db->select('tb_prs_list.*,tb_prs.id as prs_id');
+		$this->db->from('tb_prs');
+		$this->db->join('tb_prs_list', 'tb_prs.id = tb_prs_list.pr_ref');
+		$this->db->where('tb_prs.id',$get_id);
+		$query = $this->db->get();
+		return $data = $query->result_array();
+	}
 
 	public function save_excel_data($array_data)
 	{

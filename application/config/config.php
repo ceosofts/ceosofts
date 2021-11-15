@@ -28,7 +28,7 @@ $potocal = 'http'.((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's'
 $directory = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
 $base_url = $potocal . '://'.$_SERVER['HTTP_HOST'] . $directory;
 
-$config['base_url'] = $base_url; 
+$config['base_url'] = $base_url;
 //$config['base_url'] = '';
 
 
@@ -455,7 +455,7 @@ $config['global_xss_filtering'] = TRUE;
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
-$config['csrf_protection'] 	= TRUE;
+$config['csrf_protection'] 	= false;
 $config['csrf_token_name'] 	= 'csrf_token_ci_gen';
 $config['csrf_cookie_name'] = 'csrf_cookie_ci_gen';
 $config['csrf_expire'] 		= 7200;

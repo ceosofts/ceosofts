@@ -619,13 +619,15 @@ $(document).ready(function() {
 		var change_val = opt.attr('data-pr_price');
 		$('#pob_price').val(change_val).attr('value', change_val);
 		var pr_ref_id  = $(this).val();
+		var base_url = $('#base_url').val();
 		$.ajax({
-			url: '',
-			type: 'POST',
+			url: site_url('ceosofts/pob/pr_list_table'),
+			method: 'POST',
 			// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-			data: {param1: 'value1'},
+			data: {pr_ref_id:pr_ref_id},
 			success:function(data) {
-
+			$('.table-responsive').empty();
+			$('.table-responsive').html(data);
 			}
 		});
 	});

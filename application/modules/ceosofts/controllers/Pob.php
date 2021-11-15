@@ -47,6 +47,12 @@ class Pob extends MEMBER_Controller
 		}
 		$this->list_all();
 	}
+	public function pr_list_table()
+	{
+		$pr_ref_id = $this->input->post('pr_ref_id',TRUE);
+		$data['data'] = $this->Pob->pr_list_table($pr_ref_id);
+		$this->load->view('ceosofts/pob/pr_list_table',$data);
+	}
 
 	// ------------------------------------------------------------------------
 
@@ -99,7 +105,7 @@ class Pob extends MEMBER_Controller
 	// ------------------------------------------------------------------------
 
 	/**
-	 * List all record 
+	 * List all record
 	 */
 	public function list_all()
 	{
@@ -1027,10 +1033,10 @@ class Pob extends MEMBER_Controller
 						<td>{detail_pob_remark}</td>
 						<td>
 							<div class="btn-group pull-right">
-								<button 
-									class="btn-edit-list-row my-tooltip btn btn-warning btn-sm" 
-									data-toggle="tooltip" title="แก้ไขข้อมูล" 
-									data-url-encrypt-id="{detail_url_encrypt_id}" 
+								<button
+									class="btn-edit-list-row my-tooltip btn btn-warning btn-sm"
+									data-toggle="tooltip" title="แก้ไขข้อมูล"
+									data-url-encrypt-id="{detail_url_encrypt_id}"
 									 data-id = "{detail_encrypt_id}" data-row-number="{record_number}">
 									<i class="fa fa-edit"></i> แก้ไข
 								</button>
@@ -1083,7 +1089,7 @@ class Pob extends MEMBER_Controller
 	}
 
 	/**
-	 * SET array data for add form 
+	 * SET array data for add form
 	 */
 	private function setAddFormat($row_data)
 	{
@@ -1220,7 +1226,7 @@ class Pob extends MEMBER_Controller
 		$objPHPExcel = new PHPExcel();
 		$objPHPExcel->setActiveSheetIndex(0);
 
-		// set Header ***** SECTION 1 ***** 
+		// set Header ***** SECTION 1 *****
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', 'หมายเลขใบเสนอซื้อ');
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', 'อ้างอิงใบเสนอซื้อ');
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', 'วันที่ใบเสนอซื้อ');
