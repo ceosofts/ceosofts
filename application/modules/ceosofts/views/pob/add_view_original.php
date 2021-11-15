@@ -101,15 +101,12 @@
 					<a id="btnGotoEdit" class="btn btn-warning btn-lg" style="display:none" href="#" title="คลิกที่นี่เพื่อแก้ไขข้อมูลหลัก">
 						<i class="fa fa-edit"></i> แก้ไขข้อมูล
 					</a>
-
-					<!-- ยกเลิกส่วนนี้เพราะจะให้โหลดข้อมูลจะใบเสนอซื้อมาเลย ไม่ต้องมาเพิ่มข้อมูล // หรือจะเอาไว้เพื่อต้องการเพิ่มข้อมูลภายหลัง แต่ไม่ดีเท่าไรที่เพิ่มมาได้ -->
-					<!-- <button type="button" id="btnAddListDialog" class="btn btn-info btn-lg" style="display:none" title="คลิกที่นี่เพื่อเพิ่มข้อมูลตารางรายการ">
+					<button type="button" id="btnAddListDialog" class="btn btn-info btn-lg" style="display:none" title="คลิกที่นี่เพื่อเพิ่มข้อมูลตารางรายการ">
 						<i class="fa fa-arrow-circle-down"></i> เพิ่มรายการ
 					</button>
 					<button type="button" id="btnImportListDialog" class="btn btn-success btn-lg" style="display:none" title="คลิกที่นี่เพื่อนำเข้าข้อมูลรายการด้วย Excel">
 						<i class="fas fa-file-excel"></i> นำเข้า Excel
-					</button> -->
-
+					</button>
 				</div>
 			</div>
 
@@ -158,20 +155,6 @@
 			</tr>
 		</thead>
 		<tbody id="tbody_detail_list">
-			<tr parser-repeat="[detail_list]" id="row_{record_number}">
-				<!-- โหลดข้อมูล -->
-				<td style="text-align:center;">[{record_number}]</td> <!-- # -->
-				<td>{detail_id}</td> <!-- id -->
-				<td>{detail_pob_ref}</td> <!-- อ้างอิงใบสั่งซื้อ -->
-				<td>{detailPobPrIdRefPrRef}</td> <!-- อ้างอิง id ใบเสนอซื้อ -->
-				<td>{detail_pob_id}</td> <!-- หมายเลขสินค้า -->
-				<td>{detailPobNamePrbName}</td> <!-- รายการสินค้า -->
-				<td>{detail_pob_price}</td> <!-- ราคาสินค้า -->
-				<td>{detail_pob_unit}</td>
-				<td>{detail_pob_qty}</td>
-				<td class="text-right">{fx_detail_ราคารวม}</td>
-				<td>{detail_pob_remark}</td>
-			</tr>
 		</tbody>
 		<tfoot id="tfoot_detail_list" class="thead-light">
 			<tr>
@@ -184,9 +167,8 @@
 	</table>
 </div>
 
-<!-- ยกเลิกส่วนนี้เพราะจะให้โหลดข้อมูลจะใบเสนอซื้อมาเลย ไม่ต้องมาเพิ่มข้อมูล // หรือจะเอาไว้เพื่อต้องการเพิ่มข้อมูลภายหลัง แต่ไม่ดีเท่าไรที่เพิ่มมาได้ -->
 <!-- Modal Form Add List -->
-<!-- <div class="modal fade" id="addListModal" tabindex="-1" role="dialog" aria-labelledby="addListModalLabel" aria-hidden="true">
+<div class="modal fade" id="addListModal" tabindex="-1" role="dialog" aria-labelledby="addListModalLabel" aria-hidden="true">
 	<div class="modal-dialog  modal-lg">
 		<div class="modal-content">
 			<div class="modal-header bg-info">
@@ -265,7 +247,7 @@
 			</div>
 		</div>
 	</div>
-</div> -->
+</div>
 
 
 <!-- Modal Delete -->
@@ -300,9 +282,7 @@
 	</div>
 </div>
 
-<!-- ยกเลิกส่วนนี้เพราะจะให้โหลดข้อมูลจะใบเสนอซื้อมาเลย ไม่ต้องมาเพิ่มข้อมูล // หรือจะเอาไว้เพื่อต้องการเพิ่มข้อมูลภายหลัง แต่ไม่ดีเท่าไรที่เพิ่มมาได้ -->
 <!-- Modal Import Detail -->
-<!-- 
 <div class="modal fade" id="addImportListModal" tabindex="-1" role="dialog" aria-labelledby="addImportListModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg modal-xl">
 		<div class="modal-content">
@@ -363,5 +343,4 @@
 			</div>
 		</div>
 	</div>
-</div> -->
-<input
+</div>

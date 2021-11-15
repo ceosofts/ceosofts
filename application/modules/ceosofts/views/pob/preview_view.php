@@ -81,7 +81,7 @@
 	<div class="card">
 
 		<div class="card-header bg-info">
-			<h3 class="card-title">ตารางรายการ <b>tb_pob_list</b></h3>
+			<h3 class="card-title">ตารางรายการ <b>ใบสั่งซื้อ</b></h3>
 			</h3>
 		</div>
 
@@ -105,13 +105,14 @@
 					</thead>
 					<tbody>
 						<tr parser-repeat="[detail_list]" id="row_{record_number}">
-							<td style="text-align:center;">[{record_number}]</td>
-							<td>{detail_id}</td>
-							<td>{detail_pob_ref}</td>
-							<td>{detailPobPrIdRefPrRef}</td>
-							<td>{detail_pob_id}</td>
-							<td>{detailPobNamePrbName}</td>
-							<td>{detail_pob_price}</td>
+							<!-- โหลดข้อมูล -->
+							<td style="text-align:center;">[{record_number}]</td> <!-- # -->
+							<td>{detail_id}</td> <!-- id -->
+							<td>{detail_pob_ref}</td> <!-- อ้างอิงใบสั่งซื้อ -->
+							<td>{detailPobPrIdRefPrRef}</td> <!-- อ้างอิง id ใบเสนอซื้อ -->
+							<td>{detail_pob_id}</td> <!-- หมายเลขสินค้า -->
+							<td>{detailPobNamePrbName}</td> <!-- รายการสินค้า -->
+							<td>{detail_pob_price}</td> <!-- ราคาสินค้า -->
 							<td>{detail_pob_unit}</td>
 							<td>{detail_pob_qty}</td>
 							<td class="text-right">{fx_detail_ราคารวม}</td>

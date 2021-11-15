@@ -329,15 +329,26 @@ class Pob extends MEMBER_Controller
 			array('title' => 'เพิ่มข้อมูล', 'url' => '#', 'class' => 'active')
 		);
 		$options = array();
-		$options['attributes'] = array('pr_sup', 'pr_project_name', 'pr_price');
-		$this->data['tb_prs_pob_pr_ref_option_list'] = $this->Pob->returnOptionList("tb_prs", "pr_id", "CONCAT_WS(' - ', id,pr_id)", $options);
+		$options['attributes'] = array('pr_sup', 'pr_project_name', 'pr_price'); //เมื่อเลือกแล้วจะดึงข้อมูลชุดนี้มา
+		$this->data['tb_prs_pob_pr_ref_option_list'] = $this->Pob->returnOptionList("tb_prs", "pr_id", "CONCAT_WS(' - ', id,pr_id)", $options); //ตัวเลือกที่สร้างขึ้น จะมีผลกับ บรรทัดด้านบน
+		//ความหมายคำสั่งด้านบน ชุด option_list ->= ดึงข้อมูลมาจาก ตาราง tb_prs อ้างอิง pr_id โชว์ id และ pr_id
+
 		$this->data['tb_supplier_pob_sup_option_list'] = $this->Pob->returnOptionList("tb_supplier", "sup_name", "CONCAT_WS(' - ', sup_name,sup_contact,sup_address,sup_tel,sup_tax,sup_branch)");
+		//ความหมายคำสั่งด้านบน สามารถปรับเปลี่ยนข้อมูลได้ แต่ตอนแรกก็อ้างอิงตามตัวเลือกด้านบน
+
 		$this->data['tb_pay_status_pob_pay_by_option_list'] = $this->Pob->returnOptionList("tb_pay_status", "name", "name");
 		$this->data['tb_pob_status_pob_status_option_list'] = $this->Pob->returnOptionList("tb_pob_status", "pob_name", "pob_name");
-		$options['attributes'] = array('pr_name', 'pr_id', 'pr_price', 'pr_unit', 'pr_qty', 'pr_remark');
-		$this->data['detail_tb_prs_list_pob_pr_id_ref_option_list'] = $this->Pob->returnOptionList("tb_prs_list", "pr_ref", "pr_ref", $options);
-		$options['attributes'] = array('prb_id', 'prb_price', 'prb_unit');
-		$this->data['detail_tb_product_buy_pob_name_option_list'] = $this->Pob->returnOptionList("tb_product_buy", "prb_name", "prb_name", $options);
+
+		//ยกเลิกคำสั่งชุดนี้ เพื่อใช้ชุดคำสั่งโหลดข้อมูลมาเลยหลังจากเลือก หมายเลขใบขอซื้อ
+		// $options['attributes'] = array('pr_name', 'pr_id', 'pr_price', 'pr_unit', 'pr_qty', 'pr_remark'); //เมื่อเลือกแล้วจะดึงข้อมูลชุดนี้มา
+		// $this->data['detail_tb_prs_list_pob_pr_id_ref_option_list'] = $this->Pob->returnOptionList("tb_prs_list", "pr_ref", "pr_ref", $options); //ตัวเลือกที่สร้างขึ้น อ้างอิง id ใบเสนอซื้อ
+
+		//ยกเลิกคำสั่งชุดนี้ เพื่อใช้ชุดคำสั่งโหลดข้อมูลมาเลยหลังจากเลือก หมายเลขใบขอซื้อ
+		// $options['attributes'] = array('prb_id', 'prb_price', 'prb_unit');
+		// $this->data['detail_tb_product_buy_pob_name_option_list'] = $this->Pob->returnOptionList("tb_product_buy", "prb_name", "prb_name", $options); //สามารถเปลี่ยนรายการได้ แต่ไม่ให้เปลี่ยนจะดีกว่า
+
+
+
 		$this->setFormAddData();
 		$this->data['input_start_row_detail'] = 2;
 

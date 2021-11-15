@@ -353,17 +353,17 @@ var Pob = {
 		});
 	},
 
-	loadDetailList: function(ref_encrypt_id){
+	loadDetailList: function(ref_encrypt_id){ //โหลด detail เพื่อมาแสดง
 		$.ajax({
-			method: 'GET',
+			method: 'GET', //รับข้อมูลชนิด get
 			dataType: 'json',
-			url: site_url('ceosofts/pob/load_detail/'+ ref_encrypt_id),
+			url: site_url('ceosofts/pob/load_detail/'+ ref_encrypt_id), //อ้างอิงการถอดรหัส
 			success: function (results) {
 	
 				var decoded = $("<div/>").html(results.tbody).text();
-				$('#tbody_detail_list').html(decoded);
+				$('#tbody_detail_list').html(decoded); //ส่งข้อมูลไปที่ tbody
 
-				if(results.fx_detail_grand_ราคารวม !== undefined && $('#fx_detail_grand_ราคารวม').length){
+				if(results.fx_detail_grand_ราคารวม !== undefined && $('#fx_detail_grand_ราคารวม').length){ //การคำนวนผลรวมราคา
 					$('#fx_detail_grand_ราคารวม').html(results.fx_detail_grand_ราคารวม);
 				}
 			},
@@ -618,6 +618,20 @@ $(document).ready(function() {
 
 		var change_val = opt.attr('data-pr_price');
 		$('#pob_price').val(change_val).attr('value', change_val);
+		var pr_ref_id = $(this).val();
+		
+		$.ajax(
+			{
+			type: "POST",
+			url: "j",
+			cache: false,
+			data: "name=John&location=Boston",
+			success: function(msg){
+			  alert( "Data Call : " + msg);
+			  $("p").append(msg);
+			}
+		  });
+
 
 	});
 
