@@ -201,7 +201,7 @@ var Pob = {
 	},
 
 	resetAddFormList: function(){
-		$('#detail_encrypt_id').val(''); 
+		$('#detail_encrypt_id').val('');
 		$('#detail_pob_pr_id_ref').val('').attr('value','');
 		$('#detail_pob_id').val('').attr('value','');
 		$('#detail_pob_name').val('').attr('value','');
@@ -359,7 +359,7 @@ var Pob = {
 			dataType: 'json',
 			url: site_url('ceosofts/pob/load_detail/'+ ref_encrypt_id),
 			success: function (results) {
-	
+
 				var decoded = $("<div/>").html(results.tbody).text();
 				$('#tbody_detail_list').html(decoded);
 
@@ -411,10 +411,10 @@ var Pob = {
 							var results = jQuery.parseJSON( json_string );
 							if(results.is_successful){
 								notify('การนำเข้าข้อมูล Excel', 'ดำเนินการในขั้นตอนต่อไป', 'info', 'center');
-								
+
 								var decoded = $("<div/>").html(results.table_list).text();
 								$('#tbody_import_list').html(decoded);
-								
+
 								jumpto('#tbody_import_list');
 								$('#btnSaveExcel').removeClass('d-none').show();
 							}else{
@@ -438,15 +438,15 @@ var Pob = {
 		}
 		return false;
 	},
-	
+
 	saveExcel: function(){
 		var frm_action = site_url('ceosofts/pob/save_excel_data');
 		var obj = $('#btnSaveExcel');
 		if(loading_on(obj) == true){
-		
+
 			var frm_data = $('#frmImportList').serializeObject();
 			frm_data[csrf_token_name] = $.cookie(csrf_cookie_name);
-			
+
 			$.ajax({
 				method: 'POST',
 				url: frm_action,
@@ -470,13 +470,13 @@ var Pob = {
 			});
 		}
 	},
-	
-		
+
+
 	validateSaveExcel: function(){
 		var message = '';
-		
-		
-		
+
+
+
 		if(message == ''){
 			this.saveExcel();
 		}else{
@@ -484,7 +484,7 @@ var Pob = {
 		}
 		return false;
 	},
-			
+
 	readExcelDetail: function(){
 		var frm_action = site_url('ceosofts/pob/read_excel_detail');
 		var obj = $('#btnReadExcelDetail');
@@ -523,10 +523,10 @@ var Pob = {
 							var results = jQuery.parseJSON( json_string );
 							if(results.is_successful){
 								notify('การนำเข้าข้อมูล Excel', 'ดำเนินการในขั้นตอนต่อไป', 'info', 'center');
-								
+
 								var decoded = $("<div/>").html(results.table_list).text();
 								$('#tbody_import_list_detail').html(decoded);
-								
+
 								jumpto('#tbody_import_list_detail');
 								$('#btnSaveExcelDetail').removeClass('d-none').show();
 							}else{
@@ -550,14 +550,14 @@ var Pob = {
 		}
 		return false;
 	},
-	
+
 	saveExcelDetail: function(){
 		var frm_action = site_url('ceosofts/pob/save_excel_data_detail');
 		var obj = $('#btnSaveExcelDetail');
 		if(loading_on(obj) == true){
 			var frm_data = $('#frmImportListDetail').serializeObject();
 			frm_data[csrf_token_name] = $.cookie(csrf_cookie_name);
-			
+
 			$.ajax({
 				method: 'POST',
 				url: frm_action,
@@ -582,17 +582,17 @@ var Pob = {
 			});
 		}
 	},
-	
-	
+
+
 	validateSaveExcelDetail: function(){
 		var message = '';
-		
+
 		if($('#import_detail_pob_ref').val() == ''){
 			message += "- ไม่พบรหัสอ้างอิงตารางหลัก <br/>";
 		}
-		
-		
-		
+
+
+
 		if(message == ''){
 			this.saveExcelDetail();
 		}else{
@@ -600,7 +600,7 @@ var Pob = {
 		}
 		return false;
 	},
-	
+
 }
 
 $(document).ready(function() {
@@ -618,7 +618,16 @@ $(document).ready(function() {
 
 		var change_val = opt.attr('data-pr_price');
 		$('#pob_price').val(change_val).attr('value', change_val);
+		var pr_ref_id  = $(this).val();
+		$.ajax({
+			url: '',
+			type: 'POST',
+			// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+			data: {param1: 'value1'},
+			success:function(data) {
 
+			}
+		});
 	});
 
 	$(document).on('change','#set_order_by',function(){
@@ -629,29 +638,29 @@ $(document).ready(function() {
 	$(document).on('click', '#btnReadExcel', function() {
 		Pob.readExcel();
 	});
-		
+
 	$(document).on('change', '#FileUpload', function() {
 		$('#btnSaveExcel').hide();
 		$('#tbody_import_list').html('');
 	});
-		
+
 	$(document).on('click', '#btnSaveExcel', function() {
 		return Pob.validateSaveExcel();
 	});
-		
+
 	$(document).on('click', '#btnReadExcelDetail', function() {
 		Pob.readExcelDetail();
 	});
-		
+
 	$(document).on('change', '#FileUploadDetail', function() {
 		$('#btnSaveExcelDetail').hide();
 		$('#tbody_import_list_detail').html('');
 	});
-		
+
 	$(document).on('click', '#btnSaveExcelDetail', function() {
 		return Pob.validateSaveExcelDetail();
 	});
-		
+
 	$('#FileUpload').change(function(){
 		var msg = '';
 		var elem_preview = $(this).data('elem-preview');
@@ -728,7 +737,7 @@ $(document).ready(function() {
 		Pob.saveDetailList();
 		return false;
 	});//click
-	
+
 	$(document).on('click','.btn-delete-list-row', function(){
 		$('.btn-delete-row').removeClass('active_del');
 		$(this).addClass('active_del');
@@ -797,7 +806,7 @@ $(document).ready(function() {
 	//Set default value
 	var order_by = $('#set_order_by').attr('value');
 	$('#set_order_by option[value="'+order_by+'"]').prop('selected', true);
-	
+
 	//Set default selected
 	setDatePicker('.datepicker');
 
