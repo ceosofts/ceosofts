@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +24,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$potocal = 'http'.((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '');
+$potocal = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '');
 $directory = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
-$base_url = $potocal . '://'.$_SERVER['HTTP_HOST'] . $directory;
+$base_url = $potocal . '://' . $_SERVER['HTTP_HOST'] . $directory;
 
-$config['base_url'] = $base_url; 
+$config['base_url'] = $base_url;
 //$config['base_url'] = '';
 
 
@@ -59,7 +59,7 @@ $config['index_page'] = 'index.php';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'REQUEST_URI';
+$config['uri_protocol']  = 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']  = 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -384,13 +384,13 @@ $config['encryption_key'] = 'your_encrypt_key@ci.gen.2018';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-$config['sess_driver'] 		= 'database';
+$config['sess_driver']     = 'database';
 $config['sess_cookie_name'] = 'ci_session_my_project';
-$config['sess_expiration'] 	= 7200;
-$config['sess_save_path'] 	= 'ci_sessions';
-$config['sess_match_ip'] 	= FALSE;
-$config['sess_time_to_update'] 		= 300;
-$config['sess_regenerate_destroy'] 	= FALSE;
+$config['sess_expiration']   = 7200;
+$config['sess_save_path']   = 'ci_sessions';
+$config['sess_match_ip']   = FALSE;
+$config['sess_time_to_update']     = 300;
+$config['sess_regenerate_destroy']   = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -407,11 +407,11 @@ $config['sess_regenerate_destroy'] 	= FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix']	= '';
-$config['cookie_domain']	= '';
-$config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
-$config['cookie_httponly'] 	= FALSE;
+$config['cookie_prefix']  = '';
+$config['cookie_domain']  = '';
+$config['cookie_path']    = '/';
+$config['cookie_secure']  = FALSE;
+$config['cookie_httponly']   = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -455,15 +455,15 @@ $config['global_xss_filtering'] = TRUE;
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
-$config['csrf_protection'] 	= TRUE;
-$config['csrf_token_name'] 	= 'csrf_token_ci_gen';
+$config['csrf_protection']   = false;
+$config['csrf_token_name']   = 'csrf_token_ci_gen';
 $config['csrf_cookie_name'] = 'csrf_cookie_ci_gen';
-$config['csrf_expire'] 		= 7200;
-$config['csrf_regenerate'] 	= FALSE;
+$config['csrf_expire']     = 7200;
+$config['csrf_regenerate']   = FALSE;
 $config['csrf_exclude_uris'] = array(
-									'web_service/.*+',
-									'rest_service/.*+',
-									'soap_service/.*+'
+  'web_service/.*+',
+  'rest_service/.*+',
+  'soap_service/.*+'
 );
 
 /*
@@ -541,5 +541,5 @@ $config['proxy_ips'] = '';
   | Modules location
  */
 $config['modules_locations'] = array(
-    APPPATH . 'modules/' => '../modules/',
+  APPPATH . 'modules/' => '../modules/',
 );

@@ -363,5 +363,8 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 </div> -->
-<input
+<input=======< /div>
+	<input type="hidden" name="base_url" id="base_url" value="<?php echo base_url('index.php/'); ?>">
+	>>>>>>> 885d16aa92f7730cc2baa5335fa6ef882f6a4ccd
