@@ -2,10 +2,7 @@
 <div id="main-content">
     <div class="more bg-gray">
         <div class="container">
-
-
-
-            <!-- <h1 class="text-center">CEO<span class="font-light">softs</span> </h1>
+            <h1 class="text-center">CEO<span class="font-light">softs</span> </h1>
             <br>
             <h2 class="text-center">โปรแกรมบัญชีออนไลน์ และ รับทำเว็บไซต์ ครบจบที่เดียว </h2>
             <br>
@@ -34,7 +31,9 @@
             <h3 class="text-center">หรือจะใช้เฉพาะภายในองค์กรได้ไม่ออนไลท์ก็ได้</h3>
             <h3 class="text-center">userใช้งานได้เฉพาะที่กำหนดสิทธ์ให้ ไม่สามารถเข้าใช้ในส่วนที่ไม่ต้องการให้เข้าถึง</h3>
             <h3 class="text-center">แบ่งระดับของแต่ล่ะ user</h3>
-            <h3 class="text-center">ผู้บริหารเห็นความคืบหน้าของบริษัทได้ชัดเจน</h3> -->
+            <h3 class="text-center">ผู้บริหารเห็นความคืบหน้าของบริษัทได้ชัดเจน</h3>
+
+
 
         </div>
     </div>
@@ -49,6 +48,8 @@
                     <a href="https://web.facebook.com/ceo.softs">CEO softs</a>
                 </P>
             </h3>
+
+            </p>
         </div>
     </div>
 </div>
