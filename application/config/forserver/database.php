@@ -74,13 +74,16 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 
-$db_host = 'localhost'; 
-$db_name = 'ceosofts_db'; // $db_name = 'db_school_management'
-$db_user = 'root'; // for localhost
-$db_pass = ''; // for localhost
+$db_host = 'localhost';
+// $db_name = 'db_school_management';
+$db_name = 'ceosofts_db';
+// $db_user = 'root'; //for xammp
+// $db_pass = ''; //for xammp
 
-// $db_user = 'ceosofts_db'; // for web host
-// $db_pass = '62Cadesoft5'; // for web host
+$db_user = 'ceosofts_db'; //for server host
+// $db_pass = 'noxgov-8zeqnu-muwquJ'; //for server host
+$db_pass = '62Cadesoft5'; //for server host
+
 
 $port = 3306;
 
@@ -94,8 +97,7 @@ $db['default'] = array(
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
-	// 'db_debug' => (ENVIRONMENT !== 'production'), //environment
-	'db_debug' => FALSE, //environment
+	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',
