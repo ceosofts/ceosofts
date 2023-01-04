@@ -141,21 +141,13 @@
 						</td>
 					</tr>
 				</tbody>
-				<!-- <tfoot id="tfoot_detail_list" class="thead-light">
-					<tr>
-						<th class="text-center" colspan="8">รวมทั้งสิ้น </th>
-						<th id="fx_detail_grand_total_price" class="text-right">{fx_detail_grand_total_price}</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</tfoot> -->
 
 				<tfoot>
 					<!--copy มาจากเว็บ-->
 					<tr>
 						<th colspan="8" class="text-right">ราคาสินค้ารวมทั้งสิ้น</th>
 						<th class="text-right">{total_product_price}</th>
-						<!--แก้ค่าตัวแปรให้ตรงกัน ค่าของเก่าจาก web คือ {total_product_price}-->
+						<!-- แก้ค่าตัวแปรให้ตรงกัน ค่าของเก่าจาก web คือ {total_product_price} -->
 						<th></th>
 					</tr>
 					<tr>
@@ -175,6 +167,23 @@
 		</div>
 
 	</div>
+
+	<script>
+	$(document).ready(function(){	
+	$("#myTable").on('input', '.txtCal', function () {
+		var calculated_total_sum = 0;
+		
+		$("#myTable .txtCal").each(function () {
+			var get_textbox_value = $(this).val();
+			if ($.isNumeric(get_textbox_value)) {
+				calculated_total_sum += parseFloat(get_textbox_value);
+				}                  
+				});
+				$("#total_sum_value").html(calculated_total_sum);
+		});
+	});
+	</script>
+
 </div>
 <br />
 
