@@ -74,9 +74,8 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 
-$db_host = 'localhost';
-// $db_name = 'db_school_management';
-$db_name = 'ceosofts_db';
+$db_host = 'localhost'; 
+$db_name = 'ceosofts_db'; // $db_name = 'db_school_management'
 $db_user = 'root'; // for localhost
 $db_pass = ''; // for localhost
 
