@@ -119,7 +119,38 @@
 				<th id="fx_detail_grand_total_price" class="text-right">{fx_detail_grand_total_price}</th>
 				<th></th>
 			</tr>
+			<tr>
+				<th colspan="8" class="text-right">ภาษีมูลค่าเพิ่ม 7%</th>
+				<th class="text-right">{total_vat}</th>
+				<th></th>
+			</tr>
+			<tr>
+				<th colspan="8" class="text-right">ราคาสุทธิ</th>
+				<th class="text-right">{grand_total}</th>
+				<th></th>
+			</tr>
+
+			<script>
+				$(document).ready(function() {
+
+
+					$("#myTable").on('input', '.txtCal', function() {
+						var calculated_total_sum = 0;
+
+						$("#myTable .txtCal").each(function() {
+							var get_textbox_value = $(this).val();
+							if ($.isNumeric(get_textbox_value)) {
+								calculated_total_sum += parseFloat(get_textbox_value);
+							}
+						});
+						$("#total_sum_value").html(calculated_total_sum);
+					});
+
+				});
+			</script>
+
 		</tfoot>
+
 
 		<!--  function ที่ controller ยังไม่สมบูรณ์ เนื่องจาก ผลรวมไม่แสดงทันที ยังต้องแก้อยู่
 		<tfoot>
@@ -139,6 +170,7 @@
 				<th></th>
 			</tr>
 		</tfoot> -->
+
 
 	</table>
 </div>
