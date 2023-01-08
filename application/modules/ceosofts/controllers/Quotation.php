@@ -215,30 +215,11 @@ class Quotation extends MEMBER_Controller
 				$detail_list = $this->Quotation->loadDetailList($results['id']);
 				$this->data['detail_list'] = $this->setDetailDataListFormat($detail_list);
 
-				// added vat funtion
-
-				// คำนวณ VAT copy from web
-				$total_price = $this->data['order_total_price']; //fx_detail_total_price ของเดิม //order_total_price ของเดิม copy from web
+				// คำนวณ VAT ok ทำงานได้ดี
+				$total_price = $this->data['order_total_price']; 
 				$total_vat = 0;
 				$product_price = $total_price;
 				$grand_total = $total_price;
-
-				//กรณีตั้งค่าให้มีการกำหนด ราคา รวม vat หรือ ยังไม่รวม เอาไว้ใช้ในอนาคต
-				// switch ($results['vat_type']) {
-				// 	case 1:
-				// 		// สินค้าไม่รวม VAT (เพิ่ม VAT)
-				// 		$arr_vat = excludingVat($total_price);
-				// 		$product_price = $arr_vat['product_price'];
-				// 		$total_vat = $arr_vat['vat'];
-				// 		$grand_total = $product_price + $total_vat;
-				// 		break;
-				// 	case 2:
-				// 		// สินค้ารวม VAT (ถอด VAT)
-				// 		$arr_vat = includingVat($total_price);
-				// 		$product_price = $arr_vat['product_price'];
-				// 		$total_vat = $arr_vat['vat'];
-				// 		$grand_total = $total_price;
-				// }
 
 				//กำหนดให้ราคายังไม่รวม vat option เลือกใช้ค่าเพิ่ม vat ที่หลัง
 				$arr_vat = excludingVat($total_price);
@@ -366,43 +347,31 @@ class Quotation extends MEMBER_Controller
 	public function add()
 	{
 		$this->breadcrumb_data['breadcrumb'] = array(
-			array('title' => 'Quotation', 'url' => site_url('ceosofts/quotation')),
-			array('title' => 'เพิ่มข้อมูล', 'url' => '#', 'class' => 'active')
+			array('title' => 'Quotation', 'url' => site_url('ceosofts/quotation')), //ข้อความหัวบรรทัดในหน้าและ Link ไปหน้า Home
+			array('title' => 'เพิ่มข้อมูล', 'url' => '#', 'class' => 'active') //ข้อความหัวกระดาษ
 		);
 		$this->data['tb_customer_quo_cus_option_list'] = $this->Quotation->returnOptionList("tb_customer", "cus_name", "CONCAT_WS(' - ', cus_name,cus_contact,cus_address,cus_tel,cus_tax,cus_branch)");
+		//ฟังก์ชั่น ดึงข้อมูลลูกค้า
 		$this->data['tb_quotation_status_quo_status_option_list'] = $this->Quotation->returnOptionList("tb_quotation_status", "stq_name", "stq_name");
+		//ฟังกืชั่น ดึง-เก็บ สถานะใบเสนอราคา
 		$options['attributes'] = array('prs_id', 'prs_price', 'prs_unit');
+		//ฟังก์ชั่น ดึง-เก็บ ข้อมุลสถานะ ใบเสนอราคา
 		$this->data['detail_tb_product_sale_quo_pro_name_option_list'] = $this->Quotation->returnOptionList("tb_product_sale", "prs_name", "prs_name", $options);
-		$this->setFormAddData();
+		//ฟังก์ชั่น ดึง-เก็บ ข้อมูลสินค้า
+		$this->setFormAddData(); //ฟังก์ชั่น เก็บข้อมุล หมายเลขใบเสนอราคา คนทำ-คนแก้ ใบเสนอราคา
 
-		$this->data['fx_detail_grand_total_price'] = number_format(0, 2); //fx_detail_grand_total_price คือค่าที่มาจาก json ค่าจะได้ออกมาทันทีไม่ต้อง refash
+		// ราคารวมทั้งสิน ทั้งตอนเพิ่มข้อมูล และลบ ok work //ดึงค่ามาจาก file Quotation.js
+		$this->data['fx_detail_grand_total_price'] = number_format(0, 2); 
+		
 
 		// added vat funtion
 
-		// คำนวณ VAT copy from web
-		$total_price = $this->data['fx_detail_grand_total_price']; //fx_detail_total_price ของเดิม //order_total_price ของเดิม copy from web
+		//! คำนวณ VAT copy from web ยังไม่ work
+		$total_price = $this->data['fx_detail_grand_total_price']; //ดึงค่ามาจาก file Quotation.js
 		$total_vat = 0;
 		$product_price = $total_price;
 		$grand_total = $total_price;
 
-		//กรณีตั้งค่าให้มีการกำหนด ราคา รวม vat หรือ ยังไม่รวม เอาไว้ใช้ในอนาคต
-		// switch ($results['vat_type']) {
-		// 	case 1:
-		// 		// สินค้าไม่รวม VAT (เพิ่ม VAT)
-		// 		$arr_vat = excludingVat($total_price);
-		// 		$product_price = $arr_vat['product_price'];
-		// 		$total_vat = $arr_vat['vat'];
-		// 		$grand_total = $product_price + $total_vat;
-		// 		break;
-		// 	case 2:
-		// 		// สินค้ารวม VAT (ถอด VAT)
-		// 		$arr_vat = includingVat($total_price);
-		// 		$product_price = $arr_vat['product_price'];
-		// 		$total_vat = $arr_vat['vat'];
-		// 		$grand_total = $total_price;
-		// }
-
-		//กำหนดให้ราคายังไม่รวม vat option เลือกใช้ค่าเพิ่ม vat ที่หลัง
 		$arr_vat = excludingVat($total_price);
 		$product_price = $arr_vat['product_price'];
 		$total_vat = $arr_vat['vat'];
@@ -579,34 +548,15 @@ class Quotation extends MEMBER_Controller
 				$detail_list = $this->Quotation->loadDetailList($results['id']);
 				$this->data['detail_list'] = $this->setDetailDataListFormat($detail_list);
 
-				$this->data['fx_detail_grand_total_price'] = number_format(0, 2); //fx_detail_grand_total_price คือค่าที่มาจาก json ค่าจะได้ออกมาทันทีไม่ต้อง refash
+				$this->data['fx_detail_grand_total_price'] = number_format(0, 2); 
+				//!สถานะตอนนี้ รวมได้แต่ ต้องกด refresh ก่อน
 
-				// added vat funtion
-
-				// คำนวณ VAT copy from web
-				$total_price = $this->data['order_total_price']; //fx_detail_total_price ของเดิม //order_total_price ของเดิม copy from web
+				// คำนวณ VAT ok ทำงานได้ดี
+				$total_price = $this->data['order_total_price']; //! ดึงข้อมูลมาจากไหน ???
 				$total_vat = 0;
 				$product_price = $this->data['order_total_price'];
 				$grand_total = $total_price;
 
-				//กรณีตั้งค่าให้มีการกำหนด ราคา รวม vat หรือ ยังไม่รวม เอาไว้ใช้ในอนาคต
-				// switch ($results['vat_type']) {
-				// 	case 1:
-				// 		// สินค้าไม่รวม VAT (เพิ่ม VAT)
-				// 		$arr_vat = excludingVat($total_price);
-				// 		$product_price = $arr_vat['product_price'];
-				// 		$total_vat = $arr_vat['vat'];
-				// 		$grand_total = $product_price + $total_vat;
-				// 		break;
-				// 	case 2:
-				// 		// สินค้ารวม VAT (ถอด VAT)
-				// 		$arr_vat = includingVat($total_price);
-				// 		$product_price = $arr_vat['product_price'];
-				// 		$total_vat = $arr_vat['vat'];
-				// 		$grand_total = $total_price;
-				// }
-
-				//กำหนดให้ราคายังไม่รวม vat option เลือกใช้ค่าเพิ่ม vat ที่หลัง
 				$arr_vat = excludingVat($total_price);
 				$product_price = $arr_vat['product_price'];
 				$total_vat = $arr_vat['vat'];
@@ -1243,11 +1193,6 @@ class Quotation extends MEMBER_Controller
 			//FUNCTION
 			$data[$i]['detail_quo_pro_price'] = number_format($data[$i]['quo_pro_price'], 2);
 			$data[$i]['detail_quo_pro_qty'] = number_format($data[$i]['quo_pro_qty'], 2);
-
-
-
-			// $this->data['order_total_price'] = $total_price; // คิดราคารวม copy มาจาก web
-
 			$grand_total_total_price += $data[$i]['fx_detail_total_price']; //มีอยู่เดิมอยู่แล้ว...แต่เหมือนกับซ้ำกันกับที่ copy มาจาก web >>> ราคาสินค้ารวมทั้งสิ้น
 
 			//added vat FUNCTION
@@ -1263,7 +1208,8 @@ class Quotation extends MEMBER_Controller
 		$this->data['order_total_price'] = $total_price; //from youtube
 		//end vat FUNCTION
 
-		$this->data['fx_detail_grand_total_price'] = number_format($grand_total_total_price, 2); //แปลงตัวเลข ราคาสินค้ารวมทั้งสิ้น
+		$this->data['fx_detail_grand_total_price'] = number_format($grand_total_total_price, 2); 
+		//แปลงตัวเลข ราคาสินค้ารวมทั้งสิ้น
 
 		return $data;
 	}

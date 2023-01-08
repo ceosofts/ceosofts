@@ -146,6 +146,12 @@
 					<!--copy มาจากเว็บ-->
 					<tr>
 						<th colspan="8" class="text-right">ราคาสินค้ารวมทั้งสิ้น</th>
+
+						<!-- พอ copy มาใส่แต่ไม่ทำงาน -->
+						<!-- <th id="fx_detail_grand_total_price" class="text-right">{fx_detail_grand_total_price}</th> -->
+						<!-- //ดึงค่ามาจาก file Quotation.js -->
+
+						<!-- ทำงานแต่ต้อง refash หน้าเว้บถึงจะอัพเดทค่า -->
 						<th class="text-right">{total_product_price}</th>
 						<!-- แก้ค่าตัวแปรให้ตรงกัน ค่าของเก่าจาก web คือ {total_product_price} -->
 						<th></th>

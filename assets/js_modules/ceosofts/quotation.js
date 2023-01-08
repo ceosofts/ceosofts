@@ -344,11 +344,12 @@ var Quotation = {
 		});
 	},
 
+	// คิดราคารวมของ add ใบเสนอราคา ok work
 	loadDetailList: function(ref_encrypt_id){
 		$.ajax({
 			method: 'GET',
 			dataType: 'json',
-			url: site_url('ceosofts/quotation/load_detail/'+ ref_encrypt_id),
+			url: site_url('ceosofts/quotation/load_detail/'+ ref_encrypt_id), //เป้นฟังก์ชั่นใน controller Quotation
 			success: function (results) {
 	
 				var decoded = $("<div/>").html(results.tbody).text();
@@ -363,6 +364,7 @@ var Quotation = {
 			}
 		});
 	},
+	//จบ คิดราคารวมของ add ใบเสนอราคา
 
 }
 
