@@ -344,7 +344,7 @@ var Quotation = {
 		});
 	},
 
-	// คิดราคารวมของ add ใบเสนอราคา ok work
+	// คิดราคารวมของ add ใบเสนอราคา ok work >>> ศึกษา JSON + Jquery
 	loadDetailList: function(ref_encrypt_id){
 		$.ajax({
 			method: 'GET',
@@ -354,7 +354,9 @@ var Quotation = {
 	
 				var decoded = $("<div/>").html(results.tbody).text();
 				$('#tbody_detail_list').html(decoded);
+				//ดึงค่ามาจาก quotation/add_view
 
+				//ค่าถูกเอาไปใช้ที่ quotation/add_view
 				if(results.fx_detail_grand_total_price !== undefined && $('#fx_detail_grand_total_price').length){
 					$('#fx_detail_grand_total_price').html(results.fx_detail_grand_total_price);
 				}

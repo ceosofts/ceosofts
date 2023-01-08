@@ -53,12 +53,6 @@
 					</select>
 				</div>
 			</div>
-			<!-- <div class='form-group'>
-				<label class='col-sm-2 control-label' for='quo_by'>ผู้จัดทำเอกสาร :</label>
-				<div class='col-sm-10'>
-					<input type="text" class="form-control " id="quo_by" name="quo_by" value="{record_quo_by}" readonly="readonly" />
-				</div>
-			</div> -->
 			<div class='form-group'>
 				<label class='col-sm-2 control-label' for='quo_edit_by'>ชื่อผู้แก้ไข :</label>
 				<div class='col-sm-10'>
