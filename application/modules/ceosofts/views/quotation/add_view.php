@@ -113,7 +113,7 @@
 			</tr>
 		</thead>
 		<tbody id="tbody_detail_list"> 
-			<!-- ดึงรายการมาแสดงในตาราง -->
+			<!-- ฟังก์ชั่นมาจาก Quotation.js โหลดรายละเอียดมาสแดง-->
 		</tbody>
 
 		<tfoot id="tfoot_detail_list" class="thead-light">
@@ -125,7 +125,9 @@
 			</tr>
 			<tr>
 				<th colspan="8" class="text-right">ภาษีมูลค่าเพิ่ม 7%</th>
-				<th class="text-right">{total_vat}</th>
+				<th class="text-right">0</th>
+				<!-- ทดลองเอาค่ามาใส่ดู แต่ยังไม่ได้ -->
+				<!-- <th id="fx_detail_grand_total_price" class="text-right"> {fx_detail_grand_total_price} -->
 				<th></th>
 			</tr>
 			<tr>
@@ -133,25 +135,6 @@
 				<th class="text-right">{grand_total}</th>
 				<th></th>
 			</tr>
-
-			<script>
-				$(document).ready(function() {
-
-
-					$("#myTable").on('input', '.txtCal', function() {
-						var calculated_total_sum = 0;
-
-						$("#myTable .txtCal").each(function() {
-							var get_textbox_value = $(this).val();
-							if ($.isNumeric(get_textbox_value)) {
-								calculated_total_sum += parseFloat(get_textbox_value);
-							}
-						});
-						$("#total_sum_value").html(calculated_total_sum);
-					});
-
-				});
-			</script>
 
 		</tfoot>
 

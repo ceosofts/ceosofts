@@ -212,7 +212,7 @@ class Quotation extends MEMBER_Controller
 			} else {
 				$this->setPreviewFormat($results);
 
-				$detail_list = $this->Quotation->loadDetailList($results['id']);
+				$detail_list = $this->Quotation->loadDetailList($results['id']); //เรียกใช้ ฟังก์ชั่นมาจาก Quotation.js
 				$this->data['detail_list'] = $this->setDetailDataListFormat($detail_list);
 
 				// คำนวณ VAT ok ทำงานได้ดี
@@ -256,7 +256,7 @@ class Quotation extends MEMBER_Controller
 		$results = $this->Quotation->load($id);
 		$this->setPreviewFormat($results);
 		$data_lists = array();
-		$detail_list = $this->Quotation->loadDetailList($results['id']);
+		$detail_list = $this->Quotation->loadDetailList($results['id']); //เรียกใช้ ฟังก์ชั่นมาจาก Quotation.js
 		$data_lists = $this->setDetailDataListFormat($detail_list);
 
 		$this->data['detail_list'] = $data_lists;
@@ -298,7 +298,7 @@ class Quotation extends MEMBER_Controller
 		$results = $this->Quotation->load($id);
 		$this->setPreviewFormat($results);
 		$data_lists = array();
-		$detail_list = $this->Quotation->loadDetailList($results['id']);
+		$detail_list = $this->Quotation->loadDetailList($results['id']); //เรียกใช้ ฟังก์ชั่นมาจาก Quotation.js
 		$data_lists = $this->setDetailDataListFormat($detail_list);
 
 		$this->data['detail_list'] = $data_lists;
@@ -344,6 +344,8 @@ class Quotation extends MEMBER_Controller
 	/**
 	 * Add form
 	 */
+
+	 //เพิ่มใบเสนอราคา
 	public function add()
 	{
 		$this->breadcrumb_data['breadcrumb'] = array(
@@ -361,28 +363,29 @@ class Quotation extends MEMBER_Controller
 		$this->setFormAddData(); //ฟังก์ชั่น เก็บข้อมุล หมายเลขใบเสนอราคา คนทำ-คนแก้ ใบเสนอราคา
 
 		// ราคารวมทั้งสิน ทั้งตอนเพิ่มข้อมูล และลบ ok work //ดึงค่ามาจาก file Quotation.js
-		$this->data['fx_detail_grand_total_price'] = number_format(0, 2); 
+		//$this->data['fx_detail_grand_total_price'] = number_format(0, 2); 
 		
 
 		// added vat funtion
 
 		//! คำนวณ VAT copy from web ยังไม่ work
-		$total_price = $this->data['fx_detail_grand_total_price']; //ดึงค่ามาจาก file Quotation.js
-		$total_vat = 0;
-		$product_price = $total_price;
-		$grand_total = $total_price;
+		
+		$total_price = $this->data['fx_detail_grand_total_price'] = number_format(0, 2); //ดึงค่ามาจาก file Quotation.js
+		$total_vat_add = $total_price * 0.07;
+		//$product_price = $total_price;
+		$grand_total = $total_price + $total_vat_add;
 
 		$arr_vat = excludingVat($total_price);
 		$product_price = $arr_vat['product_price'];
-		$total_vat = $arr_vat['vat'];
-		$grand_total = $product_price + $total_vat;
+		$total_vat_add = $arr_vat['vat'];
+		$grand_total = $product_price + $total_vat_add;
 
 		$this->data['total_product_price'] = $product_price; //ของเดิม copy from web
-		$this->data['total_vat'] = $total_vat; //ของเดิม copy from web
+		$this->data['total_vat'] = $total_vat_add; //ของเดิม copy from web
 		$this->data['grand_total'] = $grand_total; //ของเดิม copy from web
 
 		$this->data['total_product_price'] = number_format($product_price, 2); //แปลงตัวเลข ราคาสินค้ารวมทั้งสิ้น
-		$this->data['total_vat'] = number_format($total_vat, 2); //แปลงตัวเลข ราคาสินค้ารวมทั้งสิ้น
+		$this->data['total_vat'] = number_format($total_vat_add, 2); //แปลงตัวเลข ราคาสินค้ารวมทั้งสิ้น
 		$this->data['grand_total'] = number_format($grand_total, 2); //แปลงตัวเลข ราคาสินค้ารวมทั้งสิ้น
 
 
@@ -545,7 +548,7 @@ class Quotation extends MEMBER_Controller
 
 				$this->data['detail_record_quo_ref'] = ci_encrypt($results['id']);
 
-				$detail_list = $this->Quotation->loadDetailList($results['id']);
+				$detail_list = $this->Quotation->loadDetailList($results['id']); //เรียกใช้ ฟังก์ชั่นมาจาก Quotation.js
 				$this->data['detail_list'] = $this->setDetailDataListFormat($detail_list);
 
 				$this->data['fx_detail_grand_total_price'] = number_format(0, 2); 
@@ -916,12 +919,14 @@ class Quotation extends MEMBER_Controller
 	/**
 	 * Load Detail List
 	 */
+
+	 //เป็นชุด code เอาไว้แทรกไปใน code อื่นๆอีกที เพื่อ code จะได้สั้นๆ และแก้ได้ง่าย
 	public function load_detail($encrypt_id)
 	{
 
 		$tbody = '';
 		$ref_id = ci_decrypt($encrypt_id);
-		$data = $this->Quotation->loadDetailList($ref_id);
+		$data = $this->Quotation->loadDetailList($ref_id); //เรียกใช้ ฟังก์ชั่นมาจาก Quotation.js
 		if (!empty($data)) {
 			$data['detail_list'] = $this->setDetailDataListFormat($data);
 			$template = '{detail_list}
