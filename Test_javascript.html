@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<script src="Test_jvascript.js"></script>
+		<!-- //ดึง file นี้มาอ้างอิงแสดง ค่าตามที่ดึงมา -->
+	</head>
+	<body>
+		<h1>Yai 555888</h1>
+		//แสดงตัวหนังสือ
+
+		<!-- เขียนแทรก เรียก internal -->
+		<script type="text/javascript">
+			document.write("Yai 555888999000555"); //แสดงตัวหนังสือ
+			console.log("hello javascript555"); //แสดงค่าใน console
+			console.error("hello javascript555888"); //แสดงค่าใน console แสดงสีแดง
+			console.warn("hello javascript555888999"); //แสดงค่าใน console แสดงสีเหลือง
+		</script>
+
+		<script>
+			let name;
+			name = "Yai555";
+			console.log(name);
+
+			let Age = 20;
+			console.log("อายุ =", Age);
+
+			Age = 30;
+			console.log("อายุ =", Age);
+
+			const tax = 0.07;
+			console.log("ภาษี =", tax);
+
+			//tax = 0.08 //ทดลองเปลี่ยนค่าตัวแปร ซึ่งจะเปลี่ยนไม่ได้เพราะเป็นค่าตัวแปร const
+			//console.log('ภาษี =', tax) //ทดลองเปลี่ยนค่าตัวแปร ซึ่งจะเปลี่ยนไม่ได้เพราะเป็นค่าตัวแปร const
+
+			////////////////////////////////////////////////////////
+
+			// boolean = true / False
+			// number = 20 / 20.00
+			// string = text
+			// object = ข้อมูลเชิงวัตถุ เช่น {firstname:"kong",lastname:"ruksiam",age:20};
+			// array = ชุดข้อมูล ["มะม่วง","มะละกอ","banana"]
+
+			///////////////////////////////////////////////////////
+
+			//typeof = เช็คข้อมูล
+			//null = ไม่มีการกำหนดค่าเริ่มต้น
+			//undefined = ไม่มีการกำหนดค่า (เป็นค่าเริ่มต้นของโปรแกรม)
+
+			///////////////////////////////////////////////////////
+			//* 20 เลขไม่จุดทศนิยม = integer
+			//* 20.00 เลขมีจุดทศนิยม = float
+			///////////////////////////////////////////////////////
+			let a = "yingyai";
+			let b = "bonnchalerm";
+			let c = 555;
+			let d = 200;
+
+			console.log(a, b, c + d);
+
+			console.log(typeof a); //ตรวจสอบชนิดของข้อมูล
+			console.log(typeof b); //ตรวจสอบชนิดของข้อมูล
+			console.log(typeof c); //ตรวจสอบชนิดของข้อมูล
+			console.log(typeof d); //ตรวจสอบชนิดของข้อมูล
+
+			let aa = true;
+			let bb = false;
+
+			console.log(aa);
+			console.log(bb);
+			console.log(typeof aa);
+			console.log(typeof bb);
+
+			let cc = "20.15";
+			let dd = 20;
+
+			console.log(cc);
+			console.log(dd);
+
+			console.log(typeof cc);
+			console.log(typeof dd);
+
+			let ee = "20" + 10;
+			let ff = 20 + 10;
+
+			console.log(ee);
+			console.log(ff);
+
+			///////////////////////////////////////////////////////
+			//แปลง string to number
+			let gg = parseInt("20.15");
+			let hh = parseFloat("20.15");
+			let ii = +"20.15";
+
+			console.log(gg);
+			console.log(typeof gg);
+			console.log(hh);
+			console.log(typeof hh);
+			console.log(ii);
+			console.log(ii + 20);
+			console.log(typeof ii);
+
+			//แปลง number to string
+			let jj = (20.15).toString();
+			console.log(jj);
+			console.log(typeof jj);
+
+			///////////////////////////////////////////////////////
+			// Array
+			//ตัวอย่าง แบบธรรมดาที่ไม่ใช่ array
+			let number1 = 1,
+				number2 = 2,
+				number3 = 3;
+			console.log(number1, number2, number3);
+
+			//ตัวอย่าง array วิธีที่1
+			let kk = Array(1, 2, 3);
+			console.log(kk);
+			console.log(kk[1]); //กำหนด index เริ่มต้นที่ 0
+
+			let ll = Array(1.0, true, "ok");
+			console.log(ll);
+			console.log(ll[2]); //กำหนด index เริ่มต้นที่ 0
+
+			//ตัวอย่าง array วิธีที่2
+			let mm = [1, 2, 3];
+			console.log(mm);
+			console.log(mm[1]); //กำหนด index เริ่มต้นที่ 0
+
+			let nn = [1.0, true, "ok"];
+			console.log(nn);
+			console.log(nn[2]); //กำหนด index เริ่มต้นที่ 0
+
+			//เปลี่ยนค่าสมาชิกใน index
+			let oo = [1.0, true, "ok"];
+			oo[1] = 55;
+			console.log(oo);
+
+			///////////////////////////////////////////////////////
+			//ตัวดำเนินการทางคณิตศาสตร์
+			// A + B
+			//ตัวดำเนินการ Operator = +
+			//ตัวถูกนำเนินการ Operand = A B
+			// Operator = + - * / ** %(หารเอาค่าของเศษ)
+			console.log("ผลบวก =", 20 + 10);
+			console.log("หารเอาค่าของเศษ =", 30 % 10);
+			console.log("หารเอาค่าของเศษ =", 30 % 4); //4*7=28 - 30 เศษเหลือ 2
+			console.log("ยกกำลัง =", 5 ** 2);
+
+			///////////////////////////////////////////////////////
+			//ตัวดำเนินการทางการเปรียบเทียบ
+			// == เท่ากับ
+			// != ไม่เท่ากับ
+			//> มากกว่า
+			//< น้อยกว่า
+			//>= มากกว่าหรือเท่ากับ
+			//<= น้อยกว่าหรือเท่ากับ
+			let ax = 5,
+				bx = 10;
+
+			console.log("เปรียบเทียบกัน", ax == bx);
+			console.log("เปรียบเทียบกัน", ax != bx);
+			console.log("เปรียบเทียบกัน", ax > bx);
+			console.log("เปรียบเทียบกัน", ax < bx);
+			console.log("เปรียบเทียบกัน", ax >= bx);
+			console.log("เปรียบเทียบกัน", ax <= bx);
+
+			let check = true;
+			console.log(check);
+			console.log(!check);
+
+			///////////////////////////////////////////////////////
+			// && and
+			// || or
+			// ! not ทำให้ค่าอยุ่ตรงข้ามจากค่าเดิม
+
+			let score = 70;
+			console.log(score >= 70 && score <= 80);
+
+			let score1 = 100;
+			console.log(score1 >= 70 || score1 <= 80);
+
+			let score2 = 55;
+			console.log(score2 >= 70 && score2 <= 80, "A");
+			console.log(score2 >= 50 && score2 <= 60, "B");
+
+			///////////////////////////////////////////////////////
+			// ++a เพิ่มค่าให้ a ก่อน 1 ค่า แล้วนำค่าไปใช้
+			// a++ นำค่าปัจจุบันไปใช้ก่อนแล้วค่อยเพิ่มค่า
+			// --b ]fค่าให้ b ก่อน 1 ค่า แล้วนำค่าไปใช้
+			// b-- นำค่าปัจจุบันไปใช้ก่อนแล้วค่อย ลดค่า
+
+			let a1 = 5,
+				b1 = 10;
+			console.log("ค่าเริ่มต้น =", a1);
+			console.log("ค่า prefix =", ++a1);
+			console.log("ค่าปัจจุบัน =", a1);
+
+			a1 = 5;
+			console.log("ค่าเริ่มต้น =", a1);
+			console.log("ค่า postfix =", a1++);
+			console.log("ค่าปัจจุบัน =", a1);
+
+			console.log("ค่าเริ่มต้น =", b1);
+			console.log("ค่า prefix =", --b1);
+			console.log("ค่าปัจจุบัน =", b1);
+
+			b1 = 10;
+			console.log("ค่าเริ่มต้น =", b1);
+			console.log("ค่า postfix =", b1--);
+			console.log("ค่าปัจจุบัน =", b1);
+
+			///////////////////////////////////////////////////////
+			//Assignment รูปแบบการเขียน ความหมาย
+			// += x+=y x=x+y x เดิมมาบวก y แล้ว save กลับไปที่ค่า x อีกครั้ง
+			// -= x-=y x=x-y
+			// *= x*=y x=x*y
+			// /= x/=y x=x/y
+			// %= x%=y x=x%y
+
+			let x = 10,
+				y = 20;
+			console.log("ก่อน =", x);
+			x = x + y;
+			console.log("หลัง =", x);
+
+			x = 10;
+			console.log("ก่อน =", x);
+			x += y;
+			console.log("หลัง =", x);
+
+			///////////////////////////////////////////////////////
+			//ลำดับความสำคัญของตัวดำเนินการ
+			// ()
+			// ++ , --
+			// * / %
+			// + -
+			// < <= > >=
+			// &&
+			// ||
+			// = += -= *= /= %=
+
+			x1 = 5 + 8 * 9;
+			console.log("x1 = ", x1);
+
+			x2 = 10 - 4 + 2;
+			console.log("x2 = ", x2);
+
+			x3 = 10 - (2 + 1);
+			console.log("x3 = ", x3);
+
+			x4 = 5 * 2 - 40 / 5;
+			console.log("x4 = ", x4);
+
+			x5 = 7 + 8 / 2 + 25;
+			console.log("x5 = ", x5);
+
+			///////////////////////////////////////////////////////
+			// control structure โครงสร้างควบคุม
+			// Sequence แบบลำดับ
+			// Condition แบบมีเงื่อนไข  if , Switch..case
+
+			// if(เงื่อนไข){
+			//  คำสั่งเมื่อเงื่อนไขเป็นจริง;
+			// }
+
+			//เขียนรูปแบบเต็ม
+			age = 15;
+			let result = age >= 15; //true / false
+
+			if (result) {
+				//คำสั่งให้ทำอะไร
+				console.log("คำนำหน้าเป้น นาย/ นางสาว");
+			}
+
+			//เขียนลดรูป
+			age = 17;
+			if (age >= 15) {
+				//เงื่อนไข จริง/เท็จ
+				//คำสั่งให้ทำอะไร
+				console.log("คำนำหน้าเป้น นาย/ นางสาว");
+			}
+
+			age = 20;
+			if (age >= 15 && age <= 25) {
+				//เงื่อนไข จริง
+				//ถ้าเงื่อนไขแรกเป็นจริง เงื่อนไขต่อๆไปจะไม่ทำงาน ตัดจบไปเลย
+				//คำสั่งให้ทำอะไร
+				console.log("วัยรุ่น");
+			} else if (age >= 26 && age <= 40) {
+				//เงื่อนไข จริง
+				//คำสั่งให้ทำอะไร
+				console.log("ผู้ใหญ่");
+			} else {
+				//เงื่อนไข เท็จ
+				//คำสั่งให้ทำอะไร
+				console.log("คนแก่");
+			}
+
+			let balance = 1000;
+			withDraw = 5000;
+			if (withDraw <= balance) {
+				//เงื่อนไข จริง/เท็จ
+				console.log("ดำเนินการถอนเงิน = ", withDraw);
+				balance = balance - withDraw; //เขียนลดรูป balance -=  withDraw
+				console.log("ยอดเงินคงเหลือ = ", balance);
+			} else {
+				//เมื่อเงื่อนไขเป็นเท็จ
+				console.log("ยอดเงินไม่พอสำหรับเบิกถอน");
+			}
+
+			let Score = 35;
+
+			if (Score > 80) {
+				console.log("เกรด A");
+			} else if (Score >= 80) {
+				console.log("เกรด A");
+			} else if (Score >= 70) {
+				console.log("เกรด B");
+			} else if (Score >= 60) {
+				console.log("เกรด C");
+			} else if (Score >= 50) {
+				console.log("เกรด D");
+				// } else if (Score < 40) {
+				// เขียนได้ 2แบบ
+				//   console.log('เกรด F')
+			} else {
+				// เขียนได้ 2แบบ
+				console.log("เกรด F");
+			}
+			//เขียนแบบลดรูป
+			let Score1 = 60;
+			let pass;
+			if (Score1 > 50) {
+				pass = "สอบผ่าน";
+			} else {
+				pass = "สอบไม่ผ่าน";
+			}
+			console.log(pass);
+
+			//เขียนแบบลดรูป
+			let Score2 = 60;
+			let pass2;
+			pass2 = Score2 > 50 ? "ผ่าน" : "ไม่ผ่าน";
+			console.log(pass2);
+
+			let Score3 = 60;
+			let pass3 = Score2 > 50 ? "ผ่าน" : "ไม่ผ่าน";
+			console.log(pass3);
+
+			//if ซ้อน if
+
+			let age3 = 14;
+
+			if (age3 <= 15 && age3 >= 13) {
+				if (age3 == 15) {
+					console.log("ม.3");
+				} else if (age3 == 14) {
+					console.log("ม.2");
+				} else if (age3 == 13) {
+					console.log("ม.1");
+				}
+			} else {
+				console.log("เช็คอายุอีกครั้ง");
+			}
+			///////////////////////////////////////////////////////
+			// switch..case
+			let month = 3;
+			switch (month) {
+				case 1:
+					console.log("มกราคม");
+					break;
+				case 2:
+					console.log("กุมภาพันธ์");
+					break;
+				default:
+					console.log("ไม่พบเดือน");
+			}
+
+			///////////////////////////////////////////////////////
+			let status = 1;
+			let light;
+			if (status == 0) {
+				light = "off";
+			} else if (status == 1) {
+				light = "On";
+			} else if (status >= 3) {
+				light = "สถานะผิดปรกติ";
+			}
+			console.log("ตอนนี้ไฟ = ", light);
+
+			let status1 = 3;
+			let light1;
+			switch (status1) {
+				case 0:
+					light1 = "off";
+					break;
+				case 1:
+					light1 = "On";
+					break;
+				case 2:
+					light1 = "error";
+					break;
+				default:
+					light1 = "no status";
+			}
+			console.log("ตอนนี้ไฟ = ", light1);
+
+			///////////////////////////////////////////////////////
+			// while แบบทำซ้ำ
+			let count = 1;
+			while (count <= 3) {
+				console.log("hello world", count);
+				count++;
+			}
+
+			let count1 = 1;
+			while (count1 <= 3) {
+				console.log("hello world1", count1);
+				if (count1 == 2) {
+					break;
+				}
+				count1++;
+			}
+
+			///////////////////////////////////////////////////////
+			// loop แบบทำซ้ำ
+
+			for (let count3 = 1; count3 <= 5; count3++) {
+				console.log(" hello world3", count3);
+				if (count3 == 3) {
+					break; // break หยุดการทำงานแล้วออกจาก loop ไปเลย
+				}
+			}
+			console.log("จบโปรแกรม");
+
+			for (let count33 = 1; count33 <= 5; count33++) {
+				//console.log(' hello world33', count33)
+				if (count33 == 3) continue; // continue หยุดทำงานแล้วเริ่มทำงานใหม่อีกครั้ง
+				console.log(" hello world33", count33);
+			}
+			console.log("จบโปรแกรม");
+
+			///////////////////////////////////////////////////////
+			//do..while มันจะลองทำงานก่อน 1 รอบ ถ้าจริงจะทำงานต่อ ถ้าเท็จจะหยุดการทำงาน
+			let count5 = 1;
+
+			do {
+				if (count == 10) break; //เงื่อนไขในการให้หยุดทำงาน
+				count5++; //เมื่อผ่านเงื่อนไขให้เพิ่มค่าไปเรื่อย
+				console.log(count5); //แล้วแสดงค่าออกมา
+			} while (count5 <= 5);
+
+			///////////////////////////////////////////////////////
+			//for ใช้ในกรณีรู้จำนวนรอบที่ชัดเจน
+			//while ใช้ในกรณีที่ไม่รู้จำนวนรอบ ถ้าเงื่อนไขเป้นจริงก็จะทำงานำปเรื่อยๆ
+			//do..while ใช้ในกรณีที่อยากให้ลองทำก่อน1รอบ ถ้าเงื่อนไขเป้นจริงก็จะทำงานำปเรื่อยๆ
+
+			///////////////////////////////////////////////////////
+			// break หยุดการทำงานแล้วออกจาก loop ไปเลย
+			// continue หยุดทำงานแล้วเริ่มทำงานใหม่อีกครั้ง
+
+			///////////////////////////////////////////////////////
+			// null ใช้กับการประกาศตัวแปร โดยค่านี้เท่ากับไม่มีค่าใดๆเลย หรือ false
+			let aaa = null;
+			console.log(aaa);
+			// undefined ใช้กับการประกาศตัวแปร โดยไม่ได้ระบุค่าให้กับตัวแปรไว้
+			let bbb;
+			console.log(bbb);
+			// NaN ย่อมาจาก not a number หมายถึง การประกาศตัวแปรที่ไม่ใช่ตัวเลข หรือการเอาตัวเลขมา - * /
+			// แต่ถ้า + คือการเอาตัวเลขมาต่อด้วยตัวหนังสือ
+			let ccc = NaN;
+			console.log(ccc);
+
+			let ddd = 10 * "a";
+			console.log(ddd);
+
+			let eee = 10 + "a";
+			console.log(eee);
+
+			///////////////////////////////////////////////////////
+			//ฟังกืชั่น function คือ โปรแกรมย่อยๆ เพื่อให้เรียกใช้ง่าย และลดการเขียนซ้ำซ้อน
+			//
+			//ชื่อฟังกืชั่น
+			function abcd() {
+				console.log("abcd");
+			}
+
+			function message() {
+				alert("ทดลองแจ้งเตือน");
+			}
+
+			//เรียกใช้ฟังก์ชั่น
+			abcd();
+			message();
+
+			///////////////////////////////////////////////////////
+
+			///////////////////////////////////////////////////////
+		</script>
+	</body>
+</html>

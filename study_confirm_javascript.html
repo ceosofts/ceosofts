@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="study_style.css" />
+
+		<title>Document</title>
+	</head>
+	< onload="welcome()">
+		<button onclick="deleteData()">ลบข้อมูล</button>
+
+		<button onclick="display()">แสดงข้อมูล</button>
+		<!-- สั่งให้ เมื่อกดปุ่มแล้ว ข้อความเปลี่ยนเป็นข้อความใหม่ ตาม function display()-->
+
+		<button onclick="display2()">เปลี่ยนตัวหนังสือ</button>
+		<!-- สั่งให้ เมื่อกดปุ่มแล้ว ข้อความเปลี่ยนเป็นข้อความใหม่ ตาม function display()-->
+
+		<button onclick="display3()">ทดสอบใส่ตัวเลข</button>
+		<!-- สั่งให้ เมื่อกดปุ่มแล้ว ข้อความเปลี่ยนเป็นข้อความใหม่ ตาม function display()-->
+
+		<button onclick="display4()">แสดงค่าของตัวแปร</button>
+		<!-- สั่งให้ เมื่อกดปุ่มแล้ว ข้อความเปลี่ยนเป็นข้อความใหม่ ตาม function display()-->
+
+		<button onclick="display5()">เปลี่ยนสีตัวหนังสือ</button>
+		<!-- สั่งให้ เมื่อกดปุ่มแล้ว ข้อความเปลี่ยนเป็นข้อความใหม่ ตาม function display()-->
+
+		<button onclick="display6()">เปลี่ยนโหมดกลางคืน</button>
+		<!-- สั่งให้ เมื่อกดปุ่มแล้ว ข้อความเปลี่ยนเป็นข้อความใหม่ ตาม function display()-->
+
+		<p id="text">Yai Ceosofts</p>
+		<p id="demo">Zoo AHA</p>
+		<p class="myclass">refer by class</p>
+
+		<p id="title">Yai Ceosofts title</p>
+		<p class="content">Yai Ceosofts content</p>
+
+		<p class="mode">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore placeat
+			eos fuga numquam aut id, cupiditate error sequi magnam obcaecati officiis
+			ipsam nostrum ut pariatur ex repellendus, ad iure eaque.
+		</p>
+
+		<ul id="menu"></ul>
+		<button onclick="display7()">เพื่ม item</button>
+		<!-- สั่งให้ เมื่อกดปุ่มแล้ว ข้อความเปลี่ยนเป็นข้อความใหม่ ตาม function display()-->
+
+		<ul id="TestDeleteTag">
+			<li id="tag1">A</li>
+			<li id="tag2">B</li>
+			<li id="tag3">C</li>
+			<li id="tag4">D</li>
+			<li id="tag5">E</li>
+		</ul>
+		<button onclick="display8()">ลบ item</button>
+		<!-- สั่งให้ เมื่อกดปุ่มแล้ว ข้อความเปลี่ยนเป็นข้อความใหม่ ตาม function display()-->
+		<button onclick="display9()">เปลี่ยนชื่อ item</button>
+		<!-- สั่งให้ เมื่อกดปุ่มแล้ว ข้อความเปลี่ยนเป็นข้อความใหม่ ตาม function display()-->
+
+		<div id="box">
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, quas
+				expedita amet ad velit natus ducimus accusamus est. Corrupti magni quam
+				minus itaque dolorum officia incidunt fugit error ut quasi?
+			</p>
+		</div>
+        
+		<button onclick="addDrakMode()">เพิ่ม style</button>
+		<button onclick="deleteDrakMode()">ลบ style</button>
+		<button onclick="changeDrakMode()">สลับ style</button>
+        <br>
+        <label for="">Your Name</label>
+        <input type="type" placeholder="input your name" onfocus="hightlight(this)" onblur="unhightlight(this)">
+        <textarea name="" id="" color="30" rows="10" onfocus="hightlight(this)" onblur="unhightlight(this)">
+        </textarea>
+        <br>
+        <br>
+        <label for="">Select Your Tool</label>
+        <select name="" id="menu9" onchange="getmanu()">
+            <option value="javaScript">javaScript</option>
+            <option value="Python">Python</option>
+            <option value="bootstrap">bootstrap</option>
+        </select>
+        <p id="displaymenu9"></p>
+        
+        <label for="">Select Your Tool10</label>
+        <select name="" id="Displaymenu10">
+            <option value="javaScript">javaScript</option>
+            <option value="Python">Python</option>
+            <option value="bootstrap">bootstrap</option>
+        </select>
+        <p id="displaymenu10"></p>
+
+        <a href="" onmouseover="hightlighttext(this)" onmouseout="unhightlighttext(this)"> Menu 1</a>
+        <a href="" onmouseover="hightlighttext(this)" onmouseout="unhightlighttext(this)"> Menu 2</a>
+
+		<script src="study_confirm_javascript.js"></script>
+		<!-- ดึง file นี้มาอ้างอิงแสดง ค่าตามที่ดึงมา -->
+		<!-- สามารถย้ายออกมาจาก <head> ได้ เพื่อให้ใช้ฟังก์ชั่นทำงานใน <body> ได้-->
+	</body>
+</html>
