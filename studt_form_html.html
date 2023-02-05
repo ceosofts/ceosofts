@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>study form</title>
+    <style>
+        div {
+            color: gold;
+        }
+
+        .a {
+            color: red;
+        }
+
+        .b {
+            color: blue;
+        }
+
+        #t {
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 align="center">แบบฟอร์มลงทะเบียน</h1>
+    <form>
+        <div class="a" id="t">
+            <label for="firstname">ชื่อจริง 555*</label>
+            <input type="text" name="fname" placeholder="ป้อนชื่อ" required>
+        </div>
+        <div class="a" id="h">
+            <label for="lastname">นามสกุล &nbsp;&nbsp;&nbsp;*</label>
+            <input type="text" name="lname" placeholder="ป้อนนามสกุล" required>
+        </div>
+        <div class="b">
+            <label for="birthday">birthday</label>
+            <input type="date" name="birthday" placeholder="ป้อน birthday">
+        </div>
+        <div class="b">
+            <label for="color">color</label>
+            <input type="color" name="color" placeholder="ป้อน color">
+        </div>
+
+        <div>
+            <label for="email">Email*</label>
+            <input type="email" name="email" placeholder="ป้อน email" required>
+        </div>
+        <div>
+            <label for="tel">tel</label>
+            <input type="tel" name="tel" placeholder="ป้อน tel">
+        </div>
+        <div>
+            <label for="password">password</label>
+            <input type="password" name="password" placeholder="ป้อน password">
+        </div>
+        <div>
+            <label for="address">address</label>
+            <textarea name="" id="" cols="20" rows="5"></textarea>
+        </div>
+        <div>
+            <label for="age">age</label>
+            <input type="number" name="age" placeholder="ป้อน age" min="0" value="2">
+        </div>
+        <div>
+            <label for="range">range</label>
+            <input type="range" name="range" min="0" value="0">
+        </div>
+        <div>
+            <label for="level">ระดับการศึกษา</label>
+            <select name="level" id="">
+                <option value="ปริญญาตรี">ปริญญาตรี</option>
+                <option value="ม.ปลาย">ม.ปลาย</option>
+                <option value="ม.ต้น">ม.ต้น</option>
+                <option value="ประถม" selected="">ประถม</option>
+            </select>
+        </div>
+        <div>
+            <label for="gender">เพศ</label>
+            <input type="radio" name="radio">man
+            <input type="radio" name="radio">woman
+        </div>
+        <div>
+            <label for="like">สิ่งที่ชอบ</label>
+            <input type="checkbox" name="like">นอน
+            <input type="checkbox" name="like">เที่ยว
+            <input type="checkbox" name="like">shopping
+        </div>
+        <div>
+            <label for="upload">upload</label>
+            <input type="file" name="upload">
+        </div>
+        <div>
+            <label for="website">website</label>
+            <input type="url" name="website">
+        </div>
+
+        <div>
+            <input type="submit" value="save">
+            <button type="submit">save</button>
+            <input type="reset" value="reset">
+            <button type="reset">reset</button>
+        </div>
+
+
+    </form>
+</body>
+
+</html>
