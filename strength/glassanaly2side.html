@@ -1,0 +1,189 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEOsofts strength/glass calculation</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#navbar").load("navbar.html");
+            // $("#hero").load("hero.html");
+            // $("#body").load("body.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <div id="header"></div>
+</head>
+
+<body>
+    <!-- <div id="header"></div> -->
+    <div id="navbar"></div>
+    <!-- <div id="hero"></div> -->
+    <!-- <div id="body"></div> -->
+
+
+    <div class="px-4 py-5 my-5 text-center">
+
+        <h1 class="display-5 fw-bold"> GLASS ANALYSIS</h1>
+        <br>
+        <div class="col-lg-6 mx-auto" align='center'>
+
+            <h2>Reference Standard international</h2>
+            <p>
+                ASTM E1300-12a Standard Practice for Determining Load Resistance of Glass in Buildings
+            </p>
+            <br>
+            <button class="btn btn-outline-primary" onclick="document.location='glassanaly.html'">Glass support 4
+                Side</button>
+            <button class="btn btn-outline-primary" onclick="document.location='glassanaly2side.html'">Glass support 2
+                Side</button>
+            <br>
+            <br>
+            <h2>Glass support 2 Side</h2>
+
+            <p>
+                <img src="img/4side.jpg" alt="ข้อความที่จะแสดง" width="300px" height="">
+            </p>
+
+            <table id="glass4sidecalTable">
+
+                <tr>
+                    <td>Glass type =</td>
+                    <td>
+                        <select name="glasstype" id="glasstype"
+                            onchange="val(); momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();">
+
+                            <option type="number" value="0" align="center">เลือกชนิด กระจก</option>
+                            <option type="number" value="85" align="center">Annealed Glass</option>
+                            <option type="number" value="210" align="center">Heastrengthened Glass</option>
+                            <option type="number" value="421" align="center">Tempered Glass</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Glass type Allow Stress =</td>
+                    <td>
+                        <b> <input type="number" name="glasstypevalue" id="glasstypevalue" min="0.00"></b>
+                    </td>
+                    <td style="text-align:left">ksc</td>
+                </tr>
+
+                <tr>
+                    <td>Glass thickness =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="glassthk" id="glassthk"
+                            placeholder="ระบุ ความหนากระจก"
+                            onkeyup="momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Shorter Side =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="shortside" id="shortside"
+                            placeholder="ระบุ ระยะด้านสั้น"
+                            onkeyup="momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Longer Side =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="longside" id="longside" placeholder="ระบุ ระยะด้านยาว"
+                            onkeyup="momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Wind load =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="windload" id="windload" placeholder="ระบุ แรงลม"
+                            onkeyup="momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();"
+                            required>
+                    </td>
+                    <td style="text-align:left">kg/m2</td>
+                </tr>
+                <tr>
+                    <td>Moment of inertia =</td>
+                    <td>
+                        <b> <input type="number" name="momentiner" id="momentiner"></b>
+                    </td>
+                    <td style="text-align:left">cm4</td>
+                </tr>
+                <tr>
+                    <td>Moment max =</td>
+                    <td>
+                        <b> <input type="number" name="momentmax" id="momentmax"></b>
+                    </td>
+                    <td style="text-align:left">kg/m</td>
+                </tr>
+                <tr>
+                    <td>Max. Bending Stress =</td>
+                    <td>
+                        <b> <input type="number" name="bendingmaxglass2side" id="bendingmaxglass2side"></b>
+                    </td>
+                    <td style="text-align:left">ksc.</td>
+                </tr>
+                <tr>
+                    <td>Check Bending Stress =</td>
+                    <td>
+                        <b> <input type="text" name="checkbending" id="checkbending" style="text-align:left"></b>
+                    </td>
+                    <td>
+                        <h5> <input type="text" name="checkbending2" id="checkbending2" style="text-align:left"></h5>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Young's mod. of glass =</td>
+                    <td>710,000</td>
+                    <td style="text-align:left">ksc</td>
+                </tr>
+
+                <tr>
+                    <td>Maximum Deflection =</td>
+                    <td>
+                        <b> <input type="number" name="maxdef" id="maxdef"></b>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+
+                <tr>
+                    <td>Allow def. = shot L/60 =</td>
+                    <td>
+                        <b> <input type="number" name="allowdef" id="allowdef"></b>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Definition check =</td>
+                    <td>
+                        <b> <input type="text" name="defcheck" id="defcheck" style="text-align:left"></b>
+                    </td>
+                    <td>
+                        <h5> <input type="text" name="defcheck2" id="defcheck2" style="text-align:left"></h5>
+                    </td>
+                </tr>
+                <tr>
+
+            </table>
+
+
+        </div>
+    </div>
+
+
+    <div id="footer"></div>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
