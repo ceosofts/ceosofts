@@ -1,0 +1,209 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/ceo_logo9.ico">
+    <title>CEOsofts strength/single mullion</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#navbar").load("navbar.html");
+            // $("#hero").load("hero.html");
+            // $("#body").load("body.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <div id="header"></div>
+</head>
+
+<body>
+    <!-- <div id="header"></div> -->
+    <div id="navbar"></div>
+    <!-- <div id="hero"></div> -->
+    <!-- <div id="body"></div> -->
+
+
+    <div class="px-4 py-5 my-5 text-center">
+
+        <h1 class="display-5 fw-bold"> MULLION ANALYSIS</h1>
+        <br>
+        <div class="col-lg-6 mx-auto" align='center'>
+
+            <!-- <h2>Reference Standard international</h2>
+            <p>
+                ASTM E1300-12a Standard Practice for Determining Load Resistance of Glass in Buildings
+            </p> -->
+            <br>
+            <button class="btn btn-outline-primary" onclick="document.location='singlemullion.html'">Single Mullion
+            </button>
+            <button class="btn btn-outline-primary" onclick="document.location='combinemullion.html'">Combine stiffener
+                Mullion</button>
+            <br>
+            <br>
+            <h2>Single Mullion</h2>
+
+            <p>
+                <img src="img/mullion.jpg" alt="ข้อความที่จะแสดง" width="500px" height="">
+            </p>
+
+            <table id="glass4sidecalTable" style="width:700px">
+                <h4>PROPERTY OF ALUMINUM</h4>
+
+                <tr>
+                    <td>allowable bending stress of aluminum =</td>
+                    <td>650</td>
+                    <td style="text-align:left">ksc</td>
+                </tr>
+                <tr>
+                    <td>Young's modu. of aluminum =</td>
+                    <td>710,000</td>
+                    <td style="text-align:left">ksc</td>
+                </tr>
+
+                <!-- <tr>
+                    <td>Glass type =</td>
+                    <td>
+                        <select name="glasstype" id="glasstype"
+                            onchange="val(); glass4sidecal(); checkbendingcal(); maxdefcal(); allowdef(); defcheck();">
+
+                            <option type="number" value="0" align="center">เลือกชนิด กระจก</option>
+                            <option type="number" value="85" align="center">Annealed Glass</option>
+                            <option type="number" value="210" align="center">Heastrengthened Glass</option>
+                            <option type="number" value="421" align="center">Tempered Glass</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Glass type Allow Stress =</td>
+                    <td>
+                        <b> <input type="number" name="glasstypevalue" id="glasstypevalue" min="0.00"></b>
+                    </td>
+                    <td style="text-align:left">ksc</td>
+                </tr> -->
+
+                <tr>
+                    <td>moment inertia of mullion Ix=</td>
+                    <td>
+                        <input type="number" class='txtCalinput' name="alumix" id="alumix" placeholder="ระบุ ค่า Ix"
+                            onkeyup="alummomenmaxcal(); alumbendingstress(); checkalumcheckbend(); alummaxdefcal(); alumallowdefcal(); checkalumdefcheck(); "
+                            required>
+                    </td>
+                    <td style="text-align:left">cm4</td>
+                </tr>
+                <!-- <script>
+                    jQuery(function ($) {
+                        $('#alumix').autoNumeric('init');
+                    });
+                </script> -->
+                <tr>
+                    <td>Distance to neutral axis along y axis =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="alumcentroid" id="alumcentroid"
+                            placeholder="ระบุ ระยะขอบถึง centroid"
+                            onkeyup="alummomenmaxcal(); alumbendingstress(); checkalumcheckbend(); alummaxdefcal(); alumallowdefcal(); checkalumdefcheck(); "
+                            required>
+                    </td>
+                    <td style="text-align:left">mm.</td>
+                </tr>
+
+
+                <tr>
+                    <td>(width + width) / 2 =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="alumwidth" id="alumwidth"
+                            placeholder="ระบุ ระยะความกว้าง"
+                            onkeyup="alummomenmaxcal(); alumbendingstress(); checkalumcheckbend(); alummaxdefcal(); alumallowdefcal(); checkalumdefcheck(); "
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>height =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="alumheight" id="alumheight"
+                            placeholder="ระบุ ระยะความสูง"
+                            onkeyup="alummomenmaxcal(); alumbendingstress(); checkalumcheckbend(); alummaxdefcal(); alumallowdefcal(); checkalumdefcheck(); "
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Wind load =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="windload" id="windload" placeholder="ระบุ แรงลม"
+                            onkeyup="alummomenmaxcal(); alumbendingstress(); checkalumcheckbend(); alummaxdefcal(); alumallowdefcal(); checkalumdefcheck(); "
+                            required>
+                    </td>
+                    <td style="text-align:left">kg/m2</td>
+                </tr>
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                <tr>
+                    <td>Moment Max. =</td>
+                    <td>
+                        <b> <input type="number" name="alummomentmax" id="alummomentmax"></b>
+                    </td>
+                    <td style="text-align:left">kg.m</td>
+                </tr>
+
+
+                <tr>
+                    <td>Max. Bending Stress =</td>
+                    <td>
+                        <b> <input type="number" class='txtCalinput' name="alummaxbend" id="alummaxbend"></b>
+                    </td>
+                    <td style="text-align:left">ksc.</td>
+                </tr>
+                <tr>
+                    <td>Check Bending Stress =</td>
+                    <td>
+                        <b> <input type="text" name="alumcheckbend" id="alumcheckbend" style="text-align:left"></b>
+                    </td>
+                    <td>
+                        <h5> <input type="text" name="alumcheckbend2" id="alumcheckbend2" style="text-align:left"></h5>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Maximum Deflection =</td>
+                    <td>
+                        <b> <input type="number" name="alummaxdef" id="alummaxdef"></b>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+
+                <tr>
+                    <td>Allow Deflection = L/175 and 2.0 =</td>
+                    <td>
+                        <b> <input type="number" name="alumallowdef" id="alumallowdef"></b>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Definition check =</td>
+                    <td>
+                        <b> <input type="text" name="alumdefcheck" id="alumdefcheck" style="text-align:left"></b>
+                    </td>
+                    <td>
+                        <h5> <input type="text" name="alumdefcheck2" id="alumdefcheck2" style="text-align:left"></h5>
+                    </td>
+                </tr>
+                <tr>
+
+            </table>
+
+
+        </div>
+    </div>
+
+
+    <div id="footer"></div>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
