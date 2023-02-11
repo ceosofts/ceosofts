@@ -1,0 +1,304 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/ceo_logo9.ico">
+    <title>CEOsofts strength/transom</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#navbar").load("navbar.html");
+            // $("#hero").load("hero.html");
+            // $("#body").load("body.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <div id="header"></div>
+</head>
+
+<body>
+    <!-- <div id="header"></div> -->
+    <div id="navbar"></div>
+    <!-- <div id="hero"></div> -->
+    <!-- <div id="body"></div> -->
+
+
+    <div class="px-4 py-5 my-5 text-center">
+
+        <h1 class="display-5 fw-bold"> TRANSOM ANALYSIS</h1>
+        <br>
+        <div class="col-lg-6 mx-auto" align='center'>
+
+            <!-- <h2>Reference Standard international</h2>
+            <p>
+                ASTM E1300-12a Standard Practice for Determining Load Resistance of Glass in Buildings
+            </p> -->
+            <br>
+            <!-- <button class="btn btn-outline-primary" onclick="document.location='singlemullion.html'">Trasom
+            </button> -->
+            <!-- <button class="btn btn-outline-primary" onclick="document.location='combinemullion.html'">Combine stiffener
+                Mullion</button> -->
+            <!-- <br>
+            <br> -->
+            <!-- <h2>ยังไม่เสร็จน่ะจ๊ะ</h2> -->
+
+            <p>
+                <img src="img/transom.jpg" alt="ข้อความที่จะแสดง" width="500px" height="">
+                <img src="img/transom section.jpg" alt="ข้อความที่จะแสดง" width="300px" height="">
+            </p>
+
+
+            <table id="CombinemullionTable" style="width:800px">
+                <h4>PROPERTY OF ALUMINUM</h4>
+
+                <tr>
+                    <td style="width:600px">allowable bending stress of aluminum =</td>
+                    <td>650</td>
+                    <td style="text-align:left">ksc</td>
+                </tr>
+                <tr>
+                    <td>Young's modu. of aluminum =</td>
+                    <td>700,000</td>
+                    <td style="text-align:left">ksc</td>
+                </tr>
+
+                <tr>
+                    <td>moment inertia of transom Ix=</td>
+                    <td>
+                        <input type="text" class='textnum' name="transomix" id="transomix"
+                            placeholder="ระบุ ค่า Transom Ix"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm4</td>
+                </tr>
+                <tr>
+                    <td>moment inertia of transom Iy=</td>
+                    <td>
+                        <input type="text" class='textnum' name="transomiy" id="transomiy"
+                            placeholder="ระบุ ค่า Transom Iy"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm4</td>
+                </tr>
+
+                <tr>
+                    <td>moment inertia of stiffener Ix=</td>
+                    <td>
+                        <input type="text" class='textnum' name="stiffenerix" id="stiffenerix" value="0"
+                            placeholder="ระบุ ค่า Stiffener Ix"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm4</td>
+                </tr>
+                <tr>
+                    <td>moment inertia of stiffener Iy=</td>
+                    <td>
+                        <input type="text" class='textnum' name="stiffeneriy" id="stiffeneriy" value="0"
+                            placeholder="ระบุ ค่า Stiffener Iy"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm4</td>
+                </tr>
+                <!-- <script>
+                    jQuery(function ($) {
+                        $('#alumix').autoNumeric('init');
+                    });
+                </script> -->
+                <tr>
+                    <td>Distance to neutral axis along x axis = Cx =</td>
+                    <td>
+                        <input type="number" class='text' name="transomcentroidx" id="transomcentroidx"
+                            placeholder="ระบุ ระยะขอบถึง centroid x"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">mm.</td>
+                </tr>
+                <tr>
+                    <td>Distance to neutral axis along y axis = Cy =</td>
+                    <td>
+                        <input type="number" class='text' name="transomcentroidy" id="transomcentroidy"
+                            placeholder="ระบุ ระยะขอบถึง centroid y"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">mm.</td>
+                </tr>
+                <tr>
+                    <td>Glass thickness =</td>
+                    <td>
+                        <input type="number" class='text' name="glassthk" id="glassthk" placeholder="ระบุ ความหนากระจก"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+
+
+                <tr>
+                    <td> width =</td>
+                    <td>
+                        <input type="number" class='text' name="tannsomwidth" id="tannsomwidth"
+                            placeholder="ระบุ ระยะความกว้าง"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>height h1 =</td>
+                    <td>
+                        <input type="number" class='text' name="transomheight1" id="transomheight1"
+                            placeholder="ระบุ ระยะความสูง h1"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>height h2 =</td>
+                    <td>
+                        <input type="number" class='text' name="transomheight2" id="transomheight2"
+                            placeholder="ระบุ ระยะความสูง h2"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Wind load =</td>
+                    <td>
+                        <input type="number" class='text' name="windload" id="windload" placeholder="ระบุ แรงลม"
+                            onkeyup="transommomenmaxcal(); transombendingstress(); checktransombend(); transommaxdefcal(); transomallowdefcal(); checktransomdef(); glassweightcal(); maxshearcal(); maxdefcal(); daedloadallowdefcal(); checkdeadloaddef();"
+                            required>
+                    </td>
+                    <td style="text-align:left">kg/m2</td>
+                </tr>
+                <!-- ///////////////////////////////////////////////////////////////// -->
+
+                <td></td>
+                <th>WIND LOAD ANALYSIS</th>
+                <td></td>
+
+                <tr>
+                    <td>Moment Max. =</td>
+                    <td>
+                        <b> <input type="number" name="transommomentmax" id="transommomentmax"></b>
+                    </td>
+                    <td style="text-align:left">kg.m</td>
+                </tr>
+
+
+                <tr>
+                    <td>Max. Bending Stress in transom =</td>
+                    <td>
+                        <b> <input type="number" class='text' name="transommaxbend" id="transommaxbend"></b>
+                    </td>
+                    <td style="text-align:left">ksc.</td>
+                </tr>
+                <tr>
+                    <td>Check Bending Stress =</td>
+                    <td>
+                        <b> <input type="text" name="transomcheckbend" id="transomcheckbend"
+                                style="text-align:left"></b>
+                    </td>
+                    <td>
+                        <h5> <input type="text" name="transomcheckbend2" id="transomcheckbend2" style="text-align:left">
+                        </h5>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Maximum Deflection =</td>
+                    <td>
+                        <b> <input type="number" name="transommaxdef" id="transommaxdef"></b>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+
+                <tr>
+                    <td>Allow Deflection = L/175 and 2.0 =</td>
+                    <td>
+                        <b> <input type="number" name="transomallowdef" id="transomallowdef"></b>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Definition check =</td>
+                    <td>
+                        <b> <input type="text" name="transomdefcheck" id="transomdefcheck" style="text-align:left"></b>
+                    </td>
+                    <td>
+                        <h5> <input type="text" name="transomdefcheck2" id="transomdefcheck2" style="text-align:left">
+                        </h5>
+                    </td>
+                </tr>
+
+                <td></td>
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                <th>DEAD LOAD ANALYSIS</th>
+                <td></td>
+                <tr>
+                    <td>Glass weight =</td>
+                    <td>
+                        <b> <input type="number" name="glassweight" id="glassweight"></b>
+                    </td>
+                    <td style="text-align:left">kg.</td>
+                </tr>
+                <tr>
+                    <td>Max. shear =</td>
+                    <td>
+                        <b> <input type="number" name="maxshear" id="maxshear"></b>
+                    </td>
+                    <td style="text-align:left">kN.</td>
+                </tr>
+                <tr>
+                    <td>Max. Deflection =</td>
+                    <td>
+                        <b> <input type="number" name="maxdef" id="maxdef"></b>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+
+
+                <tr>
+                    <td>Allow Deflection = L/300 and 0.3 =</td>
+                    <td>
+                        <b> <input type="number" name="deadloadallowdef" id="deadloadallowdef"></b>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Definition check =</td>
+                    <td>
+                        <b> <input type="text" name="deadloaddefcheck" id="deadloaddefcheck"
+                                style="text-align:left"></b>
+                    </td>
+                    <td>
+                        <h5> <input type="text" name="deadloaddefcheck2" id="deadloaddefcheck2" style="text-align:left">
+                        </h5>
+                    </td>
+                </tr>
+
+
+            </table>
+
+
+        </div>
+    </div>
+
+
+    <div id="footer"></div>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
