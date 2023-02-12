@@ -23,7 +23,7 @@
     <div id="header"></div>
 </head>
 
-<body>
+<body onload="checkCookie()">
 
 
 
@@ -34,7 +34,7 @@
 
     <!-- features -->
     <div class="container px-4 py-5" id="icon-grid">
-        <h2 class="pb-2 border-bottom">ITEM</h2>
+        <h2 class="pb-2 border-bottom">ITEM หัวข้อ</h2>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
 
@@ -126,35 +126,31 @@
                     <use xlink:href="#toggles2"></use>
                 </svg>
                 <div>
-                    <h3 class="fw-bold mb-0 fs-4">FORMULA</h3>
+                    <a href="formularefer.html">
+                        <h3 class="fw-bold mb-0 fs-4">FORMULA</h3>
+                    </a>
+
                     <p>การอ้างอิงสูตรที่นำมาใช้คำนวณ</p>
                 </div>
             </div>
-
-            <!-- <div class="col d-flex align-items-start">
-				<svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-					<use xlink:href="#geo-fill"></use>
-				</svg>
-				<div>
-					<h3 class="fw-bold mb-0 fs-4">Featured title</h3>
-					<p>Paragraph of text beneath the heading to explain the heading.</p>
-				</div>
-			</div> -->
-            <!-- <div class="col d-flex align-items-start">
-				<svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-					<use xlink:href="#tools"></use>
-				</svg>
-				<div>
-					<h3 class="fw-bold mb-0 fs-4">Featured title</h3>
-					<p>Paragraph of text beneath the heading to explain the heading.</p>
-				</div>
-			</div> -->
         </div>
     </div>
     <!-- end features -->
 
     <div id="footer"></div>
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Cookies policy popup -->
+    <!-- <div class="cookies-policy" id="cookieNotice">
+        Cookies Policy เราใช้คุกกี้เพื่อเพิ่มประสบการณ์และความพึงพอใจในการใช้งานเว็บไซต์ หากคุณยินยอมให้ใส่ชื่อแล้วกด OK
+        หรือใช้งานเว็บไซต์ของเราต่อ ทางเว็บจะถือว่าคุณยินยอมให้มีการใช้งานคุกกี้ หรือสงสัย <a style="color:#115cfa;"
+            href="cookiespolicy.html">อ่านเพิ่มเติม</a> -->
+    <!-- <button class="btn btn-outline-primary" onclick="checkCookie();">Accept</button> -->
+    <!-- </div> -->
+
+</body>
+
+</html>
 </body>
 
 </html>
