@@ -57,7 +57,7 @@
                     <td>Glass type =</td>
                     <td>
                         <select name="glasstype" id="glasstype"
-                            onchange="val(); glass4sidecal(); checkbendingcal(); maxdefcal(); allowdef(); defcheck();">
+                            onchange="val(); glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck();">
 
                             <option type="number" value="0" align="center">เลือกชนิด กระจก</option>
                             <option type="number" value="85" align="center">Annealed Glass</option>
@@ -80,7 +80,7 @@
                     <td>
                         <input type="number" class='txtCal' name="glassthk" id="glassthk"
                             placeholder="ระบุ ความหนากระจก"
-                            onkeyup="glass4sidecal(); checkbendingcal(); maxdefcal(); allowdef(); defcheck(); "
+                            onkeyup="glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck(); "
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -90,7 +90,7 @@
                     <td>
                         <input type="number" class='txtCal' name="shortside" id="shortside"
                             placeholder="ระบุ ระยะด้านสั้น"
-                            onkeyup="glass4sidecal(); checkbendingcal(); maxdefcal(); allowdef(); defcheck(); "
+                            onkeyup="glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck(); "
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -99,7 +99,7 @@
                     <td>Longer Side =</td>
                     <td>
                         <input type="number" class='txtCal' name="longside" id="longside" placeholder="ระบุ ระยะด้านยาว"
-                            onkeyup="glass4sidecal(); checkbendingcal(); maxdefcal(); allowdef(); defcheck(); "
+                            onkeyup="glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck(); "
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -108,7 +108,7 @@
                     <td>Wind load =</td>
                     <td>
                         <input type="number" class='txtCal' name="windload" id="windload" placeholder="ระบุ แรงลม"
-                            onkeyup="glass4sidecal(); checkbendingcal(); maxdefcal(); allowdef(); defcheck(); "
+                            onkeyup="glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck(); "
                             required>
                     </td>
                     <td style="text-align:left">kg/m2</td>

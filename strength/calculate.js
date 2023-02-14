@@ -40,7 +40,7 @@ function checkbendingcal() {
     }
 }
 
-function maxdefcal() {
+function glassmaxdefcal() {
     var glassthk = document.getElementById("glassthk").value;
     var shortside = document.getElementById("shortside").value;
     var longside = document.getElementById("longside").value;
@@ -549,7 +549,7 @@ function maxshearcal() {
     // console.log(typeof result);
 }
 
-function maxdefcal() {
+function deadloadtransommaxdefcal() {
     var maxshear = document.getElementById("maxshear").value;
     var tannsomwidth = document.getElementById("tannsomwidth").value;
     var transomix = document.getElementById("transomix").value;
@@ -574,7 +574,7 @@ function maxdefcal() {
 
     var sendresult = result.toFixed(3);
 
-    document.getElementById("maxdef").value = sendresult;
+    document.getElementById("deadloadtransommaxdef").value = sendresult;
 
     // console.log(result);
     // console.log(typeof result);
@@ -592,10 +592,10 @@ function daedloadallowdefcal() {
 
 function checkdeadloaddef() {
 
-    var maxdef = document.getElementById("maxdef").value;
+    var deadloadtransommaxdef = document.getElementById("deadloadtransommaxdef").value;
     var deadloadallowdef = document.getElementById("deadloadallowdef").value;
 
-    if (deadloadallowdef >= maxdef) {
+    if (deadloadallowdef >= deadloadtransommaxdef) {
         // console.log("Hence");
         document.getElementById("deadloaddefcheck").value = "Max.def. < allow def.";
         document.getElementById("deadloaddefcheck2").value = "transom allow";
@@ -604,4 +604,21 @@ function checkdeadloaddef() {
         document.getElementById("deadloaddefcheck").value = "Max.def. > allow bend.";
         document.getElementById("deadloaddefcheck2").value = "transom cannot allow";
     }
+}
+
+function siliconebilecal() {
+
+    var siliconeshortside = document.getElementById("siliconeshortside").value;
+    var windload = document.getElementById("windload").value;
+
+    var result = siliconeshortside * windload / 27500;
+
+    if (result <= 6) {
+        result = 6;
+    }
+
+    var sendresult = result.toFixed(1);
+
+    document.getElementById("siliconewidth").value = sendresult;
+
 }
