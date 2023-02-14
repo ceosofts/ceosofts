@@ -74,7 +74,7 @@ function checkCookie() {
         alert("Welcome again : ยินดีต้อนรับอีกครั้ง " + user);
     } else {
         // user = prompt(" Please enter your name : ผู้เข้าชมใหม่กรุณาระบุชื่อ", "");
-        user = prompt(" Cookies Policy เราใช้คุกกี้เพื่อเพิ่มประสบการณ์และความพึงพอใจในการใช้งานเว็บไซต์ หากคุณยินยอม กรุณาระบุชื่อแล้วกด OK หรือ Cancel แล้วใช้งานเว็บไซต์ของเราต่อ", "");
+        user = prompt(" Cookies Policy เราใช้คุกกี้เพื่อเพิ่มประสบการณ์และความพึงพอใจในการใช้งานเว็บไซต์ของคุณ หากคุณยินยอม กรุณาระบุชื่อแล้วกด OK หรือ Cancel แล้วใช้งานเว็บไซต์ของเราต่อ", "");
         if (user != "" && user != null) {
             setCookie("username", user, 30);
         }

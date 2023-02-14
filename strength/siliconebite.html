@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/ceo_logo9.ico">
+    <title>CEOsofts strength/silicone bite</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#navbar").load("navbar.html");
+            // $("#hero").load("hero.html");
+            // $("#body").load("body.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <div id="header"></div>
+</head>
+
+<body>
+    <!-- <div id="header"></div> -->
+    <div id="navbar"></div>
+    <!-- <div id="hero"></div> -->
+    <!-- <div id="body"></div> -->
+
+
+    <div class="px-4 py-5 my-5 text-center">
+
+        <h1 class="display-5 fw-bold"> SILICONE BITE</h1>
+        <br>
+        <div class="col-lg-6 mx-auto" align='center'>
+
+            <h2>Structural Silicone Glazing</h2>
+
+            <p>
+                ความกว้างของซิลิโคน (สำหรับงาน curtain wall)
+            </p>
+
+
+            <br>
+
+
+            <p>
+                <img src="img/silicone bite.jpg" alt="ข้อความที่จะแสดง" width="500px" height="">
+            </p>
+
+            <table id="siliconebbite">
+
+                <tr>
+                    <td>Shorter Side =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="siliconeshortside" id="siliconeshortside"
+                            placeholder="ระบุ ระยะด้านสั้น" onkeyup="siliconebilecal(); " required>
+                    </td>
+                    <td style="text-align:left">mm.</td>
+                </tr>
+                <tr>
+                    <td>Min. Deep =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="siliconedeep" id="siliconedeep" value="6"
+                            placeholder="ระบุ ความลึกของ Bite" onkeyup="siliconebilecal();  " required>
+                    </td>
+                    <td style="text-align:left">mm.</td>
+                </tr>
+                <tr>
+                    <td>Wind load =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="windload" id="windload" placeholder="ระบุ แรงลม"
+                            onkeyup="siliconebilecal(); " required>
+                    </td>
+                    <td style="text-align:left">kg/m2</td>
+                </tr>
+                <tr>
+                    <td>Min. Width of Silicone bite =</td>
+                    <td>
+                        <b> <input type="number" name="siliconewidth" id="siliconewidth"></b>
+                    </td>
+                    <td style="text-align:left">mm.</td>
+                </tr>
+
+
+            </table>
+
+
+        </div>
+    </div>
+
+
+    <div id="footer"></div>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
