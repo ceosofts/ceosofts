@@ -57,7 +57,7 @@
                     <td>Glass type =</td>
                     <td>
                         <select name="glasstype" id="glasstype"
-                            onchange="val(); momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();">
+                            onchange="val(); momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkglass2bendincal(); maxdeflectioncal(); allowdef(); defcheck();">
 
                             <option type="number" value="0" align="center">เลือกชนิด กระจก</option>
                             <option type="number" value="85" align="center">Annealed Glass</option>
@@ -80,7 +80,7 @@
                     <td>
                         <input type="number" class='txtCal' name="glassthk" id="glassthk"
                             placeholder="ระบุ ความหนากระจก"
-                            onkeyup="momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();"
+                            onkeyup="momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -90,7 +90,7 @@
                     <td>
                         <input type="number" class='txtCal' name="shortside" id="shortside"
                             placeholder="ระบุ ระยะด้านสั้น"
-                            onkeyup="momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();"
+                            onkeyup="momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -99,7 +99,7 @@
                     <td>Longer Side =</td>
                     <td>
                         <input type="number" class='txtCal' name="longside" id="longside" placeholder="ระบุ ระยะด้านยาว"
-                            onkeyup="momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();"
+                            onkeyup="momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -108,7 +108,7 @@
                     <td>Wind load =</td>
                     <td>
                         <input type="number" class='txtCal' name="windload" id="windload" placeholder="ระบุ แรงลม"
-                            onkeyup="momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkbending2sidecal(); maxdeflectioncal(); allowdef(); defcheck();"
+                            onkeyup="momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
                     <td style="text-align:left">kg/m2</td>
@@ -123,14 +123,14 @@
                 <tr>
                     <td>Moment max =</td>
                     <td>
-                        <b> <input type="number" name="momentmax" id="momentmax"></b>
+                        <b> <input type="number" name="glass2momentmax" id="glass2momentmax"></b>
                     </td>
                     <td style="text-align:left">kg/m</td>
                 </tr>
                 <tr>
                     <td>Max. Bending Stress =</td>
                     <td>
-                        <b> <input type="number" name="bendingmaxglass2side" id="bendingmaxglass2side"></b>
+                        <b> <input type="number" name="glass2bendingmax" id="glass2bendingmax"></b>
                     </td>
                     <td style="text-align:left">ksc.</td>
                 </tr>
@@ -153,7 +153,7 @@
                 <tr>
                     <td>Maximum Deflection =</td>
                     <td>
-                        <b> <input type="number" name="maxdef" id="maxdef"></b>
+                        <b> <input type="number" name="glass2maxdef" id="glass2maxdef"></b>
                     </td>
                     <td style="text-align:left">cm.</td>
                 </tr>
@@ -161,7 +161,7 @@
                 <tr>
                     <td>Allow def. = long side L/60 =</td>
                     <td>
-                        <b> <input type="number" name="allowdef" id="allowdef"></b>
+                        <b> <input type="number" name="glass2allowdef" id="glass2allowdef"></b>
                     </td>
                     <td style="text-align:left">cm.</td>
                 </tr>

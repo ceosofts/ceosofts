@@ -1,7 +1,7 @@
 
 //! START 4SIDE GLASS
 
-function glass4sidecal() {
+function glass4maxbencal() {
     var glassthk = document.getElementById("glassthk").value;
     var shortside = document.getElementById("shortside").value;
     var longside = document.getElementById("longside").value;
@@ -14,7 +14,7 @@ function glass4sidecal() {
 
     var sendresult = result.toFixed(3);
 
-    document.getElementById("g4sidemaxben").value = sendresult;
+    document.getElementById("glass4maxben").value = sendresult;
 }
 
 function val() {
@@ -27,20 +27,20 @@ $('#glasstype').change(function () {
     document.getElementById("glasstypevalue").value = glasstypevalue;
 })
 
-function checkbendingcal() {
+function checkglass4bendingcal() {
     var glasstypevalue = document.getElementById("glasstypevalue").value;
-    var g4sidemaxben = document.getElementById("g4sidemaxben").value;
-    if (glasstypevalue >= g4sidemaxben) {
+    var glass4maxben = document.getElementById("glass4maxben").value;
+    if (glasstypevalue >= glass4maxben) {
         // console.log("Hence");
         document.getElementById("checkbending").value = "Max.Bend. < allow stress";
-        document.getElementById("checkbending2").value = "Hence Glass allow";
+        document.getElementById("checkbending2").value = "Max.Bend. allow";
     } else {
         document.getElementById("checkbending").value = "Max.Bend. > allow stress";
-        document.getElementById("checkbending2").value = "Glass cannot allow";
+        document.getElementById("checkbending2").value = "Max.Bend. cannot allow";
     }
 }
 
-function glassmaxdefcal() {
+function glass4maxdefcal() {
     var glassthk = document.getElementById("glassthk").value;
     var shortside = document.getElementById("shortside").value;
     var longside = document.getElementById("longside").value;
@@ -49,38 +49,34 @@ function glassmaxdefcal() {
     var set1 = (0.16 / (1 + 2.4 * (shortside / longside) ** 3));
     var set2 = (1 - 0.22 ** 2);
     var set3 = (windload / 10000) * (shortside ** 4);
-    var set4 = (700000 * glassthk ** 3)
+    var set4 = (710000 * glassthk ** 3)
     var set5 = set3 / set4;
 
     result = set1 * set2 * set5;
 
     var sendresult = result.toFixed(3);
 
-    document.getElementById("maxdef").value = sendresult;
+    document.getElementById("glass4maxdef").value = sendresult;
 }
 
-/////////////////////////////////////////////////////////////////
-//! ใช้รว่มกัน
+function glass4allowdefcal() {
+    var shortside = document.getElementById("shortside").value;
 
-function allowdef() {
-    var longside = document.getElementById("longside").value;
-
-    result = longside / 60;
+    result = shortside / 60;
 
     var sendresult = result.toFixed(3);
 
-    document.getElementById("allowdef").value = sendresult;
+    document.getElementById("glass4allowdef").value = sendresult;
 }
-/////////////////////////////////////////////////////////////////
-//! ใช้รว่มกัน
-function defcheck() {
-    var maxdef = document.getElementById("maxdef").value;
-    var allowdef = document.getElementById("allowdef").value;
+
+function glass4defcheck() {
+    var glass4maxdef = document.getElementById("glass4maxdef").value;
+    var glass4allowdef = document.getElementById("glass4allowdef").value;
 
     // result = maxdef < allowdef;
     // document.getElementById("allowdef").value = result;
 
-    if (maxdef <= allowdef) {
+    if (glass4maxdef <= glass4allowdef) {
         // console.log("Hence");
         document.getElementById("defcheck").value = "Max.def. < allow def.";
         document.getElementById("defcheck2").value = "Hence Glass allow";
@@ -89,6 +85,8 @@ function defcheck() {
         document.getElementById("defcheck2").value = "Hence Glass not allow";
     }
 }
+
+
 //! END 4SIDE GLASS
 /////////////////////////////////////////////////////////////////
 //! START 2SIDE GLASS
@@ -109,7 +107,7 @@ function momentinercal() {
 
 }
 
-function checkmomenmax2sidecal() {
+function glass2momentmaxcal() {
 
     var windload = document.getElementById("windload").value;
     var longside = document.getElementById("longside").value;
@@ -119,14 +117,14 @@ function checkmomenmax2sidecal() {
 
     var sendresult = result.toFixed(3);
 
-    document.getElementById("momentmax").value = sendresult;
+    document.getElementById("glass2momentmax").value = sendresult;
 
     // document.getElementById("momentmax").value = result;
 
 }
 
-function bendingmaxglass2sidecal() {
-    var momentmax = document.getElementById("momentmax").value;
+function glass2bendingmaxcal() {
+    var momentmax = document.getElementById("glass2momentmax").value;
     var glassthk = document.getElementById("glassthk").value;
     var shortside = document.getElementById("shortside").value;
 
@@ -135,40 +133,68 @@ function bendingmaxglass2sidecal() {
 
     var sendresult = result.toFixed(3);
 
-    document.getElementById("bendingmaxglass2side").value = sendresult;
+    document.getElementById("glass2bendingmax").value = sendresult;
 
     // document.getElementById("bendingmaxglass2side").value = result;
 }
 
-function checkbending2sidecal() {
+function checkglass2bendincal() {
     var glasstypevalue = document.getElementById("glasstypevalue").value;
-    var bendingmaxglass2side = document.getElementById("bendingmaxglass2side").value;
+    var glass2bendingmax = document.getElementById("glass2bendingmax").value;
 
-    if (glasstypevalue >= bendingmaxglass2side) {
+    if (glasstypevalue >= glass2bendingmax) {
         // console.log("Hence");
         document.getElementById("checkbending").value = "Max.Bend. < allow stress";
-        document.getElementById("checkbending2").value = "Hence Glass allow";
+        document.getElementById("checkbending2").value = "Max.Bend. allow";
 
     } else {
         document.getElementById("checkbending").value = "Max.Bend. > allow stress";
-        document.getElementById("checkbending2").value = "Glass cannot allow";
+        document.getElementById("checkbending2").value = "Max.Bend. cannot allow";
     }
 }
 
-function maxdeflectioncal() {
+function glass2maxdefcal() {
     var windload = document.getElementById("windload").value;
     var longside = document.getElementById("longside").value;
     var momentiner = document.getElementById("momentiner").value;
 
-    var result = ((5 * (windload / 100)) * (longside ** 4)) / (384 * 700000 * momentiner);
+    var result = ((5 * (windload / 100)) * (longside ** 4)) / (384 * 710000 * momentiner);
 
     var sendresult = result.toFixed(3);
 
-    document.getElementById("maxdef").value = sendresult;
+    document.getElementById("glass2maxdef").value = sendresult;
 
     // document.getElementById("maxdef").value = result;
 
 }
+
+function glass2allowdefcal() {
+    var longside = document.getElementById("longside").value;
+
+    result = longside / 60;
+
+    var sendresult = result.toFixed(3);
+
+    document.getElementById("glass2allowdef").value = sendresult;
+}
+
+function glass2defcheck() {
+    var glass2maxdef = document.getElementById("glass2maxdef").value;
+    var glass2allowdef = document.getElementById("glass2allowdef").value;
+
+    // result = maxdef < allowdef;
+    // document.getElementById("allowdef").value = result;
+
+    if (glass2maxdef <= glass2allowdef) {
+        // console.log("Hence");
+        document.getElementById("defcheck").value = "Max.def. < allow def.";
+        document.getElementById("defcheck2").value = "Hence Glass allow";
+    } else {
+        document.getElementById("defcheck").value = "Max.def. > allow def.";
+        document.getElementById("defcheck2").value = "Hence Glass not allow";
+    }
+}
+
 
 //! END 2 SIDE GLASS
 /////////////////////////////////////////////////////////////////
