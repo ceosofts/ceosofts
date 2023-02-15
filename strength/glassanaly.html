@@ -57,7 +57,7 @@
                     <td>Glass type =</td>
                     <td>
                         <select name="glasstype" id="glasstype"
-                            onchange="val(); glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck();">
+                            onchange="val(); glass4sidecal(); checkbendingcal(); glassmaxdefcal(); glass4allowdefcal(); defcheck();">
 
                             <option type="number" value="0" align="center">เลือกชนิด กระจก</option>
                             <option type="number" value="85" align="center">Annealed Glass</option>
@@ -80,7 +80,7 @@
                     <td>
                         <input type="number" class='txtCal' name="glassthk" id="glassthk"
                             placeholder="ระบุ ความหนากระจก"
-                            onkeyup="glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck(); "
+                            onkeyup="glass4maxbencal(); checkglass4bendingcal(); glass4maxdefcal(); glass4allowdefcal(); glass4defcheck(); "
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -90,7 +90,7 @@
                     <td>
                         <input type="number" class='txtCal' name="shortside" id="shortside"
                             placeholder="ระบุ ระยะด้านสั้น"
-                            onkeyup="glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck(); "
+                            onkeyup="glass4maxbencal(); checkglass4bendingcal(); glass4maxdefcal(); glass4allowdefcal(); glass4defcheck(); "
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -99,7 +99,7 @@
                     <td>Longer Side =</td>
                     <td>
                         <input type="number" class='txtCal' name="longside" id="longside" placeholder="ระบุ ระยะด้านยาว"
-                            onkeyup="glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck(); "
+                            onkeyup="glass4maxbencal(); checkglass4bendingcal(); glass4maxdefcal(); glass4allowdefcal(); glass4defcheck(); "
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -108,7 +108,7 @@
                     <td>Wind load =</td>
                     <td>
                         <input type="number" class='txtCal' name="windload" id="windload" placeholder="ระบุ แรงลม"
-                            onkeyup="glass4sidecal(); checkbendingcal(); glassmaxdefcal(); allowdef(); defcheck(); "
+                            onkeyup="glass4maxbencal(); checkglass4bendingcal(); glass4maxdefcal(); glass4allowdefcal(); glass4defcheck(); "
                             required>
                     </td>
                     <td style="text-align:left">kg/m2</td>
@@ -116,7 +116,7 @@
                 <tr>
                     <td>Max. Bending Stress =</td>
                     <td>
-                        <b> <input type="number" name="g4sidemaxben" id="g4sidemaxben"></b>
+                        <b> <input type="number" name="glass4maxben" id="glass4maxben"></b>
                     </td>
                     <td style="text-align:left">ksc.</td>
                 </tr>
@@ -139,15 +139,15 @@
                 <tr>
                     <td>Maximum Deflection =</td>
                     <td>
-                        <b> <input type="number" name="maxdef" id="maxdef"></b>
+                        <b> <input type="number" name="glass4maxdef" id="glass4maxdef"></b>
                     </td>
                     <td style="text-align:left">cm.</td>
                 </tr>
 
                 <tr>
-                    <td>Allow def. = long side L/60 =</td>
+                    <td>Allow def. = short side L/60 =</td>
                     <td>
-                        <b> <input type="number" name="allowdef" id="allowdef"></b>
+                        <b> <input type="number" name="glass4allowdef" id="glass4allowdef"></b>
                     </td>
                     <td style="text-align:left">cm.</td>
                 </tr>
