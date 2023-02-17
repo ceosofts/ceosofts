@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/ceo_logo9.ico">
     <title>CEOsofts strength/glass analysis 2 side</title>
+
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
+
+
+
     <script>
         $(function () {
             $("#header").load("header.html");
@@ -56,8 +60,9 @@
                 <tr>
                     <td>Glass type =</td>
                     <td>
+
                         <select name="glasstype" id="glasstype"
-                            onchange="val(); momentinercal(); checkmomenmax2sidecal(); bendingmaxglass2sidecal(); checkglass2bendincal(); maxdeflectioncal(); allowdef(); defcheck();">
+                            onchange="val(this); glass2momentinercal(this); glass2momentmaxcal(this); glass2bendingmaxcal(this);  glass2maxdefcal(this); glass2allowdefcal(this); checkglass2bendincal(this); glass2defcheck(this);">
 
                             <option type="number" value="0" align="center">เลือกชนิด กระจก</option>
                             <option type="number" value="85" align="center">Annealed Glass</option>
@@ -70,7 +75,7 @@
                 <tr>
                     <td>Glass type Allow Stress =</td>
                     <td>
-                        <b> <input type="number" name="glasstypevalue" id="glasstypevalue" min="0.00"></b>
+                        <b> <input type="number" name="glasstypevalue" id="glasstypevalue"></b>
                     </td>
                     <td style="text-align:left">ksc</td>
                 </tr>
@@ -80,7 +85,7 @@
                     <td>
                         <input type="number" class='txtCal' name="glassthk" id="glassthk"
                             placeholder="ระบุ ความหนากระจก"
-                            onkeyup="momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
+                            onkeyup="val(this); glass2momentinercal(this); glass2momentmaxcal(this); glass2bendingmaxcal(this); checkglass2bendincal(this); glass2maxdefcal(this); glass2allowdefcal(this); glass2defcheck(this);"
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -90,7 +95,7 @@
                     <td>
                         <input type="number" class='txtCal' name="shortside" id="shortside"
                             placeholder="ระบุ ระยะด้านสั้น"
-                            onkeyup="momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
+                            onkeyup="val(); glass2momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -99,7 +104,7 @@
                     <td>Longer Side =</td>
                     <td>
                         <input type="number" class='txtCal' name="longside" id="longside" placeholder="ระบุ ระยะด้านยาว"
-                            onkeyup="momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
+                            onkeyup="val(); glass2momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
                     <td style="text-align:left">cm.</td>
@@ -108,7 +113,7 @@
                     <td>Wind load =</td>
                     <td>
                         <input type="number" class='txtCal' name="windload" id="windload" placeholder="ระบุ แรงลม"
-                            onkeyup="momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
+                            onkeyup="val(); glass2momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
                     <td style="text-align:left">kg/m2</td>
@@ -159,7 +164,7 @@
                 </tr>
 
                 <tr>
-                    <td>Allow def. = long side L/60 =</td>
+                    <td>Allow def. = L / 60 =</td>
                     <td>
                         <b> <input type="number" name="glass2allowdef" id="glass2allowdef"></b>
                     </td>
