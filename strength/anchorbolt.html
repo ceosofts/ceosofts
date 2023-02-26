@@ -1,0 +1,274 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/ceo_logo9.ico">
+    <title>CEOsofts strength/anchor bolt analysis</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#navbar").load("navbar.html");
+            // $("#hero").load("hero.html");
+            // $("#body").load("body.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <div id="header"></div>
+</head>
+
+<body>
+    <!-- <div id="header"></div> -->
+    <div id="navbar"></div>
+    <!-- <div id="hero"></div> -->
+    <!-- <div id="body"></div> -->
+
+
+    <div class="px-4 py-5 my-5 text-center">
+
+        <h1 class="display-5 fw-bold"> ANCHOR BOLT ANALYSIS</h1>
+        <br>
+        <div class="col-lg-6 mx-auto" align='center'>
+
+            <h2>Reference Hilti Standard</h2>
+            <!-- <p>
+                ASTM E1300-12a Standard Practice for Determining Load Resistance of Glass in Buildings
+            </p> -->
+            <br>
+            <button class="btn btn-outline-primary" onclick="document.location='glassanaly.html'">ANCHOR BOLT</button>
+            <button class="btn btn-outline-primary" onclick="document.location='glassanaly2side.html'">CHEMICAL
+                BOLT</button>
+
+            <br>
+            <br>
+            <h2>Anchor bolt</h2>
+
+            <p>
+                <img src="img/hilti5.jpg" alt="ข้อความที่จะแสดง" width="500px" height="">
+            </p>
+
+            <table id="Anchorbolttable" width="100%">
+
+                <tr>
+                    <td>Anchor size =</td>
+                    <td>
+                        <select name="anchorsize" id="anchorsize"
+                            onchange="  Anchorloadcal();getanchorvalue();  getallowcal(); checkten(); checkshear();">
+
+                            <option type="number" value="0" align="center">เลือกขนาด Anchor</option>
+                            <!-- <option type="number" value='{"num_sequence":[0,1,2,3]}' align="center">test
+                            </option> -->
+                            <option type="number" value="M8" data-ten="12" data-shear="16.6" align="center">M8</option>
+                            <option type="number" value="M10" data-ten="12.8" data-shear="23.7" align="center">M10
+                            </option>
+                            <option type="number" value="M12" data-ten="17.9" data-shear="35.6" align="center">M12
+                            </option>
+                            <option type="number" value="M16" data-ten="26.5" data-shear="60.9" align="center">M16
+                            </option>
+                            <option type="number" value="M20" data-ten="51.3" data-shear="100.4" align="center">M20
+                            </option>
+
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>Anchor Qty. =</td>
+                    <td>
+                        <b> <input type="number" name="anchorqty" id="anchorqty" min="0.00"
+                                placeholder="ระบุ จำนวน Anchor"
+                                onkeyup="Anchorloadcal(); getanchorvalue();  getallowcal(); checkten(); checkshear();"
+                                required></b>
+                    </td>
+                    <td style="text-align:left">pcs.</td>
+                </tr>
+
+
+                <tr>
+                    <td> <b> Load Analysis</b> </td>
+                </tr>
+
+                <tr>
+                    <td>Glass Weight =</td>
+                    <td>
+                        <b> <input type="number" name="glassWg" id="glassWg" min="0.00" placeholder="ระบุ น้ำหนักกระจก"
+                                onkeyup="Anchorloadcal(); getanchorvalue(); getallowcal(); checkten(); checkshear();"
+                                required></b>
+                    </td>
+                    <td style="text-align:left">kg</td>
+                </tr>
+
+
+
+                <tr>
+                    <td>Aluminum Weight =</td>
+                    <td>
+                        <b> <input type="number" name="alumWg" id="alumWg" min="0.00"
+                                placeholder="ระบุ น้ำหนักอลูมิเนียม"
+                                onkeyup="Anchorloadcal(); getanchorvalue(); getallowcal(); checkten(); checkshear();"
+                                required></b>
+                    </td>
+                    <td style="text-align:left">kg</td>
+                </tr>
+
+                <tr>
+                    <td>Other Weight =</td>
+                    <td>
+                        <b> <input type="number" name="otherWg" id="otherWg" min="0.00" placeholder="ระบุ น้ำหนักอื่นๆ"
+                                onkeyup="Anchorloadcal(); getanchorvalue(); getallowcal(); checkten(); checkshear();"
+                                required></b>
+                    </td>
+                    <td style="text-align:left">kg</td>
+                </tr>
+
+                <tr>
+                    <td>Dead load =</td>
+                    <td>
+                        <b> <input type="number" name="deadload" id="deadload" min="0.00" placeholder="คำนวณแรง"></b>
+                    </td>
+                    <td style="text-align:left">kN</td>
+                </tr>
+
+                <!-- ///////////////////////////////////////////////// -->
+
+                <tr>
+                    <td>Wind load design =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="windloaddesign" id="windloaddesign"
+                            placeholder="ระบุ แรงลม ออกแบบ"
+                            onkeyup="Anchorloadcal(); getanchorvalue(); getallowcal(); checkten(); checkshear();"
+                            required>
+                    </td>
+                    <td style="text-align:left">kg/m2</td>
+                </tr>
+
+
+                <tr>
+                    <td>Shorter Side =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="shortside" id="shortside"
+                            placeholder="ระบุ ระยะด้านสั้น"
+                            onkeyup="Anchorloadcal(); getanchorvalue(); getallowcal(); checkten(); checkshear();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+                <tr>
+                    <td>Longer Side =</td>
+                    <td>
+                        <input type="number" class='txtCal' name="longside" id="longside" placeholder="ระบุ ระยะด้านยาว"
+                            onkeyup="Anchorloadcal(); getanchorvalue(); getallowcal(); checkten(); checkshear();"
+                            required>
+                    </td>
+                    <td style="text-align:left">cm.</td>
+                </tr>
+
+                <tr>
+                    <td>Wind load =</td>
+                    <td>
+                        <b> <input type="number" name="windloadcal" id="windloadcal" min="0.00"
+                                placeholder="คำนวณแรงที่เกิดขึ้น"></b>
+                    </td>
+                    <td style="text-align:left">kN</td>
+                </tr>
+
+                <!-- ///////////////////////////////////////////////// -->
+
+                <tr>
+                    <td> <b> Tensile strength (แรงดึง)</b> </td>
+                    <td>
+                        <b> <input type="number" name="tenallow" id="tenallow"></b>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Tensile strength on anchor =</td>
+                    <td>
+                        <b> <input type="number" name="tenonanchor" id="tenonanchor"></b>
+                    </td>
+                    <td style="text-align:left">kN</td>
+                </tr>
+
+                <td>Tensile strength allowance =</td>
+                <td>
+                    <b> <input type="number" name="tenallowcal" id="tenallowcal"></b>
+                </td>
+                <td style="text-align:left">kN</td>
+                </tr>
+
+                <tr>
+                    <td>Tensile strength check =</td>
+                    <td>
+                        <b> <input type="text" name="checkten" id="checkten" style="text-align:left"></b>
+                    </td>
+                    <td>
+                        <h5> <input type="text" name="checkten2" id="checkten2" style="text-align:left"></h5>
+                    </td>
+                </tr>
+
+                <!-- ///////////////////////////////////////////////// -->
+
+                <tr>
+                    <td> <b> Shear strength (แรงเฉือน)</b> </td>
+                    <td>
+                        <b> <input type="number" name="shearallow" id="shearallow"></b>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Shear strength on Anchor =</td>
+                    <td>
+                        <b> <input type="number" name="shearonanchor" id="shearonanchor"></b>
+                    </td>
+                    <td style="text-align:left">kN</td>
+                </tr>
+
+                <td>Shear strength allowance =</td>
+                <td>
+                    <b> <input type="number" name="shearallowcal" id="shearallowcal"></b>
+                </td>
+                <td style="text-align:left">kN</td>
+                </tr>
+
+                <tr>
+                    <td>Shear strength check =</td>
+                    <td>
+                        <b> <input type="text" name="checkshear" id="checkshear" style="text-align:left"></b>
+                    </td>
+                    <td>
+                        <h5> <input type="text" name="checkshear2" id="checkshear2" style="text-align:left"></h5>
+                    </td>
+                </tr>
+
+            </table>
+
+            <!-- ///////////////////////////////////////////////// -->
+
+            <p>
+                <img src="img/hilti1.jpg" alt="ข้อความที่จะแสดง" width="500px" height="">
+            </p>
+            <p>
+                <img src="img/hilti2.jpg" alt="ข้อความที่จะแสดง" width="500px" height="">
+            </p>
+            <p>
+                <img src="img/hilti3.jpg" alt="ข้อความที่จะแสดง" width="500px" height="">
+            </p>
+            <p>
+                <img src="img/hilti4.jpg" alt="ข้อความที่จะแสดง" width="500px" height="">
+            </p>
+
+
+        </div>
+    </div>
+
+
+    <div id="footer"></div>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
