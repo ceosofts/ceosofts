@@ -38,10 +38,10 @@ function checkglass4bendingcal() {
     if (glasstype >= glass4maxben) {
         // console.log("Hence");
         document.getElementById("checkbending").value = "Max.Bend. < allow stress";
-        document.getElementById("checkbending2").value = "Max.Bend. allow";
+        document.getElementById("checkbending2").value = "Hence be allowable";
     } else {
         document.getElementById("checkbending").value = "Max.Bend. > allow stress";
-        document.getElementById("checkbending2").value = "Max.Bend. cannot allow";
+        document.getElementById("checkbending2").value = "Hence cannot be allowable";
     }
 }
 
@@ -84,15 +84,15 @@ function glass4defcheck() {
     if (glass4maxdef >= 2) {
         // console.log("Hence");
         document.getElementById("defcheck").value = "Max.def. > 2";
-        document.getElementById("defcheck2").value = "Hence Glass not allow";
+        document.getElementById("defcheck2").value = "Hence cannot be allowable";
 
     } else if (glass4maxdef >= glass4allowdef) {
         document.getElementById("defcheck").value = "Max.def. > allow def.";
-        document.getElementById("defcheck2").value = "Hence Glass not allow";
+        document.getElementById("defcheck2").value = "Hence cannot be allowable";
 
     } else {
         document.getElementById("defcheck").value = "Max.def. < allow def.";
-        document.getElementById("defcheck2").value = "Hence Glass allow";
+        document.getElementById("defcheck2").value = "Hence be allowable";
     }
 
 }
@@ -166,11 +166,11 @@ function checkglass2bendincal() {
 
         // console.log("Hence");
         document.getElementById("checkbending").value = "Max.Bend. < allow stress";
-        document.getElementById("checkbending2").value = "Max.Bend. allow";
+        document.getElementById("checkbending2").value = "Hence be allowable";
 
     } else {
         document.getElementById("checkbending").value = "Max.Bend. > allow stress";
-        document.getElementById("checkbending2").value = "Max.Bend. cannot allow";
+        document.getElementById("checkbending2").value = "Hence cannot be allowable";
     }
 }
 
@@ -214,15 +214,15 @@ function glass2defcheck() {
     if (glass2maxdef >= 2) {
         // console.log("Hence");
         document.getElementById("defcheck").value = "Max.def. > 2";
-        document.getElementById("defcheck2").value = "Hence Glass not allow";
+        document.getElementById("defcheck2").value = "Hence cannot be allowable";
 
     } else if (glass2maxdef >= glass2allowdef) {
         document.getElementById("defcheck").value = "Max.def. > allow def.";
-        document.getElementById("defcheck2").value = "Hence Glass not allow";
+        document.getElementById("defcheck2").value = "Hence cannot be allowable";
 
     } else {
         document.getElementById("defcheck").value = "Max.def. < allow def.";
-        document.getElementById("defcheck2").value = "Hence Glass allow";
+        document.getElementById("defcheck2").value = "Hence be allowable";
     }
     // console.log(glass2maxdef)
     // console.log(typeof glass2maxdef);
@@ -276,11 +276,11 @@ function checkalumcheckbend() {
     if (650 >= alummaxbend) {
         // console.log("Hence");
         document.getElementById("alumcheckbend").value = "Max.Bend. < allow bend.";
-        document.getElementById("alumcheckbend2").value = "Hence Mullion allow";
+        document.getElementById("alumcheckbend2").value = "Hence be allowable";
 
     } else {
         document.getElementById("alumcheckbend").value = "Max.Bend. > allow bend.";
-        document.getElementById("alumcheckbend2").value = "Mullion cannot allow";
+        document.getElementById("alumcheckbend2").value = "Hence cannot be allowable";
     }
 }
 
@@ -315,78 +315,22 @@ function checkalumdefcheck() {
     let alummaxdef = parseFloat(document.getElementById("alummaxdef").value);
     let alumallowdef = parseFloat(document.getElementById("alumallowdef").value);
 
-    if (alumallowdef >= alummaxdef) {
+    if (alummaxdef >= 2) {
         // console.log("Hence");
-        document.getElementById("alumdefcheck").value = "Max.def. < allow def.";
-        document.getElementById("alumdefcheck2").value = "Hence Mullion allow";
+        document.getElementById("alumdefcheck").value = "Max.def. > 2";
+        document.getElementById("alumdefcheck2").value = "Hence cannot be allowable";
 
-    } else {
+    } else if (alummaxdef >= alumallowdef) {
         document.getElementById("alumdefcheck").value = "Max.def. > allow bend.";
-        document.getElementById("alumdefcheck2").value = "Mullion cannot allow";
+        document.getElementById("alumdefcheck2").value = "Hence cannot be allowable";
+    } else {
+        document.getElementById("alumdefcheck").value = "Max.def. < allow def.";
+        document.getElementById("alumdefcheck2").value = "Hence be allowable";
     }
 }
 //! END SIGGLE MULLION
 /////////////////////////////////////////////////////////////////
 
-
-// $("input.txtCalinput").each((i, ele) => {
-//     let clone = $(ele).clone(false)
-//     clone.attr("type", "text")
-//     let ele1 = $(ele)
-//     clone.val(Number(ele1.val()).toLocaleString("en-IN"))
-//     $(ele).after(clone)
-//     $(ele).hide()
-//     clone.mouseenter(() => {
-
-//         ele1.show()
-//         clone.hide()
-//     })
-//     setInterval(() => {
-//         let newv = Number(ele1.val()).toLocaleString("en-IN")
-//         if (clone.val() != newv) {
-//             clone.val(newv)
-//         }
-//     }, 10)
-
-//     $(ele).mouseleave(() => {
-//         $(clone).show()
-//         $(ele1).hide()
-//     })
-// })
-
-// function fun(num) {
-//     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g), ',';
-// }
-
-// $(document).ready(function () {
-//     $('input.txtCalnum').on("keyup click", function (event) {
-//         // skip for arrow keys
-//         if (event.which >= 37 && event.which <= 40) {
-//             event.preventDefault();
-//         }
-//         let $this = $(this);
-//         let num = $this.val();
-//         let decs = num.split(".");
-//         num = decs[0];
-//         num = num.replace(/,/gi, "").split("").reverse().join("");
-
-//         let num2 = RemoveRogueChar(num.replace(/(.{3})/g, "$1,").split("").reverse().join(""));
-//         if (decs.length > 1) {
-//             num2 += '.' + decs[1];
-//         }
-//         $this.val(num2);
-//     });
-// });
-
-// function RemoveRogueChar(convertString) {
-//     if (convertString.substring(0, 1) == ",") {
-//         return convertString.substring(1, convertString.length)
-//     }
-
-//     return convertString;
-// }
-
-/////////////////////////////////////////////////////////////////
 //! START COMBINE MULLION
 
 function combinebendingstress() {
@@ -420,11 +364,11 @@ function checkcombinecheckbend() {
     if (650 >= combinemaxbend) {
         // console.log("Hence");
         document.getElementById("combinecheckbend").value = "Max.Bend. < allow bend.";
-        document.getElementById("combinecheckbend2").value = "Combine Mullion allow";
+        document.getElementById("combinecheckbend2").value = "Hence be allowable";
 
     } else {
         document.getElementById("combinecheckbend").value = "Max.Bend. > allow bend.";
-        document.getElementById("combinecheckbend2").value = "Combine Mullion cannot allow";
+        document.getElementById("combinecheckbend2").value = "Hence cannot be allowable";
     }
 }
 
@@ -460,14 +404,17 @@ function checkcombinedefcheck() {
     let combinemaxdef = parseFloat(document.getElementById("combinemaxdef").value);
     let alumallowdef = parseFloat(document.getElementById("alumallowdef").value);
 
-    if (alumallowdef >= combinemaxdef) {
+    if (combinemaxdef >= 2) {
         // console.log("Hence");
-        document.getElementById("combinedefcheck").value = "Max.def. < allow def.";
-        document.getElementById("combinedefcheck2").value = "Combine Mullion allow";
+        document.getElementById("combinedefcheck").value = "Max.def. > 2";
+        document.getElementById("combinedefcheck2").value = "Hence cannot be allowable";
 
-    } else {
+    } else if (combinemaxdef >= alumallowdef) {
         document.getElementById("combinedefcheck").value = "Max.def. > allow bend.";
-        document.getElementById("combinedefcheck2").value = "Combine Mullion cannot allow";
+        document.getElementById("combinedefcheck2").value = "Hence cannot be allowable";
+    } else {
+        document.getElementById("combinedefcheck").value = "Max.def. < allow def.";
+        document.getElementById("combinedefcheck2").value = "Hence be allowable";
     }
 }
 //! END COMBINE MULLION
@@ -522,11 +469,11 @@ function checktransombend() {
     if (650 >= combinemaxbend) {
         // console.log("Hence");
         document.getElementById("transomcheckbend").value = "Max.Bend. < allow bend.";
-        document.getElementById("transomcheckbend2").value = "transom allow";
+        document.getElementById("transomcheckbend2").value = "Hence be allowable";
 
     } else {
         document.getElementById("transomcheckbend").value = "Max.Bend. > allow bend.";
-        document.getElementById("transomcheckbend2").value = "transom cannot allow";
+        document.getElementById("transomcheckbend2").value = "Hence cannot be allowable";
     }
 }
 
@@ -567,14 +514,18 @@ function checktransomdef() {
     let transommaxdef = parseFloat(document.getElementById("transommaxdef").value);
     let transomallowdef = parseFloat(document.getElementById("transomallowdef").value);
 
-    if (transomallowdef >= transommaxdef) {
+    if (transommaxdef >= 2) {
         // console.log("Hence");
-        document.getElementById("transomdefcheck").value = "Max.def. < allow def.";
-        document.getElementById("transomdefcheck2").value = "transom allow";
+        document.getElementById("transomdefcheck").value = "Max.def. > 2";
+        document.getElementById("transomdefcheck2").value = "Hence cannot be allowable";
+
+    } else if (transommaxdef >= transomallowdef) {
+        document.getElementById("transomdefcheck").value = "Max.def. > allow bend.";
+        document.getElementById("transomdefcheck2").value = "Hence cannot be allowable";
 
     } else {
-        document.getElementById("transomdefcheck").value = "Max.def. > allow bend.";
-        document.getElementById("transomdefcheck2").value = "transom cannot allow";
+        document.getElementById("transomdefcheck").value = "Max.def. < allow def.";
+        document.getElementById("transomdefcheck2").value = "Hence be allowable";
     }
 }
 
@@ -656,16 +607,26 @@ function checkdeadloaddef() {
     let deadloadtransommaxdef = parseFloat(document.getElementById("deadloadtransommaxdef").value);
     let deadloadallowdef = parseFloat(document.getElementById("deadloadallowdef").value);
 
-    if (deadloadallowdef >= deadloadtransommaxdef) {
+    if (deadloadtransommaxdef >= 2) {
         // console.log("Hence");
-        document.getElementById("deadloaddefcheck").value = "Max.def. < allow def.";
-        document.getElementById("deadloaddefcheck2").value = "transom allow";
+        document.getElementById("deadloaddefcheck").value = "Max.def. > 0.3";
+        document.getElementById("deadloaddefcheck2").value = "Hence cannot be allowable";
+
+    } else if (deadloadtransommaxdef >= deadloadallowdef) {
+        document.getElementById("deadloaddefcheck").value = "Max.def. > allow bend.";
+        document.getElementById("deadloaddefcheck2").value = "Hence cannot be allowable";
 
     } else {
-        document.getElementById("deadloaddefcheck").value = "Max.def. > allow bend.";
-        document.getElementById("deadloaddefcheck2").value = "transom cannot allow";
+        document.getElementById("deadloaddefcheck").value = "Max.def. < allow def.";
+        document.getElementById("deadloaddefcheck2").value = "Hence be allowable";
     }
 }
+
+//! END TRANSOM DEAD LOAD
+/////////////////////////////////////////////////////////////////
+//! START silicone
+
+
 
 function siliconebilecal() {
 
@@ -683,3 +644,281 @@ function siliconebilecal() {
     document.getElementById("siliconewidth").value = sendresult;
 
 }
+
+//! END silicone
+/////////////////////////////////////////////////////////////////
+//! START Anchor Bolt
+
+function Anchorloadcal() {
+
+    let glassWg = parseFloat(document.getElementById("glassWg").value);
+    let alumWg = parseFloat(document.getElementById("alumWg").value);
+    let otherWg = parseFloat(document.getElementById("otherWg").value);
+
+    let windloaddesign = parseFloat(document.getElementById("windloaddesign").value);
+    let shortside = parseFloat(document.getElementById("shortside").value);
+    let longside = parseFloat(document.getElementById("longside").value);
+
+    let set1 = (glassWg + alumWg + otherWg) * 0.01;
+    let set2 = ((windloaddesign / 100) * (shortside / 100) * (longside / 100));
+
+    let sendresultset1 = set1.toFixed(3);
+    document.getElementById("deadload").value = sendresultset1;
+
+    let sendresultset2 = set2.toFixed(3);
+    document.getElementById("windloadcal").value = sendresultset2;
+
+    let set3 = (set1 * 0.1) + (set2 * 1.25);
+    let sendresultset3 = set3.toFixed(3);
+    document.getElementById("tenonanchor").value = sendresultset3;
+
+    let set4 = set2 * 1.1;
+    let sendresultset4 = set4.toFixed(3);
+    document.getElementById("shearonanchor").value = sendresultset4;
+
+    // console.log(set3);
+    // console.log(typeof set3);
+
+
+}
+
+function getanchorvalue() {
+    let d = document.getElementById("anchorsize").value;
+}
+
+function getallowcal() {
+
+    const selectElement = document.querySelector('#anchorsize');
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const dataTenValue = selectedOption.getAttribute('data-ten');
+    const dataShearValue = selectedOption.getAttribute('data-shear');
+
+    let dataTenValuetonumber = parseFloat(dataTenValue);
+    let dataShearValuetonumber = parseFloat(dataShearValue);
+
+    let anchorqty = parseFloat(document.getElementById("anchorqty").value);
+
+    // console.log(dataTenValue);
+    // console.log(typeof dataTenValue);
+    // console.log(dataShearValuetonumber);
+    // console.log(typeof dataShearValuetonumber);
+    // console.log(dataTenValuetonumber);
+    // console.log(typeof dataTenValuetonumber);
+    // console.log(anchorqty);
+    // console.log(typeof anchorqty);
+
+    let tenallowcal = dataTenValuetonumber * anchorqty;
+    let shearallowcal = dataShearValuetonumber * anchorqty;
+
+    let sendtenallowcal = tenallowcal.toFixed(3);
+    document.getElementById("tenallowcal").value = sendtenallowcal;
+
+    let sendshearallowcal = shearallowcal.toFixed(3);
+    document.getElementById("shearallowcal").value = sendshearallowcal;
+
+}
+
+
+function checkten() {
+
+    let tenallowcal = parseFloat(document.getElementById("tenallowcal").value);
+    // let anchorqty = parseFloat(document.getElementById("anchorqty").value);
+    let tenonanchor = parseFloat(document.getElementById("tenonanchor").value);
+
+    // let tenallowcal = tenallow * anchorqty;
+
+    if (tenonanchor >= tenallowcal) {
+        // console.log("Hence");
+        document.getElementById("checkten").value = "Tensile strength > allowable";
+        document.getElementById("checkten2").value = "Hence cannot be allowable";
+
+    } else {
+        document.getElementById("checkten").value = "Tensile strength < allowable";
+        document.getElementById("checkten2").value = "Hence be allowable";
+    }
+}
+
+function checkshear() {
+
+    let shearallowcal = parseFloat(document.getElementById("shearallowcal").value);
+    // let anchorqty = parseFloat(document.getElementById("anchorqty").value);
+    let tenonanchor = parseFloat(document.getElementById("tenonanchor").value);
+
+    // let tenallowcal = tenallow * anchorqty;
+
+    if (tenonanchor >= tenallowcal) {
+        // console.log("Hence");
+        document.getElementById("checkshear").value = "Shear strength> allowable";
+        document.getElementById("checkshear2").value = "Hence cannot be allowable";
+
+    } else {
+        document.getElementById("checkshear").value = "Shear strength < allowable";
+        document.getElementById("checkshear2").value = "Hence be allowable";
+    }
+}
+
+
+//! END Anchor Bolt
+/////////////////////////////////////////////////////////////////
+//! START bracket
+
+function getalumbracketvalue() {
+    let d = document.getElementById("brackettype").value;
+}
+
+function getbracketallowcal() {
+
+    const selectElement = document.querySelector('#brackettype');
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const dataTenValue = selectedOption.getAttribute('data-ten');
+    const dataShearValue = selectedOption.getAttribute('data-shear');
+
+    let dataTenValuetonumber = parseFloat(dataTenValue);
+    let dataShearValuetonumber = parseFloat(dataShearValue);
+
+
+    // console.log(dataTenValuetonumber);
+    // console.log(typeof dataTenValuetonumber);
+    // console.log(dataShearValuetonumber);
+    // console.log(typeof dataShearValuetonumber);
+
+
+    // let tenallowcal = dataTenValuetonumber * anchorqty;
+    // let shearallowcal = dataShearValuetonumber * anchorqty;
+
+    let sendtenallowcal = dataTenValuetonumber.toFixed(3);
+    document.getElementById("benallowcal").value = sendtenallowcal;
+
+    let sendshearallowcal = dataShearValuetonumber.toFixed(3);
+    document.getElementById("shearallowcal").value = sendshearallowcal;
+
+}
+
+function bracketloadcal() {
+
+    let glassWg = parseFloat(document.getElementById("glassWg").value);
+    let alumWg = parseFloat(document.getElementById("alumWg").value);
+    let otherWg = parseFloat(document.getElementById("otherWg").value);
+
+    let windloaddesign = parseFloat(document.getElementById("windloaddesign").value);
+    let shortside = parseFloat(document.getElementById("shortside").value);
+    let longside = parseFloat(document.getElementById("longside").value);
+
+    let set1 = (glassWg + alumWg + otherWg) * 0.01;
+    let set2 = ((windloaddesign / 100) * (shortside / 100) * (longside / 100));
+
+    let sendresultset1 = set1.toFixed(3);
+    document.getElementById("deadload").value = sendresultset1;
+
+    let sendresultset2 = set2.toFixed(3);
+    document.getElementById("windloadcal").value = sendresultset2;
+
+}
+
+function bracketLoadCal() {
+    let windloadcal = parseFloat(document.getElementById("windloadcal").value);
+    let deadload = parseFloat(document.getElementById("deadload").value);
+
+    let bracketH = parseFloat(document.getElementById("bracketH").value);
+    let bracketPd = parseFloat(document.getElementById("bracketPd").value);
+    let bracketW = parseFloat(document.getElementById("bracketW").value);
+    let bracketthk = parseFloat(document.getElementById("bracketthk").value);
+
+    let benallowcal = parseFloat(document.getElementById("benallowcal").value);
+    let shearallowcal = parseFloat(document.getElementById("shearallowcal").value);
+    let benallowcalsafety = benallowcal * 0.6;
+    let shearallowcalsafety = shearallowcal * 0.35;
+
+    let sendbenallowcalsafety = benallowcalsafety.toFixed(3);
+    document.getElementById("benallowcalsafety").value = sendbenallowcalsafety;
+
+    let sendshearallowcalsafety = shearallowcalsafety.toFixed(3);
+    document.getElementById("shearallowcalsafety").value = sendshearallowcalsafety;
+
+
+    //*bending calculation
+    let set1 = (windloadcal * bracketH) + (deadload * bracketPd);
+    let set2 = (bracketW * bracketthk ** 2) / 4;
+    let set3 = (set1 / set2) * 10;
+
+    let sendresultset3 = set3.toFixed(3);
+    document.getElementById("bendOnBracket").value = sendresultset3;
+
+    //*shear calculation
+    let set5 = 0.5 * windloadcal;
+    let set6 = 0.9 * bracketthk * bracketW;
+    let set7 = (set5 / set6) * 10;
+
+    let sendresultset7 = set7.toFixed(3);
+    document.getElementById("shearOnBracket").value = sendresultset7;
+
+    //*combined calculation
+
+    let set11 = set3 / benallowcalsafety;
+    let set12 = (set7 / shearallowcalsafety) ** 2;
+
+    let set20 = set11 + set12;
+
+    let sendresultset20 = set20.toFixed(3);
+    document.getElementById("Combinedcal").value = sendresultset20;
+
+}
+
+function checkbracketbend() {
+
+    let benallowcalsafety = parseFloat(document.getElementById("benallowcalsafety").value);
+    let bendOnBracket = parseFloat(document.getElementById("bendOnBracket").value);
+
+    // let tenallowcal = tenallow * anchorqty;
+
+    if (bendOnBracket >= benallowcalsafety) {
+        // console.log("Hence");
+        document.getElementById("checkbracketbend").value = "Bending Moment > allowable";
+        document.getElementById("checkbracketbend2").value = "Hence cannot be allowable";
+
+    } else {
+        document.getElementById("checkbracketbend").value = "Bending Moment < allowable";
+        document.getElementById("checkbracketbend2").value = "Hence be allowable";
+    }
+}
+
+function checkshearbracket() {
+
+    let shearallowcalsafety = parseFloat(document.getElementById("shearallowcalsafety").value);
+    let shearOnBracket = parseFloat(document.getElementById("shearOnBracket").value);
+
+    // let tenallowcal = tenallow * anchorqty;
+
+    if (shearOnBracket >= shearallowcalsafety) {
+        // console.log("Hence");
+        document.getElementById("checkshearbracket").value = "Bending Moment > allowable";
+        document.getElementById("checkshearbracket2").value = "Hence cannot be allowable";
+
+    } else {
+        document.getElementById("checkshearbracket").value = "Bending Moment < allowable";
+        document.getElementById("checkshearbracket2").value = "Hence be allowable";
+    }
+}
+
+function CheckCombined() {
+
+    let Combinedcal = parseFloat(document.getElementById("Combinedcal").value);
+
+
+    // let tenallowcal = tenallow * anchorqty;
+
+    if (Combinedcal >= 1) {
+        // console.log("Hence");
+        document.getElementById("CheckCombined").value = "Combined Stress > 1";
+        document.getElementById("CheckCombined2").value = "Hence cannot be allowable";
+
+    } else {
+        document.getElementById("CheckCombined").value = "Combined Stress < 1";
+        document.getElementById("CheckCombined2").value = "Hence be allowable";
+    }
+}
+
+
+
+//! END bracket
+/////////////////////////////////////////////////////////////////
