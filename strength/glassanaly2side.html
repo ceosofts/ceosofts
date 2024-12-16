@@ -67,9 +67,9 @@
                             onchange="val(this); glass2momentinercal(this); glass2momentmaxcal(this); glass2bendingmaxcal(this);  glass2maxdefcal(this); glass2allowdefcal(this); checkglass2bendincal(this); glass2defcheck(this);">
 
                             <option type="number" value="0" align="center">เลือกชนิด กระจก</option>
-                            <option type="number" value="85" align="center">Annealed Glass</option>
-                            <option type="number" value="210" align="center">Heastrengthened Glass</option>
-                            <option type="number" value="421" align="center">Tempered Glass</option>
+                            <option type="number" value="7" align="center">Annealed Glass</option>
+                            <option type="number" value="41" align="center">Heastrengthened Glass</option>
+                            <option type="number" value="67" align="center">Tempered Glass</option>
                         </select>
                     </td>
                     <td></td>
@@ -79,7 +79,7 @@
                     <td>
                         <b> <input type="number" name="glasstypevalue" id="glasstypevalue"></b>
                     </td>
-                    <td style="text-align:left">ksc</td>
+                    <td style="text-align:left">Mpa</td>
                 </tr>
 
                 <tr>
@@ -90,9 +90,10 @@
                             onkeyup="val(this); glass2momentinercal(this); glass2momentmaxcal(this); glass2bendingmaxcal(this); checkglass2bendincal(this); glass2maxdefcal(this); glass2allowdefcal(this); glass2defcheck(this);"
                             required>
                     </td>
-                    <td style="text-align:left">cm.</td>
+                    <td style="text-align:left">mm.</td>
                 </tr>
-                <tr>
+
+                <!-- <tr>
                     <td>Shorter Side =</td>
                     <td>
                         <input type="number" class='txtCal' name="shortside" id="shortside"
@@ -100,16 +101,17 @@
                             onkeyup="val(); glass2momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
-                    <td style="text-align:left">cm.</td>
-                </tr>
+                    <td style="text-align:left">m.</td>
+                </tr> -->
+
                 <tr>
-                    <td>Longer Side =</td>
+                    <td>Length of Unsupported Edges =</td>
                     <td>
                         <input type="number" class='txtCal' name="longside" id="longside" placeholder="ระบุ ระยะด้านยาว"
                             onkeyup="val(); glass2momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
-                    <td style="text-align:left">cm.</td>
+                    <td style="text-align:left">m.</td>
                 </tr>
                 <tr>
                     <td>Wind load =</td>
@@ -118,28 +120,30 @@
                             onkeyup="val(); glass2momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
-                    <td style="text-align:left">kg/m2</td>
+                    <td style="text-align:left">pa</td>
                 </tr>
+
                 <tr>
                     <td>Moment of inertia =</td>
                     <td>
                         <b> <input type="number" name="momentiner" id="momentiner"></b>
                     </td>
-                    <td style="text-align:left">cm4</td>
+                    <td style="text-align:left">m4</td>
                 </tr>
-                <tr>
+
+                <!-- <tr>
                     <td>Moment max =</td>
                     <td>
                         <b> <input type="number" name="glass2momentmax" id="glass2momentmax"></b>
                     </td>
-                    <td style="text-align:left">kg/m</td>
-                </tr>
+                    <td style="text-align:left">Nm.</td>
+                </tr> -->
                 <tr>
                     <td>Max. Bending Stress =</td>
                     <td>
                         <b> <input type="number" name="glass2bendingmax" id="glass2bendingmax"></b>
                     </td>
-                    <td style="text-align:left">ksc.</td>
+                    <td style="text-align:left">MPa</td>
                 </tr>
                 <tr>
                     <td>Check Bending Stress =</td>
@@ -153,8 +157,8 @@
 
                 <tr>
                     <td>Young's mod. of glass =</td>
-                    <td>710,000</td>
-                    <td style="text-align:left">ksc</td>
+                    <td>71</td>
+                    <td style="text-align:left">MPa</td>
                 </tr>
 
                 <tr>
@@ -162,7 +166,7 @@
                     <td>
                         <b> <input type="number" name="glass2maxdef" id="glass2maxdef"></b>
                     </td>
-                    <td style="text-align:left">cm.</td>
+                    <td style="text-align:left">mm.</td>
                 </tr>
 
                 <tr>
@@ -170,7 +174,7 @@
                     <td>
                         <b> <input type="number" name="glass2allowdef" id="glass2allowdef"></b>
                     </td>
-                    <td style="text-align:left">cm.</td>
+                    <td style="text-align:left">mm.</td>
                 </tr>
                 <tr>
                     <td>Definition check =</td>

@@ -111,12 +111,14 @@ function glass4defcheck() {
 
 function glass2momentinercal() {
 
-    let shortside = parseFloat(document.getElementById("shortside").value);
     let glassthk = parseFloat(document.getElementById("glassthk").value);
 
+    let I = (glassthk/1000)**3 / 12;
+    
 
-    result = (shortside * glassthk ** 3) / 12;
+    // result = (shortside * glassthk ** 3) / 12;
 
+    result = I;
     let sendresult = result.toFixed(3);
 
     document.getElementById("momentiner").value = sendresult;
@@ -130,8 +132,9 @@ function glass2momentmaxcal() {
     let windload = parseFloat(document.getElementById("windload").value);
     let longside = parseFloat(document.getElementById("longside").value);
 
+    let M = windload * longside**2 / 8;
 
-    result = (windload * ((longside / 100) ** 2)) / 8;
+    result = M;
 
     let sendresult = result.toFixed(3);
 
@@ -142,17 +145,24 @@ function glass2momentmaxcal() {
 }
 
 function glass2bendingmaxcal() {
-    let momentmax = parseFloat(document.getElementById("glass2momentmax").value);
+    // let momentmax = parseFloat(document.getElementById("glass2momentmax").value);
     let glassthk = parseFloat(document.getElementById("glassthk").value);
-    let shortside = parseFloat(document.getElementById("shortside").value);
+    let windload = parseFloat(document.getElementById("windload").value);
+    let longside = parseFloat(document.getElementById("longside").value);
 
+    let M = (windload * longside**2 / 8 )* 1000;
+    let S = (glassthk/100)**2 / 6 ;
+    let BendingStress = M/S ;
 
-    let result = (6 * momentmax * 100) / (shortside) / (glassthk ** 2);
+    // let result = (6 * momentmax * 100) / (shortside) / (glassthk ** 2);
+
+    let result = BendingStress ;
 
     let sendresult = result.toFixed(3);
 
     document.getElementById("glass2bendingmax").value = sendresult;
 
+    console.log(result)
     // console.log(glassthk)
     // console.log(typeof glassthk);
 
