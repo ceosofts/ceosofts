@@ -6,12 +6,16 @@ function glass4maxbencal() {
     let shortside = parseFloat(document.getElementById("shortside").value);
     let longside = parseFloat(document.getElementById("longside").value);
     let windload = parseFloat(document.getElementById("windload").value);
+    let M = (windload * shortside**2) / 8 ;
+    let S = (longside * (glassthk/1000)**2) / 6 ;
+    let bending = (M / S) / 1000000 ;
+    /*
     let set1 = ((windload / 10000) * (shortside ** 2)) / 8;
     let set2 = 1 + 2 * (shortside / longside) ** 3;
     let set3 = 6 / glassthk ** 2;
-
     result = ((set1 / set2) * set3);
-
+    */
+    result = bending;
     let sendresult = result.toFixed(3);
 
     document.getElementById("glass4maxben").value = sendresult;
@@ -50,14 +54,15 @@ function glass4maxdefcal() {
     let shortside = parseFloat(document.getElementById("shortside").value);
     let longside = parseFloat(document.getElementById("longside").value);
     let windload = parseFloat(document.getElementById("windload").value);
-
+    
+    /*
     let set1 = (0.16 / (1 + 2.4 * (shortside / longside) ** 3));
     let set2 = (1 - 0.22 ** 2);
     let set3 = (windload / 10000) * (shortside ** 4);
     let set4 = (710000 * glassthk ** 3)
     let set5 = set3 / set4;
-
     result = set1 * set2 * set5;
+    */
 
     let sendresult = result.toFixed(3);
 
