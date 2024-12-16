@@ -54,7 +54,9 @@ function glass4maxdefcal() {
     let shortside = parseFloat(document.getElementById("shortside").value);
     let longside = parseFloat(document.getElementById("longside").value);
     let windload = parseFloat(document.getElementById("windload").value);
-    
+
+    let I = (longside * glassthk/1000**3) / 12 ;
+    let Deflection = ((5 * windload * shortside**4) / (384 * (70*10**9) * I) )*100;
     /*
     let set1 = (0.16 / (1 + 2.4 * (shortside / longside) ** 3));
     let set2 = (1 - 0.22 ** 2);
@@ -63,7 +65,7 @@ function glass4maxdefcal() {
     let set5 = set3 / set4;
     result = set1 * set2 * set5;
     */
-
+    result = Deflection;
     let sendresult = result.toFixed(3);
 
     document.getElementById("glass4maxdef").value = sendresult;
@@ -72,7 +74,7 @@ function glass4maxdefcal() {
 function glass4allowdefcal() {
     let shortside = parseFloat(document.getElementById("shortside").value);
 
-    result = shortside / 60;
+    result = (shortside / 60) * 1000;
 
     let sendresult = result.toFixed(3);
 
@@ -86,7 +88,7 @@ function glass4defcheck() {
     // result = maxdef < allowdef;
     // document.getElementById("allowdef").value = result;
 
-    if (glass4maxdef >= 2) {
+    if (glass4maxdef >= glass4allowdefcal) {
         // console.log("Hence");
         document.getElementById("defcheck").value = "Max.def. > 2";
         document.getElementById("defcheck2").value = "Hence cannot be allowable";
