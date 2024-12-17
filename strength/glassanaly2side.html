@@ -64,12 +64,12 @@
                     <td>
 
                         <select name="glasstype" id="glasstype"
-                            onchange="val(this); glass2momentinercal(this); glass2momentmaxcal(this); glass2bendingmaxcal(this);  glass2maxdefcal(this); glass2allowdefcal(this); checkglass2bendincal(this); glass2defcheck(this);">
-
+                            onchange="val(this);   glass2bendingmaxcal(this);   glass2allowdefcal(this); checkglass2bendincal(this); glass2defcheck(this);">
+                            <!-- glass2maxdefcal(this); -->
                             <option type="number" value="0" align="center">เลือกชนิด กระจก</option>
-                            <option type="number" value="7" align="center">Annealed Glass</option>
-                            <option type="number" value="41" align="center">Heastrengthened Glass</option>
-                            <option type="number" value="67" align="center">Tempered Glass</option>
+                            <option type="number" value="18" align="center">Annealed Glass</option>
+                            <option type="number" value="36" align="center">Heastrengthened Glass</option>
+                            <option type="number" value="73" align="center">Tempered Glass</option>
                         </select>
                     </td>
                     <td></td>
@@ -87,7 +87,7 @@
                     <td>
                         <input type="number" class='txtCal' name="glassthk" id="glassthk"
                             placeholder="ระบุ ความหนากระจก"
-                            onkeyup="val(this); glass2momentinercal(this); glass2momentmaxcal(this); glass2bendingmaxcal(this); checkglass2bendincal(this); glass2maxdefcal(this); glass2allowdefcal(this); glass2defcheck(this);"
+                            onkeyup="val(this);  glass2bendingmaxcal(this); checkglass2bendincal(this); glass2maxdefcal(this); glass2allowdefcal(this); glass2defcheck(this);"
                             required>
                     </td>
                     <td style="text-align:left">mm.</td>
@@ -105,10 +105,10 @@
                 </tr> -->
 
                 <tr>
-                    <td>Length of Unsupported Edges =</td>
+                    <td>Length of Unsupported Side =</td>
                     <td>
                         <input type="number" class='txtCal' name="longside" id="longside" placeholder="ระบุ ระยะด้านยาว"
-                            onkeyup="val(); glass2momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
+                            onkeyup="val();  glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
                     <td style="text-align:left">m.</td>
@@ -117,19 +117,19 @@
                     <td>Wind load =</td>
                     <td>
                         <input type="number" class='txtCal' name="windload" id="windload" placeholder="ระบุ แรงลม"
-                            onkeyup="val(); glass2momentinercal(); glass2momentmaxcal(); glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
+                            onkeyup="val();   glass2bendingmaxcal(); checkglass2bendincal(); glass2maxdefcal(); glass2allowdefcal(); glass2defcheck();"
                             required>
                     </td>
                     <td style="text-align:left">pa</td>
                 </tr>
 
-                <tr>
+                <!-- <tr>
                     <td>Moment of inertia =</td>
                     <td>
                         <b> <input type="number" name="momentiner" id="momentiner"></b>
                     </td>
                     <td style="text-align:left">m4</td>
-                </tr>
+                </tr> -->
 
                 <!-- <tr>
                     <td>Moment max =</td>
@@ -170,7 +170,7 @@
                 </tr>
 
                 <tr>
-                    <td>Allow def. = L / 60 =</td>
+                    <td>Allow def. = L / 60 or < 20 =</td>
                     <td>
                         <b> <input type="number" name="glass2allowdef" id="glass2allowdef"></b>
                     </td>
