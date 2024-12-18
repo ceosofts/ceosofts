@@ -6,9 +6,10 @@ function glass4maxbencal() {
     let shortside = parseFloat(document.getElementById("shortside").value);
     let longside = parseFloat(document.getElementById("longside").value);
     let windload = parseFloat(document.getElementById("windload").value);
+
     let M = (windload * shortside**2) / 8 ;
-    let S = (longside * (glassthk/1000)**2) / 6 ;
-    let bending = (M / S) / 1000000 ;
+    let S = (shortside * (glassthk/1000)**2) / 6 ;
+    let bending = ((M / S) / 1000000 ) ;
     /*
     let set1 = ((windload / 10000) * (shortside ** 2)) / 8;
     let set2 = 1 + 2 * (shortside / longside) ** 3;
@@ -55,6 +56,10 @@ function glass4maxdefcal() {
     let longside = parseFloat(document.getElementById("longside").value);
     let windload = parseFloat(document.getElementById("windload").value);
 
+    let d = document.getElementById("glasstype");
+    let selectedOption = d.options[d.selectedIndex];
+    let GTFValue = selectedOption.getAttribute("GTFdata");
+
     let I = (longside * glassthk/1000**3) / 12 ;
     let Deflection = ((5 * windload * shortside**4) / (384 * (71*10**9) * I) )*100;
     /*
@@ -65,10 +70,13 @@ function glass4maxdefcal() {
     let set5 = set3 / set4;
     result = set1 * set2 * set5;
     */
-    result = Deflection;
+    result = Deflection / GTFValue;
     let sendresult = result.toFixed(3);
 
     document.getElementById("glass4maxdef").value = sendresult;
+
+    // console.log("Selected Value:", selectedOption.value);
+    // console.log("GTF Value:", GTFdata);
 }
 
 function glass4allowdefcal() {
@@ -142,7 +150,6 @@ function glass2bendingmaxcal() {
     let glassthk = parseFloat(document.getElementById("glassthk").value);
     let windload = parseFloat(document.getElementById("windload").value);
     let longside = parseFloat(document.getElementById("longside").value);
-
     
     let M = (windload * longside**2 / 8 )* 1000;
     let S = (glassthk/1000)**2 / 6 ;
@@ -178,11 +185,16 @@ function glass2maxdefcal() {
     let windload = parseFloat(document.getElementById("windload").value);
     let longside = parseFloat(document.getElementById("longside").value);
     let glassthk = parseFloat(document.getElementById("glassthk").value);
+
+    let d = document.getElementById("glasstype");
+    let selectedOption = d.options[d.selectedIndex];
+    let GTFValue = selectedOption.getAttribute("GTFdata");
+
     let I = (glassthk/1000)**3 / 12;
 
-    let MaxDef = (5 * windload * (longside ** 4)) / (384 * (71*10**9) * I);
+    let MaxDef = ((5 * windload * (longside ** 4)) / (384 * (71*10**9) * I)) / GTFValue;
 
-    let result = MaxDef*1000 ;
+    let result = (MaxDef*1000);
     let sendresult = result.toFixed(3);
 
     document.getElementById("glass2maxdef").value = sendresult;
