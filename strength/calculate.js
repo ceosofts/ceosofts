@@ -188,7 +188,7 @@ function glass2defcheck() {
 
 //! END 2 SIDE GLASS
 /////////////////////////////////////////////////////////////////
-//! START 1SIDE GLASS
+//! START 1 SIDE GLASS
 
 function glass1maxbencal() {
     let glassthk = parseFloat(document.getElementById("glassthk").value);
@@ -197,7 +197,7 @@ function glass1maxbencal() {
     let windload = parseFloat(document.getElementById("windload").value);
 
     let M = (windload * longside**2) / 2 ;
-    let bending = ((6*M)/(shortside*(glassthk/1000**2))) / 10**6 ;
+    let bending = ((6*M)/(shortside*((glassthk/1000)**2))) / 10**6 ;
 
     result = bending;
 
@@ -239,12 +239,12 @@ function glass1maxdefcal() {
     let selectedOption = d.options[d.selectedIndex];
     let GTFValue = selectedOption.getAttribute("GTFdata");
 
-    let I = (shortside * glassthk/1000**3) / 12 ;
+    let I = (shortside * (glassthk/1000)**3) / 12 ;
     let E = 71*10**9;
 
-    let Deflection = ((F * longside**3) / (6 * E * I ) )*1000;
+    let Deflection = ((F * longside**3) / (6 * E * I * GTFValue) )*1000;
 
-    result = Deflection / GTFValue;
+    result = Deflection ;
 
     let sendresult = result.toFixed(3);
     document.getElementById("glass1maxdef").value = sendresult;
@@ -284,7 +284,7 @@ function glass1defcheck() {
 }
 
 
-//! END 1SIDE GLASS
+//! END 1 SIDE GLASS
 /////////////////////////////////////////////////////////////////
 //! START SIGGLE MULLION
 
