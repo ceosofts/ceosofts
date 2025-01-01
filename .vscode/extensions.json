@@ -1,3 +1,7 @@
 {
-  "recommendations": ["simonsiefke.prettier-vscode", "tysonandre.php-phan"]
+  "recommendations": [
+    "simonsiefke.prettier-vscode",
+    "tysonandre.php-phan",
+    "github.copilot-chat"
+  ]
 }

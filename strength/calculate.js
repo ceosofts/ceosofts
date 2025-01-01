@@ -1,5 +1,4 @@
-
-//! START 4SIDE GLASS
+//! START 4SIDE GLASS 
 
 function glass4maxbencal() {
     let glassthk = parseFloat(document.getElementById("glassthk").value);
@@ -7,12 +6,16 @@ function glass4maxbencal() {
     let longside = parseFloat(document.getElementById("longside").value);
     let windload = parseFloat(document.getElementById("windload").value);
 
-    let M = (windload * shortside**2) / 8 ;
-    let S = (shortside * (glassthk/1000)**2) / 6 ;
-    let bending = ((M / S) / 1000000 ) ;
+    if (isNaN(glassthk) || isNaN(shortside) || isNaN(longside) || isNaN(windload)) {
+        console.error("Invalid input values");
+        return;
+    }
 
-    result = bending;
-    
+    let M = (windload * shortside ** 2) / 8;
+    let S = (shortside * (glassthk / 1000) ** 2) / 6;
+    let bending = ((M / S) / 1000000);
+
+    let result = bending;
     let sendresult = result.toFixed(3);
     document.getElementById("glass4maxben").value = sendresult;
 }
@@ -20,18 +23,22 @@ function glass4maxbencal() {
 function val() {
     let d = document.getElementById("glasstype").value;
 }
+
 $('#glasstype').change(function () {
     let result = $(this).val();
     document.getElementById("glasstypevalue").value = result;
-})
-
+});
 
 function checkglass4bendingcal() {
     let glasstype = parseFloat(document.getElementById("glasstype").value);
     let glass4maxben = parseFloat(document.getElementById("glass4maxben").value);
 
+    if (isNaN(glasstype) || isNaN(glass4maxben)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     if (glasstype >= glass4maxben) {
-        // console.log("Hence");
         document.getElementById("checkbending").value = "Max.Bend. < allow stress";
         document.getElementById("checkbending2").value = "Hence be allowable";
     } else {
@@ -46,16 +53,26 @@ function glass4maxdefcal() {
     let longside = parseFloat(document.getElementById("longside").value);
     let windload = parseFloat(document.getElementById("windload").value);
 
+    if (isNaN(glassthk) || isNaN(shortside) || isNaN(longside) || isNaN(windload)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let d = document.getElementById("glasstype");
     let selectedOption = d.options[d.selectedIndex];
     let GTFValue = selectedOption.getAttribute("GTFdata");
 
-    let I = (longside * glassthk/1000**3) / 12 ;
-    let E = 71*10**9;
+    if (!GTFValue) {
+        console.error("Invalid GTFdata value");
+        return;
+    }
 
-    let Deflection = ((5 * windload * shortside**4) / (384 * E * I) )*100;
+    let I = (longside * (glassthk / 1000) ** 3) / 12;
+    let E = 71 * 10 ** 9;
 
-    result = Deflection / GTFValue;
+    let Deflection = ((5 * windload * shortside ** 4) / (384 * E * I)) * 100;
+
+    let result = Deflection / GTFValue;
     let sendresult = result.toFixed(3);
     document.getElementById("glass4maxdef").value = sendresult;
 }
@@ -63,10 +80,13 @@ function glass4maxdefcal() {
 function glass4allowdefcal() {
     let shortside = parseFloat(document.getElementById("shortside").value);
 
-    result = (shortside / 60) * 1000;
+    if (isNaN(shortside)) {
+        console.error("Invalid input value");
+        return;
+    }
 
+    let result = (shortside / 60) * 1000;
     let sendresult = result.toFixed(3);
-
     document.getElementById("glass4allowdef").value = sendresult;
 }
 
@@ -74,94 +94,112 @@ function glass4defcheck() {
     let glass4maxdef = parseFloat(document.getElementById("glass4maxdef").value);
     let glass4allowdef = parseFloat(document.getElementById("glass4allowdef").value);
 
-    // result = maxdef < allowdef;
-    // document.getElementById("allowdef").value = result;
+    if (isNaN(glass4maxdef) || isNaN(glass4allowdef)) {
+        console.error("Invalid input values");
+        return;
+    }
 
-    if (glass4maxdef >= glass4allowdefcal) {
-        // console.log("Hence");
+    if (glass4maxdef >= 2) {
         document.getElementById("defcheck").value = "Max.def. > 2";
         document.getElementById("defcheck2").value = "Hence cannot be allowable";
-
     } else if (glass4maxdef >= glass4allowdef) {
         document.getElementById("defcheck").value = "Max.def. > allow def.";
         document.getElementById("defcheck2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("defcheck").value = "Max.def. < allow def.";
         document.getElementById("defcheck2").value = "Hence be allowable";
     }
-
 }
-
 
 //! END 4SIDE GLASS
 /////////////////////////////////////////////////////////////////
 //! START 2SIDE GLASS
 
 function glass2bendingmaxcal() {
-    // let momentmax = parseFloat(document.getElementById("glass2momentmax").value);
     let glassthk = parseFloat(document.getElementById("glassthk").value);
     let windload = parseFloat(document.getElementById("windload").value);
     let longside = parseFloat(document.getElementById("longside").value);
-    
-    let M = (windload * longside**2 / 8 )* 1000;
-    let S = (glassthk/1000)**2 / 6 ;
-    let BendingStress = M/S / 10**9;
 
-    let result = BendingStress ;
+    if (isNaN(glassthk) || isNaN(windload) || isNaN(longside)) {
+        console.error("Invalid input values");
+        return;
+    }
 
+    let M = (windload * longside ** 2 / 8) * 1000;
+    let S = (glassthk / 1000) ** 2 / 6;
+    let BendingStress = M / S / 10 ** 9;
+
+    let result = BendingStress;
     let sendresult = result.toFixed(3);
 
     document.getElementById("glass2bendingmax").value = sendresult;
 
-    console.log(result)
+    console.log(result);
 }
 
 function checkglass2bendincal() {
     let glasstype = parseFloat(document.getElementById("glasstype").value);
     let glass2bendingmax = parseFloat(document.getElementById("glass2bendingmax").value);
 
-    if (glasstype >= glass2bendingmax) {
+    if (isNaN(glasstype) || isNaN(glass2bendingmax)) {
+        console.error("Invalid input values");
+        return;
+    }
 
+    if (glass2bendingmax < glasstype) {
         document.getElementById("checkbending").value = "Max.Bend. < allow stress";
         document.getElementById("checkbending2").value = "Hence be allowable";
-
     } else {
         document.getElementById("checkbending").value = "Max.Bend. > allow stress";
         document.getElementById("checkbending2").value = "Hence cannot be allowable";
     }
 }
 
-
-
 function glass2maxdefcal() {
     let windload = parseFloat(document.getElementById("windload").value);
     let longside = parseFloat(document.getElementById("longside").value);
     let glassthk = parseFloat(document.getElementById("glassthk").value);
 
+    if (isNaN(windload) || isNaN(longside) || isNaN(glassthk)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let d = document.getElementById("glasstype");
+    if (!d) {
+        console.error("Element with id 'glasstype' not found");
+        return;
+    }
+
     let selectedOption = d.options[d.selectedIndex];
     let GTFValue = selectedOption.getAttribute("GTFdata");
 
-    let I = (glassthk/1000)**3 / 12;
-    let E = 71*10**9;
+    if (!GTFValue) {
+        console.error("Invalid GTFdata value");
+        return;
+    }
+
+    let I = (glassthk / 1000) ** 3 / 12;
+    let E = 71 * 10 ** 9;
 
     let MaxDef = ((5 * windload * (longside ** 4)) / (384 * E * I)) / GTFValue;
 
-    let result = (MaxDef*1000);
+    let result = (MaxDef * 1000);
     let sendresult = result.toFixed(3);
 
     document.getElementById("glass2maxdef").value = sendresult;
-
 }
 
 function glass2allowdefcal() {
     let longside = parseFloat(document.getElementById("longside").value);
 
-    result = (longside / 60)*1000;
+    if (isNaN(longside)) {
+        console.error("Invalid input value");
+        return;
+    }
 
+    let result = (longside / 60) * 1000;
     let sendresult = result.toFixed(3);
-
     document.getElementById("glass2allowdef").value = sendresult;
 }
 
@@ -169,22 +207,22 @@ function glass2defcheck() {
     let glass2maxdef = parseFloat(document.getElementById("glass2maxdef").value);
     let glass2allowdef = parseFloat(document.getElementById("glass2allowdef").value);
 
+    if (isNaN(glass2maxdef) || isNaN(glass2allowdef)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     if (glass2maxdef >= 20) {
-        // console.log("Hence");
         document.getElementById("defcheck").value = "Max.def. > 20";
         document.getElementById("defcheck2").value = "Hence cannot be allowable";
-
     } else if (glass2maxdef >= glass2allowdef) {
         document.getElementById("defcheck").value = "Max.def. > allow def.";
         document.getElementById("defcheck2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("defcheck").value = "Max.def. < allow def.";
         document.getElementById("defcheck2").value = "Hence be allowable";
     }
-
 }
-
 
 //! END 2 SIDE GLASS
 /////////////////////////////////////////////////////////////////
@@ -196,11 +234,15 @@ function glass1maxbencal() {
     let longside = parseFloat(document.getElementById("longside").value);
     let windload = parseFloat(document.getElementById("windload").value);
 
-    let M = (windload * longside**2) / 2 ;
-    let bending = ((6*M)/(shortside*((glassthk/1000)**2))) / 10**6 ;
+    if (isNaN(glassthk) || isNaN(shortside) || isNaN(longside) || isNaN(windload)) {
+        console.error("Invalid input values");
+        return;
+    }
 
-    result = bending;
+    let M = (windload * longside ** 2) / 2;
+    let bending = ((6 * M) / (shortside * ((glassthk / 1000) ** 2))) / 10 ** 6;
 
+    let result = bending;
     let sendresult = result.toFixed(3);
     document.getElementById("glass1maxben").value = sendresult;
 }
@@ -208,18 +250,22 @@ function glass1maxbencal() {
 function val() {
     let d = document.getElementById("glasstype").value;
 }
+
 $('#glasstype').change(function () {
     let result = $(this).val();
     document.getElementById("glasstypevalue").value = result;
-})
-
+});
 
 function checkglass1bendingcal() {
     let glasstype = parseFloat(document.getElementById("glasstype").value);
     let glass1maxben = parseFloat(document.getElementById("glass1maxben").value);
 
+    if (isNaN(glasstype) || isNaN(glass1maxben)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     if (glasstype >= glass1maxben) {
-        // console.log("Hence");
         document.getElementById("checkbending").value = "Max.Bend. < allow stress";
         document.getElementById("checkbending2").value = "Hence be allowable";
     } else {
@@ -235,17 +281,26 @@ function glass1maxdefcal() {
     let windload = parseFloat(document.getElementById("windload").value);
     let F = windload * shortside;
 
+    if (isNaN(glassthk) || isNaN(shortside) || isNaN(longside) || isNaN(windload)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let d = document.getElementById("glasstype");
     let selectedOption = d.options[d.selectedIndex];
     let GTFValue = selectedOption.getAttribute("GTFdata");
 
-    let I = (shortside * (glassthk/1000)**3) / 12 ;
-    let E = 71*10**9;
+    if (!GTFValue) {
+        console.error("Invalid GTFdata value");
+        return;
+    }
 
-    let Deflection = ((F * longside**3) / (6 * E * I * GTFValue) )*1000;
+    let I = (shortside * (glassthk / 1000) ** 3) / 12;
+    let E = 71 * 10 ** 9;
 
-    result = Deflection ;
+    let Deflection = ((F * longside ** 3) / (6 * E * I * GTFValue)) * 1000;
 
+    let result = Deflection;
     let sendresult = result.toFixed(3);
     document.getElementById("glass1maxdef").value = sendresult;
 }
@@ -253,10 +308,13 @@ function glass1maxdefcal() {
 function glass1allowdefcal() {
     let shortside = parseFloat(document.getElementById("shortside").value);
 
-    result = (shortside / 60) * 1000;
+    if (isNaN(shortside)) {
+        console.error("Invalid input value");
+        return;
+    }
 
+    let result = (shortside / 60) * 1000;
     let sendresult = result.toFixed(3);
-
     document.getElementById("glass1allowdef").value = sendresult;
 }
 
@@ -264,27 +322,25 @@ function glass1defcheck() {
     let glass1maxdef = parseFloat(document.getElementById("glass1maxdef").value);
     let glass1allowdef = parseFloat(document.getElementById("glass1allowdef").value);
 
-    // result = maxdef < allowdef;
-    // document.getElementById("allowdef").value = result;
+    if (isNaN(glass1maxdef) || isNaN(glass1allowdef)) {
+        console.error("Invalid input values");
+        return;
+    }
 
-    if (glass1maxdef >= glass1allowdefcal) {
-        // console.log("Hence");
+    if (glass1maxdef >= 2) {
         document.getElementById("defcheck").value = "Max.def. > 2";
         document.getElementById("defcheck2").value = "Hence cannot be allowable";
-
     } else if (glass1maxdef >= glass1allowdef) {
         document.getElementById("defcheck").value = "Max.def. > allow def.";
         document.getElementById("defcheck2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("defcheck").value = "Max.def. < allow def.";
         document.getElementById("defcheck2").value = "Hence be allowable";
     }
-
 }
 
-
 //! END 1 SIDE GLASS
+/////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 //! START SIGGLE MULLION
 
@@ -295,7 +351,7 @@ function alummomenmaxcal() {
     let windload = parseFloat(document.getElementById("windload").value);
 
 
-    result = ((windload * alumwidth * (alumheight ** 2)) / 8) / 1000000;
+    let result = ((windload * alumwidth * (alumheight ** 2)) / 8) / 1000000;
 
     let sendresult = result.toFixed(3);
 
@@ -312,7 +368,7 @@ function alumbendingstress() {
     let alumix = parseFloat(document.getElementById("alumix").value);
 
 
-    result = ((alummomentmax * 100 * alumcentroid) / (alumix)) * 1000;
+    let result = ((alummomentmax * 100 * alumcentroid) / (alumix)) * 1000;
 
     let sendresult = result.toFixed(3);
 
@@ -394,7 +450,7 @@ function combinebendingstress() {
     let combineix = parseFloat(document.getElementById("combineix").value);
     let combinemullion = parseFloat(alumix) + parseFloat(combineix);
 
-    result = ((alummomentmax * 100 * alumcentroid) / combinemullion) * 1000;
+    let result = ((alummomentmax * 100 * alumcentroid) / combinemullion) * 1000;
 
     let sendresult = result.toFixed(3);
 
@@ -483,7 +539,7 @@ function transommomenmaxcal() {
 
     let height = parseFloat(transomheight1) + parseFloat(transomheight2);
 
-    result = ((windload * height * (tannsomwidth ** 2)) / 8) / 1000000;
+    let result = ((windload * height * (tannsomwidth ** 2)) / 8) / 1000000;
 
     let sendresult = result.toFixed(3);
 
@@ -507,7 +563,7 @@ function transombendingstress() {
     // console.log(combineix);
     // console.log(typeof combineix);
 
-    result = ((transommomentmax * 100 * transomcentroidx) / (combineiy)) * 1000;
+    let result = ((transommomentmax * 100 * transomcentroidx) / (combineiy)) * 1000;
 
     let sendresult = result.toFixed(3);
 
@@ -555,7 +611,7 @@ function transommaxdefcal() {
 function transomallowdefcal() {
     let tannsomwidth = parseFloat(document.getElementById("tannsomwidth").value);
 
-    result = tannsomwidth / 175;
+    let result = tannsomwidth / 175;
 
     let sendresult = result.toFixed(3);
 
@@ -648,7 +704,7 @@ function deadloadtransommaxdefcal() {
 function daedloadallowdefcal() {
     let tannsomwidth = parseFloat(document.getElementById("tannsomwidth").value);
 
-    result = tannsomwidth / 300;
+    let result = tannsomwidth / 300;
 
     let sendresult = result.toFixed(3);
 
