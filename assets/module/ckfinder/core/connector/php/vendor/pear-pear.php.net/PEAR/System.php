@@ -96,7 +96,7 @@ class System
             }
         }
 
-        return Console_Getopt::getopt2($argv, $short_options, $long_options);
+        return Console_Getopt::getopt2($argv, $short_options, is_array($long_options) ? $long_options : null);
     }
 
     /**
@@ -265,7 +265,7 @@ class System
             } elseif ($opt[0] == 'm') {
                 // if the mode is clearly an octal number (starts with 0)
                 // convert it to decimal
-                if (strlen($opt[1]) && $opt[1]{0} == '0') {
+                if (strlen($opt[1]) && $opt[1][0] == '0') {
                     $opt[1] = octdec($opt[1]);
                 } else {
                     // convert to int
@@ -413,7 +413,7 @@ class System
             $tmpdir = System::tmpdir();
         }
 
-        if (!System::mkDir(array('-p', $tmpdir))) {
+        if (!System::mkDir('-p ' . $tmpdir)) {
             return false;
         }
 

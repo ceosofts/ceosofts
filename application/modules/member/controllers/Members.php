@@ -6,6 +6,7 @@ if (!defined('BASEPATH'))  exit('No direct script access allowed');
  */
 class Members extends MEMBER_Controller
 {
+	public $Members;
 
 	private $per_page;
 	private $another_js;
@@ -23,6 +24,7 @@ class Members extends MEMBER_Controller
 		$this->num_links = 6;
 		$this->uri_segment = 4;
 		$this->load->model('member/Members_model', 'Members');
+		// $this->load->library('input'); // No need to load 'input' library as it is already available
 		$this->Members->session_name = 'member_members';
 
 		$this->load->model('FileUpload_model', 'FileUpload');
@@ -81,7 +83,7 @@ class Members extends MEMBER_Controller
 	/**
 	 * Render this controller page
 	 * @param String path of controller
-	 * @param Integer total record
+	 * @param int total record
 	 */
 	protected function render_view($path)
 	{
@@ -109,7 +111,7 @@ class Members extends MEMBER_Controller
 	/**
 	 * Set up pagination config
 	 * @param String path of controller
-	 * @param Integer total record
+	 * @param int total record
 	 */
 	public function create_pagination($page_url, $total)
 	{
@@ -859,7 +861,7 @@ class Members extends MEMBER_Controller
 		$this->data['departmentIdDpmName'] = $departmentIdDpmName;
 
 
-		$voidDpmName = $this->table('tb_status')->get_value('dpm_name')->where("dpm_void = '$data[void]'");
+		$voidDpmName = $this->table('tb_status')->get_value('dpm_name')->where("dpm_void = '{$data['void']}'");
 		$this->data['voidDpmName'] = $voidDpmName;
 
 		$this->data['record_userid'] = $data['userid'];

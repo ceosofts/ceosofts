@@ -202,7 +202,7 @@ class TCPDFBarcode {
 			$fgcol = imagecolorallocate($png, $color[0], $color[1], $color[2]);
 		} elseif (extension_loaded('imagick')) {
 			$imagick = true;
-			$bgcol = new imagickpixel('rgb(255,255,255');
+			$bgcol = new ImagickPixel('rgb(255,255,255)');
 			$fgcol = new imagickpixel('rgb('.$color[0].','.$color[1].','.$color[2].')');
 			$png = new Imagick();
 			$png->newImage($width, $height, 'none', 'png');
@@ -867,7 +867,7 @@ class TCPDFBarcode {
 		$k = 0;
 		for ($i = 0; $i < $len; ++$i) {
 			$w += 1;
-			if (($i == ($len - 1)) OR (($i < ($len - 1)) AND ($seq[$i] != $seq{($i+1)}))) {
+			if (($i == ($len - 1)) OR (($i < ($len - 1)) AND ($seq[$i] != $seq[($i+1)]))) {
 				if ($seq[$i] == '1') {
 					$t = true; // bar
 				} else {

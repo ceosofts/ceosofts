@@ -72,15 +72,14 @@ class TCPDF_FILTERS {
 	 * Decode data using the specified filter type.
 	 * @param $filter (string) Filter name.
 	 * @param $data (string) Data to decode.
-	 * @return Decoded data string.
+	 * @return string Decoded data.
 	 * @since 1.0.000 (2011-05-23)
 	 * @public static
 	 */
 	public static function decodeFilter($filter, $data) {
 		switch ($filter) {
 			case 'ASCIIHexDecode': {
-				return self::decodeFilterASCIIHexDecode($data);
-				break;
+				return (string)self::decodeFilterASCIIHexDecode($data);
 			}
 			case 'ASCII85Decode': {
 				return self::decodeFilterASCII85Decode($data);
@@ -389,7 +388,7 @@ class TCPDF_FILTERS {
 			} else {
 				// if length is in the range 129 to 255,
 				// the following single byte shall be copied 257 - length (2 to 128) times during decompression
-				$decoded .= str_repeat($data{($i + 1)}, (257 - $byte));
+				$decoded .= str_repeat($data[($i + 1)], (257 - $byte));
 				// move to next block
 				$i += 2;
 			}
@@ -407,7 +406,7 @@ class TCPDF_FILTERS {
 	 */
 	public static function decodeFilterCCITTFaxDecode($data) {
 		self::Error('~decodeFilterCCITTFaxDecode: this method has not been yet implemented');
-		//return $data;
+		return $data;
 	}
 
 	/**

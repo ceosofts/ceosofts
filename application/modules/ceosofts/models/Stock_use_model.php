@@ -23,7 +23,7 @@ class Stock_use_model extends MY_Model
 	{
 		parent::__construct();
 		$this->my_table = 'tb_stock_use';
-		$this->set_table_name($this->my_table);
+		$this->set_table_name((string)$this->my_table);
 		$this->order_field = '';
 		$this->order_sort = '';
 
@@ -244,74 +244,6 @@ class Stock_use_model extends MY_Model
 	}
 
 
-<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
-
-<h4>A PHP Error was encountered</h4>
-
-<p>Severity: Notice</p>
-<p>Message:  Undefined index: </p>
-<p>Filename: main/model_view.php</p>
-<p>Line Number: 704</p>
-
-
-	<p>Backtrace:</p>
-	
-		
-	
-		
-	
-		
-			<p style="margin-left:10px">
-			File: C:\xampp\htdocs\phpcimania_expert\application\views\ci_dashboard\main\model_view.php<br />
-			Line: 704<br />
-			Function: _error_handler			</p>
-
-		
-	
-		
-			<p style="margin-left:10px">
-			File: C:\xampp\htdocs\phpcimania_expert\application\third_party\MX\Loader.php<br />
-			Line: 357<br />
-			Function: include			</p>
-
-		
-	
-		
-			<p style="margin-left:10px">
-			File: C:\xampp\htdocs\phpcimania_expert\application\third_party\MX\Loader.php<br />
-			Line: 299<br />
-			Function: _ci_load			</p>
-
-		
-	
-		
-			<p style="margin-left:10px">
-			File: C:\xampp\htdocs\phpcimania_expert\application\core\MY_Controller.php<br />
-			Line: 409<br />
-			Function: view			</p>
-
-		
-	
-		
-			<p style="margin-left:10px">
-			File: C:\xampp\htdocs\phpcimania_expert\application\controllers\Ci_dashboard.php<br />
-			Line: 500<br />
-			Function: create_file			</p>
-
-		
-	
-		
-	
-		
-			<p style="margin-left:10px">
-			File: C:\xampp\htdocs\phpcimania_expert\index.php<br />
-			Line: 329<br />
-			Function: require_once			</p>
-
-		
-	
-
-</div>
 	public function loadDetailList($master_ref_id)
 	{
 		$this->set_table_name('tb_stock_use_list');

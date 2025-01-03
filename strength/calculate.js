@@ -59,6 +59,11 @@ function glass4maxdefcal() {
     }
 
     let d = document.getElementById("glasstype");
+    if (!d) {
+        console.error("Element with id 'glasstype' not found");
+        return;
+    }
+
     let selectedOption = d.options[d.selectedIndex];
     let GTFValue = selectedOption.getAttribute("GTFdata");
 
@@ -240,7 +245,7 @@ function glass1maxbencal() {
     }
 
     let M = (windload * longside ** 2) / 2;
-    let bending = ((6 * M) / (shortside * ((glassthk / 1000) ** 2))) / 10 ** 6;
+    let bending = ((6 * M * shortside) / (((glassthk / 1000) ** 2))) / 10 ** 6;
 
     let result = bending;
     let sendresult = result.toFixed(3);
@@ -287,6 +292,11 @@ function glass1maxdefcal() {
     }
 
     let d = document.getElementById("glasstype");
+    if (!d) {
+        console.error("Element with id 'glasstype' not found");
+        return;
+    }
+
     let selectedOption = d.options[d.selectedIndex];
     let GTFValue = selectedOption.getAttribute("GTFdata");
 
@@ -345,48 +355,46 @@ function glass1defcheck() {
 //! START SIGGLE MULLION
 
 function alummomenmaxcal() {
-
     let alumwidth = parseFloat(document.getElementById("alumwidth").value);
     let alumheight = parseFloat(document.getElementById("alumheight").value);
     let windload = parseFloat(document.getElementById("windload").value);
 
+    if (isNaN(alumwidth) || isNaN(alumheight) || isNaN(windload)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     let result = ((windload * alumwidth * (alumheight ** 2)) / 8) / 1000000;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("alummomentmax").value = sendresult;
-
-    // document.getElementById("momentmax").value = result;
-
 }
 
 function alumbendingstress() {
-
     let alummomentmax = parseFloat(document.getElementById("alummomentmax").value);
     let alumcentroid = parseFloat(document.getElementById("alumcentroid").value);
     let alumix = parseFloat(document.getElementById("alumix").value);
 
+    if (isNaN(alummomentmax) || isNaN(alumcentroid) || isNaN(alumix)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     let result = ((alummomentmax * 100 * alumcentroid) / (alumix)) * 1000;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("alummaxbend").value = sendresult;
-
-    // document.getElementById("momentmax").value = result;
-
 }
 
 function checkalumcheckbend() {
-
     let alummaxbend = parseFloat(document.getElementById("alummaxbend").value);
 
+    if (isNaN(alummaxbend)) {
+        console.error("Invalid input value");
+        return;
+    }
+
     if (650 >= alummaxbend) {
-        // console.log("Hence");
         document.getElementById("alumcheckbend").value = "Max.Bend. < allow bend.";
         document.getElementById("alumcheckbend2").value = "Hence be allowable";
-
     } else {
         document.getElementById("alumcheckbend").value = "Max.Bend. > allow bend.";
         document.getElementById("alumcheckbend2").value = "Hence cannot be allowable";
@@ -399,36 +407,41 @@ function alummaxdefcal() {
     let alumheight = parseFloat(document.getElementById("alumheight").value);
     let alumix = parseFloat(document.getElementById("alumix").value);
 
+    if (isNaN(windload) || isNaN(alumwidth) || isNaN(alumheight) || isNaN(alumix)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let result = ((5 * (windload)) * alumwidth * (alumheight ** 4)) / (384 * 700000 * alumix);
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("alummaxdef").value = sendresult;
-
-    // document.getElementById("maxdef").value = result;
-
 }
 
 function alumallowdefcal() {
     let alumheight = parseFloat(document.getElementById("alumheight").value);
 
-    result = alumheight / 175;
+    if (isNaN(alumheight)) {
+        console.error("Invalid input value");
+        return;
+    }
 
+    let result = alumheight / 175;
     let sendresult = result.toFixed(3);
-
     document.getElementById("alumallowdef").value = sendresult;
 }
 
 function checkalumdefcheck() {
-
     let alummaxdef = parseFloat(document.getElementById("alummaxdef").value);
     let alumallowdef = parseFloat(document.getElementById("alumallowdef").value);
 
+    if (isNaN(alummaxdef) || isNaN(alumallowdef)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     if (alummaxdef >= 2) {
-        // console.log("Hence");
         document.getElementById("alumdefcheck").value = "Max.def. > 2";
         document.getElementById("alumdefcheck2").value = "Hence cannot be allowable";
-
     } else if (alummaxdef >= alumallowdef) {
         document.getElementById("alumdefcheck").value = "Max.def. > allow bend.";
         document.getElementById("alumdefcheck2").value = "Hence cannot be allowable";
@@ -443,38 +456,33 @@ function checkalumdefcheck() {
 //! START COMBINE MULLION
 
 function combinebendingstress() {
-
     let alummomentmax = parseFloat(document.getElementById("alummomentmax").value);
     let alumcentroid = parseFloat(document.getElementById("alumcentroid").value);
     let alumix = parseFloat(document.getElementById("alumix").value);
     let combineix = parseFloat(document.getElementById("combineix").value);
     let combinemullion = parseFloat(alumix) + parseFloat(combineix);
 
+    if (isNaN(alummomentmax) || isNaN(alumcentroid) || isNaN(alumix) || isNaN(combineix)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let result = ((alummomentmax * 100 * alumcentroid) / combinemullion) * 1000;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("combinemaxbend").value = sendresult;
-
-    // document.getElementById("momentmax").value = result;
-
-    // console.log(alumix)
-    // console.log(combineix)
-    // console.log(combinemullion)
-    // console.log(typeof alumix);
-    // console.log(typeof combineix);
-    // console.log(typeof combinemullion);
 }
 
 function checkcombinecheckbend() {
-
     let combinemaxbend = parseFloat(document.getElementById("combinemaxbend").value);
 
+    if (isNaN(combinemaxbend)) {
+        console.error("Invalid input value");
+        return;
+    }
+
     if (650 >= combinemaxbend) {
-        // console.log("Hence");
         document.getElementById("combinecheckbend").value = "Max.Bend. < allow bend.";
         document.getElementById("combinecheckbend2").value = "Hence be allowable";
-
     } else {
         document.getElementById("combinecheckbend").value = "Max.Bend. > allow bend.";
         document.getElementById("combinecheckbend2").value = "Hence cannot be allowable";
@@ -489,35 +497,28 @@ function combinemaxdefcal() {
     let combineix = parseFloat(document.getElementById("combineix").value);
     let combinemullion = parseFloat(alumix) + parseFloat(combineix);
 
+    if (isNaN(windload) || isNaN(alumwidth) || isNaN(alumheight) || isNaN(alumix) || isNaN(combineix)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let result = ((5 * (windload)) * alumwidth * (alumheight ** 4)) / (384 * 700000 * combinemullion);
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("combinemaxdef").value = sendresult;
-
-    // document.getElementById("maxdef").value = result;
-
-    // console.log(alumix)
-    // console.log(combineix)
-    // console.log(combinemullion)
-    // console.log(sendresult)
-    // console.log(typeof alumix);
-    // console.log(typeof combineix);
-    // console.log(typeof combinemullion);
-    // console.log(typeof sendresult);
-
 }
 
 function checkcombinedefcheck() {
-
     let combinemaxdef = parseFloat(document.getElementById("combinemaxdef").value);
     let alumallowdef = parseFloat(document.getElementById("alumallowdef").value);
 
+    if (isNaN(combinemaxdef) || isNaN(alumallowdef)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     if (combinemaxdef >= 2) {
-        // console.log("Hence");
         document.getElementById("combinedefcheck").value = "Max.def. > 2";
         document.getElementById("combinedefcheck2").value = "Hence cannot be allowable";
-
     } else if (combinemaxdef >= alumallowdef) {
         document.getElementById("combinedefcheck").value = "Max.def. > allow bend.";
         document.getElementById("combinedefcheck2").value = "Hence cannot be allowable";
@@ -531,55 +532,50 @@ function checkcombinedefcheck() {
 //! START TRANSOM
 
 function transommomenmaxcal() {
-
     let tannsomwidth = parseFloat(document.getElementById("tannsomwidth").value);
     let transomheight1 = parseFloat(document.getElementById("transomheight1").value);
     let transomheight2 = parseFloat(document.getElementById("transomheight2").value);
     let windload = parseFloat(document.getElementById("windload").value);
 
+    if (isNaN(tannsomwidth) || isNaN(transomheight1) || isNaN(transomheight2) || isNaN(windload)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let height = parseFloat(transomheight1) + parseFloat(transomheight2);
-
     let result = ((windload * height * (tannsomwidth ** 2)) / 8) / 1000000;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("transommomentmax").value = sendresult;
-
 }
 
 function transombendingstress() {
-
     let transommomentmax = parseFloat(document.getElementById("transommomentmax").value);
     let transomcentroidx = parseFloat(document.getElementById("transomcentroidx").value);
     let transomiy = parseFloat(document.getElementById("transomiy").value);
     let stiffeneriy = parseFloat(document.getElementById("stiffeneriy").value);
-
     let combineiy = parseFloat(transomiy) + parseFloat(stiffeneriy);
 
-    // console.log(transomiy);
-    // console.log(typeof transomiy);
-    // console.log(stiffeneriy);
-    // console.log(typeof stiffeneriy);
-    // console.log(combineix);
-    // console.log(typeof combineix);
+    if (isNaN(transommomentmax) || isNaN(transomcentroidx) || isNaN(transomiy) || isNaN(stiffeneriy)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     let result = ((transommomentmax * 100 * transomcentroidx) / (combineiy)) * 1000;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("transommaxbend").value = sendresult;
-
 }
 
 function checktransombend() {
-
     let combinemaxbend = parseFloat(document.getElementById("transommaxbend").value);
 
+    if (isNaN(combinemaxbend)) {
+        console.error("Invalid input value");
+        return;
+    }
+
     if (650 >= combinemaxbend) {
-        // console.log("Hence");
         document.getElementById("transomcheckbend").value = "Max.Bend. < allow bend.";
         document.getElementById("transomcheckbend2").value = "Hence be allowable";
-
     } else {
         document.getElementById("transomcheckbend").value = "Max.Bend. > allow bend.";
         document.getElementById("transomcheckbend2").value = "Hence cannot be allowable";
@@ -591,47 +587,49 @@ function transommaxdefcal() {
     let tannsomwidth = parseFloat(document.getElementById("tannsomwidth").value);
     let transomheight1 = parseFloat(document.getElementById("transomheight1").value);
     let transomheight2 = parseFloat(document.getElementById("transomheight2").value);
-
     let transomiy = parseFloat(document.getElementById("transomiy").value);
     let stiffeneriy = parseFloat(document.getElementById("stiffeneriy").value);
-
     let combineiy = parseFloat(transomiy) + parseFloat(stiffeneriy);
 
+    if (isNaN(windload) || isNaN(tannsomwidth) || isNaN(transomheight1) || isNaN(transomheight2) || isNaN(transomiy) || isNaN(stiffeneriy)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let height = parseFloat(transomheight1) + parseFloat(transomheight2);
-
-
     let result = ((5 * (windload)) * height * (tannsomwidth ** 4)) / (384 * 700000 * combineiy);
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("transommaxdef").value = sendresult;
-
 }
 
 function transomallowdefcal() {
     let tannsomwidth = parseFloat(document.getElementById("tannsomwidth").value);
 
+    if (isNaN(tannsomwidth)) {
+        console.error("Invalid input value");
+        return;
+    }
+
     let result = tannsomwidth / 175;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("transomallowdef").value = sendresult;
 }
 
 function checktransomdef() {
-
     let transommaxdef = parseFloat(document.getElementById("transommaxdef").value);
     let transomallowdef = parseFloat(document.getElementById("transomallowdef").value);
 
+    if (isNaN(transommaxdef) || isNaN(transomallowdef)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     if (transommaxdef >= 2) {
-        // console.log("Hence");
         document.getElementById("transomdefcheck").value = "Max.def. > 2";
         document.getElementById("transomdefcheck2").value = "Hence cannot be allowable";
-
     } else if (transommaxdef >= transomallowdef) {
         document.getElementById("transomdefcheck").value = "Max.def. > allow bend.";
         document.getElementById("transomdefcheck2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("transomdefcheck").value = "Max.def. < allow def.";
         document.getElementById("transomdefcheck2").value = "Hence be allowable";
@@ -647,27 +645,27 @@ function glassweightcal() {
     let transomheight1 = parseFloat(document.getElementById("transomheight1").value);
     let glassthk = parseFloat(document.getElementById("glassthk").value);
 
+    if (isNaN(tannsomwidth) || isNaN(transomheight1) || isNaN(glassthk)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let result = (parseFloat(tannsomwidth) * parseFloat(transomheight1) * parseFloat(glassthk) * 25.6) / 10000;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("glassweight").value = sendresult;
-
-    // console.log(result);
-    // console.log(typeof result);
 }
 
 function maxshearcal() {
     let glassweight = parseFloat(document.getElementById("glassweight").value);
 
+    if (isNaN(glassweight)) {
+        console.error("Invalid input value");
+        return;
+    }
+
     let result = (parseFloat(glassweight) / 2) / 100;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("maxshear").value = sendresult;
-
-    // console.log(result);
-    // console.log(typeof result);
 }
 
 function deadloadtransommaxdefcal() {
@@ -675,56 +673,52 @@ function deadloadtransommaxdefcal() {
     let tannsomwidth = parseFloat(document.getElementById("tannsomwidth").value);
     let transomix = parseFloat(document.getElementById("transomix").value);
     let stiffenerix = parseFloat(document.getElementById("stiffenerix").value);
-
     let combineix = parseFloat(transomix) + parseFloat(stiffenerix);
 
-    let a = tannsomwidth / 4;
+    if (isNaN(maxshear) || isNaN(tannsomwidth) || isNaN(transomix) || isNaN(stiffenerix)) {
+        console.error("Invalid input values");
+        return;
+    }
 
-    // let set1 = (maxshear * a) / 8;
-    // let set2 = 24 * 700000 * combineix;
-    // let set3 = 3 * (tannsomwidth ** 2);
-    // let set4 = 4 * ((tannsomwidth / 8) ** 2);
+    let a = tannsomwidth / 4;
     let set1 = maxshear * a;
     let set2 = 24 * 700000 * combineix;
     let set3 = 3 * (tannsomwidth ** 2);
     let set4 = 4 * (a ** 2);
 
     let result = ((set1 / set2) * (set3 - set4)) * 10000000;
-
-    // let result = ((set1 / set2) * (set3 - set4)) * 10000000;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("deadloadtransommaxdef").value = sendresult;
-
-    // console.log(result);
-    // console.log(typeof result);
 }
 
 function daedloadallowdefcal() {
     let tannsomwidth = parseFloat(document.getElementById("tannsomwidth").value);
 
+    if (isNaN(tannsomwidth)) {
+        console.error("Invalid input value");
+        return;
+    }
+
     let result = tannsomwidth / 300;
-
     let sendresult = result.toFixed(3);
-
     document.getElementById("deadloadallowdef").value = sendresult;
 }
 
 function checkdeadloaddef() {
-
     let deadloadtransommaxdef = parseFloat(document.getElementById("deadloadtransommaxdef").value);
     let deadloadallowdef = parseFloat(document.getElementById("deadloadallowdef").value);
 
+    if (isNaN(deadloadtransommaxdef) || isNaN(deadloadallowdef)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     if (deadloadtransommaxdef >= 2) {
-        // console.log("Hence");
         document.getElementById("deadloaddefcheck").value = "Max.def. > 0.3";
         document.getElementById("deadloaddefcheck2").value = "Hence cannot be allowable";
-
     } else if (deadloadtransommaxdef >= deadloadallowdef) {
         document.getElementById("deadloaddefcheck").value = "Max.def. > allow bend.";
         document.getElementById("deadloaddefcheck2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("deadloaddefcheck").value = "Max.def. < allow def.";
         document.getElementById("deadloaddefcheck2").value = "Hence be allowable";
@@ -735,12 +729,14 @@ function checkdeadloaddef() {
 /////////////////////////////////////////////////////////////////
 //! START silicone
 
-
-
 function siliconebilecal() {
-
     let siliconeshortside = parseFloat(document.getElementById("siliconeshortside").value);
     let windload = parseFloat(document.getElementById("windload").value);
+
+    if (isNaN(siliconeshortside) || isNaN(windload)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     let result = siliconeshortside * windload / 27500;
 
@@ -749,9 +745,7 @@ function siliconebilecal() {
     }
 
     let sendresult = result.toFixed(1);
-
     document.getElementById("siliconewidth").value = sendresult;
-
 }
 
 //! END silicone
@@ -759,14 +753,17 @@ function siliconebilecal() {
 //! START Anchor Bolt
 
 function Anchorloadcal() {
-
     let glassWg = parseFloat(document.getElementById("glassWg").value);
     let alumWg = parseFloat(document.getElementById("alumWg").value);
     let otherWg = parseFloat(document.getElementById("otherWg").value);
-
     let windloaddesign = parseFloat(document.getElementById("windloaddesign").value);
     let shortside = parseFloat(document.getElementById("shortside").value);
     let longside = parseFloat(document.getElementById("longside").value);
+
+    if (isNaN(glassWg) || isNaN(alumWg) || isNaN(otherWg) || isNaN(windloaddesign) || isNaN(shortside) || isNaN(longside)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     let set1 = (glassWg + alumWg + otherWg) * 0.01;
     let set2 = ((windloaddesign / 100) * (shortside / 100) * (longside / 100));
@@ -784,11 +781,6 @@ function Anchorloadcal() {
     let set4 = set2 * 1.1;
     let sendresultset4 = set4.toFixed(3);
     document.getElementById("shearonanchor").value = sendresultset4;
-
-    // console.log(set3);
-    // console.log(typeof set3);
-
-
 }
 
 function getanchorvalue() {
@@ -796,7 +788,6 @@ function getanchorvalue() {
 }
 
 function getallowcal() {
-
     const selectElement = document.querySelector('#anchorsize');
     const selectedOption = selectElement.options[selectElement.selectedIndex];
     const dataTenValue = selectedOption.getAttribute('data-ten');
@@ -804,17 +795,12 @@ function getallowcal() {
 
     let dataTenValuetonumber = parseFloat(dataTenValue);
     let dataShearValuetonumber = parseFloat(dataShearValue);
-
     let anchorqty = parseFloat(document.getElementById("anchorqty").value);
 
-    // console.log(dataTenValue);
-    // console.log(typeof dataTenValue);
-    // console.log(dataShearValuetonumber);
-    // console.log(typeof dataShearValuetonumber);
-    // console.log(dataTenValuetonumber);
-    // console.log(typeof dataTenValuetonumber);
-    // console.log(anchorqty);
-    // console.log(typeof anchorqty);
+    if (isNaN(dataTenValuetonumber) || isNaN(dataShearValuetonumber) || isNaN(anchorqty)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     let tenallowcal = dataTenValuetonumber * anchorqty;
     let shearallowcal = dataShearValuetonumber * anchorqty;
@@ -824,23 +810,20 @@ function getallowcal() {
 
     let sendshearallowcal = shearallowcal.toFixed(3);
     document.getElementById("shearallowcal").value = sendshearallowcal;
-
 }
 
-
 function checkten() {
-
     let tenallowcal = parseFloat(document.getElementById("tenallowcal").value);
-    // let anchorqty = parseFloat(document.getElementById("anchorqty").value);
     let tenonanchor = parseFloat(document.getElementById("tenonanchor").value);
 
-    // let tenallowcal = tenallow * anchorqty;
+    if (isNaN(tenallowcal) || isNaN(tenonanchor)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     if (tenonanchor >= tenallowcal) {
-        // console.log("Hence");
         document.getElementById("checkten").value = "Tensile strength > allowable";
         document.getElementById("checkten2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("checkten").value = "Tensile strength < allowable";
         document.getElementById("checkten2").value = "Hence be allowable";
@@ -848,24 +831,22 @@ function checkten() {
 }
 
 function checkshear() {
-
     let shearallowcal = parseFloat(document.getElementById("shearallowcal").value);
-    // let anchorqty = parseFloat(document.getElementById("anchorqty").value);
     let tenonanchor = parseFloat(document.getElementById("tenonanchor").value);
 
-    // let tenallowcal = tenallow * anchorqty;
+    if (isNaN(shearallowcal) || isNaN(tenonanchor)) {
+        console.error("Invalid input values");
+        return;
+    }
 
-    if (tenonanchor >= tenallowcal) {
-        // console.log("Hence");
+    if (tenonanchor >= shearallowcal) {
         document.getElementById("checkshear").value = "Shear strength> allowable";
         document.getElementById("checkshear2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("checkshear").value = "Shear strength < allowable";
         document.getElementById("checkshear2").value = "Hence be allowable";
     }
 }
-
 
 //! END Anchor Bolt
 /////////////////////////////////////////////////////////////////
@@ -876,7 +857,6 @@ function getalumbracketvalue() {
 }
 
 function getbracketallowcal() {
-
     const selectElement = document.querySelector('#brackettype');
     const selectedOption = selectElement.options[selectElement.selectedIndex];
     const dataTenValue = selectedOption.getAttribute('data-ten');
@@ -885,33 +865,30 @@ function getbracketallowcal() {
     let dataTenValuetonumber = parseFloat(dataTenValue);
     let dataShearValuetonumber = parseFloat(dataShearValue);
 
-
-    // console.log(dataTenValuetonumber);
-    // console.log(typeof dataTenValuetonumber);
-    // console.log(dataShearValuetonumber);
-    // console.log(typeof dataShearValuetonumber);
-
-
-    // let tenallowcal = dataTenValuetonumber * anchorqty;
-    // let shearallowcal = dataShearValuetonumber * anchorqty;
+    if (isNaN(dataTenValuetonumber) || isNaN(dataShearValuetonumber)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     let sendtenallowcal = dataTenValuetonumber.toFixed(3);
     document.getElementById("benallowcal").value = sendtenallowcal;
 
     let sendshearallowcal = dataShearValuetonumber.toFixed(3);
     document.getElementById("shearallowcal").value = sendshearallowcal;
-
 }
 
 function bracketloadcal() {
-
     let glassWg = parseFloat(document.getElementById("glassWg").value);
     let alumWg = parseFloat(document.getElementById("alumWg").value);
     let otherWg = parseFloat(document.getElementById("otherWg").value);
-
     let windloaddesign = parseFloat(document.getElementById("windloaddesign").value);
     let shortside = parseFloat(document.getElementById("shortside").value);
     let longside = parseFloat(document.getElementById("longside").value);
+
+    if (isNaN(glassWg) || isNaN(alumWg) || isNaN(otherWg) || isNaN(windloaddesign) || isNaN(shortside) || isNaN(longside)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     let set1 = (glassWg + alumWg + otherWg) * 0.01;
     let set2 = ((windloaddesign / 100) * (shortside / 100) * (longside / 100));
@@ -921,20 +898,23 @@ function bracketloadcal() {
 
     let sendresultset2 = set2.toFixed(3);
     document.getElementById("windloadcal").value = sendresultset2;
-
 }
 
 function bracketLoadCal() {
     let windloadcal = parseFloat(document.getElementById("windloadcal").value);
     let deadload = parseFloat(document.getElementById("deadload").value);
-
     let bracketH = parseFloat(document.getElementById("bracketH").value);
     let bracketPd = parseFloat(document.getElementById("bracketPd").value);
     let bracketW = parseFloat(document.getElementById("bracketW").value);
     let bracketthk = parseFloat(document.getElementById("bracketthk").value);
-
     let benallowcal = parseFloat(document.getElementById("benallowcal").value);
     let shearallowcal = parseFloat(document.getElementById("shearallowcal").value);
+
+    if (isNaN(windloadcal) || isNaN(deadload) || isNaN(bracketH) || isNaN(bracketPd) || isNaN(bracketW) || isNaN(bracketthk) || isNaN(benallowcal) || isNaN(shearallowcal)) {
+        console.error("Invalid input values");
+        return;
+    }
+
     let benallowcalsafety = benallowcal * 0.6;
     let shearallowcalsafety = shearallowcal * 0.35;
 
@@ -943,7 +923,6 @@ function bracketLoadCal() {
 
     let sendshearallowcalsafety = shearallowcalsafety.toFixed(3);
     document.getElementById("shearallowcalsafety").value = sendshearallowcalsafety;
-
 
     //*bending calculation
     let set1 = (windloadcal * bracketH) + (deadload * bracketPd);
@@ -962,29 +941,26 @@ function bracketLoadCal() {
     document.getElementById("shearOnBracket").value = sendresultset7;
 
     //*combined calculation
-
     let set11 = set3 / benallowcalsafety;
     let set12 = (set7 / shearallowcalsafety) ** 2;
-
     let set20 = set11 + set12;
 
     let sendresultset20 = set20.toFixed(3);
     document.getElementById("Combinedcal").value = sendresultset20;
-
 }
 
 function checkbracketbend() {
-
     let benallowcalsafety = parseFloat(document.getElementById("benallowcalsafety").value);
     let bendOnBracket = parseFloat(document.getElementById("bendOnBracket").value);
 
-    // let tenallowcal = tenallow * anchorqty;
+    if (isNaN(benallowcalsafety) || isNaN(bendOnBracket)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     if (bendOnBracket >= benallowcalsafety) {
-        // console.log("Hence");
         document.getElementById("checkbracketbend").value = "Bending Moment > allowable";
         document.getElementById("checkbracketbend2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("checkbracketbend").value = "Bending Moment < allowable";
         document.getElementById("checkbracketbend2").value = "Hence be allowable";
@@ -992,17 +968,17 @@ function checkbracketbend() {
 }
 
 function checkshearbracket() {
-
     let shearallowcalsafety = parseFloat(document.getElementById("shearallowcalsafety").value);
     let shearOnBracket = parseFloat(document.getElementById("shearOnBracket").value);
 
-    // let tenallowcal = tenallow * anchorqty;
+    if (isNaN(shearallowcalsafety) || isNaN(shearOnBracket)) {
+        console.error("Invalid input values");
+        return;
+    }
 
     if (shearOnBracket >= shearallowcalsafety) {
-        // console.log("Hence");
         document.getElementById("checkshearbracket").value = "Bending Moment > allowable";
         document.getElementById("checkshearbracket2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("checkshearbracket").value = "Bending Moment < allowable";
         document.getElementById("checkshearbracket2").value = "Hence be allowable";
@@ -1010,24 +986,21 @@ function checkshearbracket() {
 }
 
 function CheckCombined() {
-
     let Combinedcal = parseFloat(document.getElementById("Combinedcal").value);
 
-
-    // let tenallowcal = tenallow * anchorqty;
+    if (isNaN(Combinedcal)) {
+        console.error("Invalid input value");
+        return;
+    }
 
     if (Combinedcal >= 1) {
-        // console.log("Hence");
         document.getElementById("CheckCombined").value = "Combined Stress > 1";
         document.getElementById("CheckCombined2").value = "Hence cannot be allowable";
-
     } else {
         document.getElementById("CheckCombined").value = "Combined Stress < 1";
         document.getElementById("CheckCombined2").value = "Hence be allowable";
     }
 }
-
-
 
 //! END bracket
 /////////////////////////////////////////////////////////////////

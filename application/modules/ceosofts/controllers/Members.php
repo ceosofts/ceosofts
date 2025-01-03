@@ -6,19 +6,29 @@ if (!defined('BASEPATH'))  exit('No direct script access allowed');
  */
 class Members extends MEMBER_Controller
 {
+	protected $session;
+	protected $parser;
+	protected $pagination;
 
 	private $per_page;
-	private $another_js;
+	private $num_links;
+	private $another_js = '';
 	private $another_css;
 	private $upload_store_path;
 	private $file_allow;
 	private $file_allow_type;
 	private $file_allow_mime;
 	private $file_check_name;
+	private $uri_segment;
+	private $Members;
 
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('pagination');
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->library('parser');
 		$this->per_page = 30;
 		$this->num_links = 6;
 		$this->uri_segment = 4;
@@ -36,10 +46,8 @@ class Members extends MEMBER_Controller
 		$this->file_allow = array(
 			'application/pdf' => 'pdf',
 			'application/msword' => 'doc',
-			'application/vnd.ms-msword' => 'doc',
 			'application/vnd.ms-excel' => 'xls',
 			'application/powerpoint' => 'ppt',
-			'application/vnd.ms-powerpoint' => 'ppt',
 			'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'docx',
 			'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'xlsx',
 			'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'pptx',
@@ -70,7 +78,7 @@ class Members extends MEMBER_Controller
 			array('title' => 'Members', 'class' => 'active', 'url' => '#'),
 		);
 		if ($this->session->userdata('login_validated') == false) {
-			$this->render_view('');
+			$this->load->view('ceosofts/members/login_view', $this->data);
 			return;
 		}
 		$this->list_all();
@@ -93,8 +101,8 @@ class Members extends MEMBER_Controller
 			$current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 			$this->session->set_userdata('after_login_redirect', $current_url);
 		} else {
-			if ($this->session->userdata('user_level') >= 1 && $this->session->userdata('user_department_id') == 11 || 12) {
-				$this->data['page_content'] = $this->parser->parse_repeat($path, $this->data, TRUE);
+			if ($this->session->userdata('user_level') >= 1 && ($this->session->userdata('user_department_id') == 11 || $this->session->userdata('user_department_id') == 12)) {
+				// User has the required level and department
 			} else {
 				$this->data['alert_message'] = 'เฉพาะผู้ใช้งานระดับ <b>ผู้ใช้งานทั่วไป</b> และ เฉพาะผู้ใช้งานแผนก <b>ฝ่ายไอที</b>';
 				$this->data['page_content'] = $this->parser->parse_repeat('member_authen_permission.php', $this->data, TRUE);
@@ -147,8 +155,10 @@ class Members extends MEMBER_Controller
 		$this->breadcrumb_data['breadcrumb'] = array(
 			array('title' => 'Members', 'class' => 'active', 'url' => '#'),
 		);
+		$search_field = '';
+		$value = '';
 		if (isset($_POST['submit'])) {
-			$search_field =  $this->input->post('search_field', TRUE);
+			$search_field = $this->input->post('search_field', TRUE);
 			$value = $this->input->post('txtSearch', TRUE);
 			$arr = array($this->Members->session_name . '_search_field' => $search_field, $this->Members->session_name . '_value' => $value);
 			$this->session->set_userdata($arr);
@@ -334,17 +344,10 @@ class Members extends MEMBER_Controller
 		$user_id_running = $this->Members->set_running_number('user_id');
 		$this->data['source_user_id'] = $user_id_running;
 
-		$create_datetime = $this->session->userdata('create_datetime');
-		$this->data['source_create_datetime'] = $create_datetime;
-
-		$create_user_id = $this->session->userdata('create_user_id');
-		$this->data['source_create_user_id'] = $create_user_id;
-
-		$modify_datetime = $this->session->userdata('modify_datetime');
-		$this->data['source_modify_datetime'] = $modify_datetime;
-
-		$modify_user_id = $this->session->userdata('modify_user_id');
-		$this->data['source_modify_user_id'] = $modify_user_id;
+		$this->data['source_create_datetime'] = date('Y-m-d H:i:s');
+		$this->data['source_create_user_id'] = $this->session->userdata('user_id');
+		$this->data['source_modify_datetime'] = date('Y-m-d H:i:s');
+		$this->data['source_modify_user_id'] = $this->session->userdata('user_id');
 	}
 
 	/**
@@ -556,10 +559,10 @@ class Members extends MEMBER_Controller
 
 			$post = $this->input->post(NULL, TRUE);
 
-			$post['create_datetime'] = $this->session->userdata('create_datetime');
-			$post['create_user_id'] = $this->session->userdata('create_user_id');
-			$post['modify_datetime'] = $this->session->userdata('modify_datetime');
-			$post['modify_user_id'] = $this->session->userdata('modify_user_id');
+			$post['create_datetime'] = date('Y-m-d H:i:s');
+			$post['create_user_id'] = $this->session->userdata('user_id');
+			$post['modify_datetime'] = date('Y-m-d H:i:s');
+			$post['modify_user_id'] = $this->session->userdata('user_id');
 
 			$upload_error = 0;
 			$upload_error_msg = '';
@@ -620,10 +623,10 @@ class Members extends MEMBER_Controller
 				$this->data['csrf_field'] = insert_csrf_field(true);
 
 				$this->data['source_user_id'] = '';
-				$this->data['source_create_datetime'] = $this->session->userdata('create_datetime');
-				$this->data['source_create_user_id'] = $this->session->userdata('create_user_id');
-				$this->data['source_modify_datetime'] = $this->session->userdata('modify_datetime');
-				$this->data['source_modify_user_id'] = $this->session->userdata('modify_user_id');
+				$this->data['source_create_datetime'] = date('Y-m-d H:i:s');
+				$this->data['source_create_user_id'] = $this->session->userdata('user_id');
+				$this->data['source_modify_datetime'] = date('Y-m-d H:i:s');
+				$this->data['source_modify_user_id'] = $this->session->userdata('user_id');
 
 				$this->setPreviewFormat($results);
 
@@ -694,10 +697,10 @@ class Members extends MEMBER_Controller
 			}
 
 			if ($upload_error == 0) {
-				$post['create_datetime'] = $this->session->userdata('create_datetime');
-				$post['create_user_id'] = $this->session->userdata('create_user_id');
-				$post['modify_datetime'] = $this->session->userdata('modify_datetime');
-				$post['modify_user_id'] = $this->session->userdata('modify_user_id');
+				$post['create_datetime'] = date('Y-m-d H:i:s');
+				$post['create_user_id'] = $this->session->userdata('user_id');
+				$post['modify_datetime'] = date('Y-m-d H:i:s');
+				$post['modify_user_id'] = $this->session->userdata('user_id');
 
 				$result = $this->Members->update($post);
 				if ($result == false) {
@@ -859,7 +862,7 @@ class Members extends MEMBER_Controller
 		$this->data['departmentIdDpmName'] = $departmentIdDpmName;
 
 
-		$voidDpmName = $this->table('tb_status')->get_value('dpm_name')->where("dpm_void = '$data[void]'");
+		$voidDpmName = $this->table('tb_status')->get_value('dpm_name')->where("dpm_void = '{$data['void']}'");
 		$this->data['voidDpmName'] = $voidDpmName;
 
 		$this->data['record_userid'] = $data['userid'];
